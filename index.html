@@ -13,6 +13,7 @@
   </div>
 
   <script>
+    // Components to load (in order)
     const components = [
       "top-bar",
       "funded-feed",
@@ -34,6 +35,48 @@
           console.error(`Error loading ${name}:`, err);
         }
       }
+
+      // Init tutorial after overlay is loaded
+      initTutorialOverlay();
+    }
+
+    function initTutorialOverlay() {
+      const overlay = document.getElementById("tz-tutorial");
+      if (!overlay) return;
+
+      const steps = overlay.querySelectorAll(".tutorial-step");
+      let currentStepIndex = 0;
+
+      const nextBtn = document.getElementById("tz-next");
+      const backBtn = document.getElementById("tz-back");
+      const closeBtn = document.getElementById("tz-close");
+
+      function showStep(index) {
+        steps.forEach((step, i) => step.hidden = i !== index);
+        currentStepIndex = index;
+      }
+
+      function closeOverlay() {
+        overlay.style.display = "none";
+      }
+
+      nextBtn?.addEventListener("click", () => {
+        if (currentStepIndex < steps.length - 1) showStep(currentStepIndex + 1);
+      });
+
+      backBtn?.addEventListener("click", () => {
+        if (currentStepIndex > 0) showStep(currentStepIndex - 1);
+      });
+
+      closeBtn?.addEventListener("click", closeOverlay);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeOverlay();
+      });
+
+      overlay.style.display = "flex";
+      overlay.hidden = false;
+      showStep(0);
     }
 
     loadComponents();
