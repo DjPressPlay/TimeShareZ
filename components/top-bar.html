@@ -1,27 +1,29 @@
-
 <!-- TOP BAR -->
 <header class="top-bar" role="banner">
   <div class="top-bar-inner">
 
-    <!-- Logo -->
-    <div class="logo" role="img" aria-label="TimeShareZ Logo">
+    <!-- Left: Logo -->
+    <a href="/" class="logo" aria-label="TimeShareZ Home">
       ⏳ <span class="logo-text">TimeShareZ</span>
-    </div>
+    </a>
 
-    <!-- Search -->
-    <div class="search">
+    <!-- Center: Search -->
+    <form class="search" role="search" aria-label="Project Search">
       <label for="project-search" class="visually-hidden">Search Projects</label>
       <input 
-        id="project-search" 
-        type="search" 
-        placeholder="Search projects..." 
+        id="project-search"
+        type="search"
+        name="q"
+        placeholder="Search projects..."
         aria-label="Search projects"
       />
-    </div>
+    </form>
 
-    <!-- Post Project Button -->
+    <!-- Right: Post Project Button -->
     <div class="post-btn">
-      <button type="button" aria-label="Post a new project">Post Project</button>
+      <button type="button" aria-label="Post a new project">
+        + Post Project
+      </button>
     </div>
 
   </div>
