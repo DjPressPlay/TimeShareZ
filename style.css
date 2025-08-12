@@ -6,6 +6,13 @@ body {
   padding: 0;
 }
 
+/* CENTER APP */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
 /* TOP BAR */
 .top-bar {
   display: flex;
@@ -27,6 +34,25 @@ body {
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+
+/* FUNDED FEED */
+.funded-feed {
+  padding: 1rem;
+  background: #111;
+}
+.funded-list {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+.funded-item {
+  flex: 0 0 auto;
+  background: #222;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  white-space: nowrap;
 }
 
 /* HOT FEED */
@@ -62,4 +88,23 @@ body {
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+
+/* FOOTER */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #1a1a1a;
+}
+.site-footer h4 {
+  margin-top: 0;
+}
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+}
+.site-footer a {
+  color: #00ff88;
+  text-decoration: none;
 }
