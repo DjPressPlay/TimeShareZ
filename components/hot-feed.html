@@ -31,7 +31,7 @@
     margin: 0;
     padding: 1rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     overflow-x: auto;
     scrollbar-width: thin;
     scrollbar-color: #000 transparent; /* Firefox */
@@ -52,12 +52,13 @@
     background: #222;
   }
 
+  /* Smaller box size */
   .hot-item {
-    flex: 0 0 160px;
+    flex: 0 0 130px;
     background: #222;
     border: 1px solid #333;
     border-radius: 8px;
-    padding: 0.6rem;
+    padding: 0.5rem;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -78,37 +79,37 @@
 
   .hot-rank {
     font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
   }
 
   .hot-thumb {
     width: 100%;
-    height: 90px;
+    height: 75px;
     object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .project-name {
     font-weight: bold;
-    font-size: 0.95rem;
-    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
   }
 
   .project-desc {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #bbb;
     flex-grow: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .view-btn {
     background: #ff5e5e;
     border: none;
-    padding: 0.4rem;
+    padding: 0.3rem;
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 4px;
@@ -134,21 +135,22 @@
   }
 </style>
 
-<section class="hot-feed" aria-label="Currently Funding">
+<section class="hot-feed" aria-label="In Progress">
   <header class="hot-feed-header">
     <span>💰</span>
-    <h2>Currently Funding</h2>
+    <h2>In Progress</h2>
   </header>
 
   <ol id="hotList" class="hot-list" role="list"></ol>
 </section>
 
 <script>
-  // Example data
+  // Example data with another box added
   const hotProjects = [
     { name: "Project Alpha", desc: "Short description for Alpha.", img: "https://via.placeholder.com/160x90" },
     { name: "Project Beta", desc: "Short description for Beta.", img: "https://via.placeholder.com/160x90" },
-    { name: "Project Gamma", desc: "Short description for Gamma.", img: "https://via.placeholder.com/160x90" }
+    { name: "Project Gamma", desc: "Short description for Gamma.", img: "https://via.placeholder.com/160x90" },
+    { name: "Project Delta", desc: "Short description for Delta.", img: "https://via.placeholder.com/160x90" }
   ];
 
   function renderHotFeed() {
