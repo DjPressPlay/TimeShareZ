@@ -34,7 +34,7 @@
     gap: 0.6rem;
     overflow-x: auto;
     scrollbar-width: thin;
-    scrollbar-color: #000 transparent; /* Firefox */
+    scrollbar-color: #000 transparent;
   }
 
   /* Black scrollbar for WebKit browsers */
@@ -122,49 +122,67 @@
   .view-btn:hover {
     background: #ff7a7a;
   }
+
+  /* Placeholder style */
+  .placeholder {
+    opacity: 0.4;
+    background: repeating-linear-gradient(
+      45deg,
+      #333,
+      #333 10px,
+      #444 10px,
+      #444 20px
+    );
+  }
 </style>
 
-<section class="hot-feed" aria-label="Hot Projects Today">
+<section class="hot-feed" aria-label="Currently Funding">
   <header class="hot-feed-header">
-    <span>🔥</span>
-    <h2>HOT Feed – Top 5 Today</h2>
+    <span>💰</span>
+    <h2>Currently Funding</h2>
   </header>
 
-  <ol class="hot-list" role="list">
-    <li class="hot-item" data-rank="1">
-      <span class="hot-rank">#1</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/120x65" alt="Project 1">
-      <span class="project-name">Project 1</span>
-      <p class="project-desc">Quick info about Project 1.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="2">
-      <span class="hot-rank">#2</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/120x65" alt="Project 2">
-      <span class="project-name">Project 2</span>
-      <p class="project-desc">Quick info about Project 2.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="3">
-      <span class="hot-rank">#3</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/120x65" alt="Project 3">
-      <span class="project-name">Project 3</span>
-      <p class="project-desc">Quick info about Project 3.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="4">
-      <span class="hot-rank">#4</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/120x65" alt="Project 4">
-      <span class="project-name">Project 4</span>
-      <p class="project-desc">Quick info about Project 4.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="5">
-      <span class="hot-rank">#5</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/120x65" alt="Project 5">
-      <span class="project-name">Project 5</span>
-      <p class="project-desc">Quick info about Project 5.</p>
-      <button class="view-btn">View</button>
-    </li>
-  </ol>
+  <ol id="hotList" class="hot-list" role="list"></ol>
 </section>
+
+<script>
+  // Example data
+  const hotProjects = [
+    { name: "Project Alpha", desc: "Quick info for Alpha.", img: "https://via.placeholder.com/120x65" },
+    { name: "Project Beta", desc: "Quick info for Beta.", img: "https://via.placeholder.com/120x65" },
+    { name: "Project Gamma", desc: "Quick info for Gamma.", img: "https://via.placeholder.com/120x65" }
+  ];
+
+  function renderHotFeed() {
+    const hotList = document.getElementById("hotList");
+    hotList.innerHTML = "";
+
+    // Fill to exactly 6 items
+    for (let i = 0; i < 6; i++) {
+      if (hotProjects[i]) {
+        const proj = hotProjects[i];
+        hotList.innerHTML += `
+          <li class="hot-item" data-rank="${i + 1}">
+            <span class="hot-rank">#${i + 1}</span>
+            <img class="hot-thumb" src="${proj.img}" alt="${proj.name}">
+            <span class="project-name">${proj.name}</span>
+            <p class="project-desc">${proj.desc}</p>
+            <button class="view-btn">View</button>
+          </li>
+        `;
+      } else {
+        hotList.innerHTML += `
+          <li class="hot-item placeholder">
+            <span class="hot-rank">—</span>
+            <div class="hot-thumb"></div>
+            <span class="project-name">Empty Slot</span>
+            <p class="project-desc">No project yet.</p>
+            <button class="view-btn" disabled>View</button>
+          </li>
+        `;
+      }
+    }
+  }
+
+  renderHotFeed();
+</script>
