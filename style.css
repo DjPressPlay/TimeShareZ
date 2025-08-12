@@ -21,9 +21,6 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* ===== TOP BAR ===== */
@@ -34,20 +31,10 @@ a:hover {
   background: #1a1a1a;
   padding: 1rem;
   border-bottom: 1px solid #2a2a2a;
-  width: 100%;
 }
 
 .top-bar .logo {
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.top-bar .search {
-  flex: 1;
-  display: flex;
-  justify-content: center;
 }
 
 .top-bar .search input {
@@ -55,12 +42,6 @@ a:hover {
   border-radius: 4px;
   border: none;
   outline: none;
-  min-width: 200px;
-}
-
-.top-bar .post-btn {
-  display: flex;
-  align-items: center;
 }
 
 .top-bar .post-btn button {
@@ -80,8 +61,6 @@ a:hover {
 .funded-feed {
   padding: 1rem;
   background: #111;
-  width: 100%;
-  text-align: center;
 }
 
 .funded-feed h2 {
@@ -93,7 +72,6 @@ a:hover {
   gap: 1rem;
   overflow-x: auto;
   padding-bottom: 0.5rem;
-  justify-content: center;
 }
 
 .funded-item {
@@ -108,8 +86,6 @@ a:hover {
 .hot-feed {
   padding: 1rem;
   background: #111;
-  width: 100%;
-  text-align: center;
 }
 
 .hot-feed h2 {
@@ -120,15 +96,14 @@ a:hover {
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .hot-item {
+  flex: 1;
   background: #222;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.5rem;
   text-align: center;
+  border-radius: 4px;
 }
 
 /* ===== MAIN ROTATOR ===== */
@@ -136,12 +111,6 @@ a:hover {
   padding: 1rem;
   background: #181818;
   text-align: center;
-  width: 100%;
-}
-
-.rotator-media {
-  display: flex;
-  justify-content: center;
 }
 
 .rotator-media img {
@@ -159,9 +128,6 @@ a:hover {
 
 .rotator-controls {
   margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .rotator-controls button {
@@ -181,12 +147,10 @@ a:hover {
 /* ===== FOOTER ===== */
 .site-footer {
   display: flex;
-  justify-content: center;
-  gap: 4rem;
+  justify-content: space-between;
   padding: 1rem;
   background: #1a1a1a;
   border-top: 1px solid #2a2a2a;
-  width: 100%;
 }
 
 .site-footer h4 {
@@ -197,7 +161,6 @@ a:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center;
 }
 
 .site-footer li {
@@ -237,7 +200,7 @@ a:hover {
 .tutorial-actions {
   display: flex;
   gap: 0.5rem;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 /* Buttons */
