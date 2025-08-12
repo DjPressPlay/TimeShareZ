@@ -4,23 +4,32 @@ body {
   background: #0d0d0d;
   color: #fff;
   margin: 0;
-  padding: 0;/* ===== TOP BAR ===== */
-.top-bar {
-  background: #1a1a1a;
-  border-bottom: 1px solid #2a2a2a;
-  padding: 0.75rem 1.25rem;
 }
 
-.top-bar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+a {
+  color: #00ff88;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.app-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Logo */
+/* ===== TOP BAR ===== */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a1a;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #2a2a2a;
+}
+
 .top-bar .logo {
   font-weight: bold;
   font-size: 1.25rem;
@@ -34,80 +43,13 @@ body {
   color: #fff;
 }
 
-/* Search */
-.top-bar .search {
-  flex: 1;
-  max-width: 400px;
-}
-
-.top-bar .search input {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  background: #111;
-  color: #fff;
-  font-size: 0.95rem;
-}
-
-.top-bar .search input::placeholder {
-  color: #888;
-}
-
-/* Post Project Button */
-.top-bar .post-btn button {
-  background: #00ff88;
-  color: #0b0b0b;
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: background 0.2s ease;
-}
-
-.top-bar .post-btn button:hover {
-  background: #00cc6a;
-}
-
-}
-
-a {
-  color: #00ff88;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ===== APP CONTAINER ===== */
-.app-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-/* ===== TOP BAR ===== */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #1a1a1a;
-  padding: 1rem;
-  border-bottom: 1px solid #2a2a2a;
-}
-
-.top-bar .logo {
-  font-weight: bold;
-}
-
 .top-bar .search input {
   padding: 0.5rem;
   border-radius: 4px;
   border: none;
   outline: none;
+  background: #111;
+  color: #fff;
 }
 
 .top-bar .post-btn button {
@@ -121,99 +63,14 @@ a:hover {
 
 .top-bar .post-btn button:hover {
   background: #00cc6a;
-}
-
-/* ===== FUNDED FEED ===== */
-.funded-feed {
-  padding: 1rem;
-  background: #111;
-}
-
-.funded-feed h2 {
-  margin: 0 0 0.5rem 0;
-}
-
-.funded-list {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-}
-
-.funded-item {
-  flex: 0 0 auto;
-  background: #222;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-
-/* ===== HOT FEED ===== */
-.hot-feed {
-  padding: 1rem;
-  background: #111;
-}
-
-.hot-feed h2 {
-  margin: 0 0 0.5rem 0;
-}
-
-.hot-list {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.hot-item {
-  flex: 1;
-  background: #222;
-  padding: 0.5rem;
-  text-align: center;
-  border-radius: 4px;
-}
-
-/* ===== MAIN ROTATOR ===== */
-.main-rotator {
-  padding: 1rem;
-  background: #181818;
-  text-align: center;
-}
-
-.rotator-media img {
-  max-width: 100%;
-  border-radius: 6px;
-}
-
-.rotator-overlays {
-  margin-top: 1rem;
-}
-
-.rotator-overlays p {
-  margin: 0.25rem 0;
-}
-
-.rotator-controls {
-  margin-top: 1rem;
-}
-
-.rotator-controls button {
-  margin: 0.5rem;
-  background: #333;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.rotator-controls button:hover {
-  background: #444;
 }
 
 /* ===== FOOTER ===== */
 .site-footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 1rem;
   padding: 1rem;
   background: #1a1a1a;
   border-top: 1px solid #2a2a2a;
@@ -231,74 +88,4 @@ a:hover {
 
 .site-footer li {
   margin: 0.25rem 0;
-}
-
-/* ===== TUTORIAL OVERLAY ===== */
-.tutorial-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.tutorial-card {
-  width: min(560px, 92vw);
-  background: #121212;
-  border: 1px solid #2a2a2a;
-  border-radius: 10px;
-  padding: 1.25rem 1.25rem 1rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-}
-
-.tutorial-step h3 {
-  margin: 0 0 0.5rem 0;
-}
-
-.tutorial-step p {
-  margin: 0 0 1rem 0;
-  line-height: 1.5;
-  opacity: 0.95;
-}
-
-.tutorial-actions {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-end;
-}
-
-/* Buttons */
-.btn-primary {
-  background: #00ff88;
-  color: #0b0b0b;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.btn-primary:hover {
-  background: #00cc6a;
-}
-
-.btn-ghost {
-  background: #2a2a2a;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn-ghost:hover {
-  background: #3a3a3a;
-}
-
-.btn-primary:focus, 
-.btn-ghost:focus {
-  outline: 2px solid #00ff88;
-  outline-offset: 2px;
 }
