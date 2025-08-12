@@ -1,26 +1,110 @@
+<!-- hotfeed.html -->
+<style>
+  .hot-feed {
+    background: #111;
+    border: 2px solid #ff5e5e;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 1rem auto;
+    box-shadow: 0 0 15px rgba(255, 94, 94, 0.3);
+  }
 
-<!-- HOT FEED -->
+  .hot-feed-header {
+    background: linear-gradient(to right, #ff5e5e, #ff9a5e);
+    padding: 0.5rem 1rem;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hot-feed-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .hot-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .hot-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: #222;
+    border-right: 1px solid #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .hot-item:hover {
+    background: #333;
+    transform: translateY(-2px);
+  }
+
+  .hot-item[data-rank="1"] {
+    background: #ff5e5e;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .hot-item[data-rank="1"]:hover {
+    background: #ff7a7a;
+  }
+
+  .hot-rank {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff5e5e;
+  }
+
+  .hot-item[data-rank="1"] .hot-rank {
+    color: #000;
+  }
+
+  .project-name {
+    white-space: nowrap;
+  }
+</style>
+
 <section class="hot-feed" aria-label="Hot Projects Today">
   <header class="hot-feed-header">
-    <h2>🔥 HOT Feed – Top 5 Today</h2>
+    <span>🔥</span>
+    <h2>HOT Feed – Top 5 Today</h2>
   </header>
 
   <ol class="hot-list" role="list">
     <li class="hot-item" data-rank="1">
+      <span class="hot-rank">#1</span>
       <span class="project-name">Project 1</span>
     </li>
     <li class="hot-item" data-rank="2">
+      <span class="hot-rank">#2</span>
       <span class="project-name">Project 2</span>
     </li>
     <li class="hot-item" data-rank="3">
+      <span class="hot-rank">#3</span>
       <span class="project-name">Project 3</span>
     </li>
     <li class="hot-item" data-rank="4">
+      <span class="hot-rank">#4</span>
       <span class="project-name">Project 4</span>
     </li>
     <li class="hot-item" data-rank="5">
+      <span class="hot-rank">#5</span>
       <span class="project-name">Project 5</span>
     </li>
   </ol>
 </section>
-<!-- /HOT FEED -->
