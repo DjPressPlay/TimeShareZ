@@ -1,5 +1,85 @@
+<!-- tutorial-overlay.html -->
+<style>
+  .tutorial-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: swoopIn 0.8s ease-out;
+  }
 
-<!-- TUTORIAL OVERLAY -->
+  @keyframes swoopIn {
+    from { transform: translateX(-100%) scale(0.95); opacity: 0; }
+    70%  { transform: translateX(5%) scale(1.02); opacity: 1; }
+    to   { transform: translateX(0) scale(1); }
+  }
+
+  .tutorial-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 480px;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .tutorial-step {
+    animation: stepFade 0.5s ease;
+  }
+
+  @keyframes stepFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tutorial-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: #00ffc8;
+    border: none;
+    color: #000;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 12px #00ffc8;
+    transform: scale(1.05);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border: 2px solid #00ffc8;
+    color: #00ffc8;
+  }
+
+  .btn-ghost:hover {
+    box-shadow: 0 0 12px #00ffc8;
+    transform: scale(1.05);
+  }
+</style>
+
 <div class="tutorial-overlay" id="tz-tutorial" aria-modal="true" role="dialog">
   <div class="tutorial-card" role="document">
 
@@ -12,7 +92,7 @@
         <strong>Rotator</strong> to preview and support live windows.
       </p>
       <div class="tutorial-actions">
-        <button class="btn-primary" id="tz-next" type="button" aria-label="Next step in tutorial">Next</button>
+        <button class="btn-primary" id="tz-next" type="button">Next</button>
       </div>
     </section>
 
@@ -25,11 +105,55 @@
         You can buy a maximum of <strong>2 spots per session</strong>.
       </p>
       <div class="tutorial-actions">
-        <button class="btn-ghost" id="tz-back" type="button" aria-label="Go back to previous tutorial step">Back</button>
-        <button class="btn-primary" id="tz-close" type="button" aria-label="Close tutorial">Close</button>
+        <button class="btn-ghost" id="tz-back" type="button">Back</button>
+        <button class="btn-primary" id="tz-close" type="button">Close</button>
       </div>
     </section>
 
   </div>
 </div>
-<!-- /TUTORIAL OVERLAY -->
+
+<script>
+(function(){
+  const overlay = document.getElementById("tz-tutorial");
+  if (!overlay) return;
+
+  const steps = overlay.querySelectorAll(".tutorial-step");
+  let currentStepIndex = 0;
+
+  const nextBtn = document.getElementById("tz-next");
+  const backBtn = document.getElementById("tz-back");
+  const closeBtn = document.getElementById("tz-close");
+
+  function showStep(index) {
+    steps.forEach((step, i) => step.hidden = i !== index);
+    currentStepIndex = index;
+  }
+
+  function closeOverlay() {
+    overlay.style.display = "none";
+  }
+
+  nextBtn?.addEventListener("click", () => {
+    if (currentStepIndex < steps.length - 1) {
+      showStep(currentStepIndex + 1);
+    }
+  });
+
+  backBtn?.addEventListener("click", () => {
+    if (currentStepIndex > 0) {
+      showStep(currentStepIndex - 1);
+    }
+  });
+
+  closeBtn?.addEventListener("click", closeOverlay);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeOverlay();
+  });
+
+  // Show on load
+  overlay.style.display = "flex";
+  showStep(0);
+})();
+</script>
