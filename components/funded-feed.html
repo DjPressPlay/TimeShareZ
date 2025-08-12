@@ -5,150 +5,60 @@
   </header>
 
   <div class="ticker">
-    <ul class="funded-list" role="list">
-      <li class="funded-item" data-status="funded">
-        <img class="project-img" src="https://via.placeholder.com/32" alt="Project A" />
-        <span class="project-name">Project A</span> — 
-        <span class="project-amount">$1,200</span> — 
-        <span class="project-status">Funded</span>
-      </li>
-      <li class="funded-item" data-status="funded">
-        <img class="project-img" src="https://via.placeholder.com/32" alt="Project B" />
-        <span class="project-name">Project B</span> — 
-        <span class="project-amount">$850</span> — 
-        <span class="project-status">Funded</span>
-      </li>
-      <li class="funded-item" data-status="sold-out">
-        <img class="project-img" src="https://via.placeholder.com/32" alt="Project C" />
-        <span class="project-name">Project C</span> — 
-        <span class="project-amount">$600</span> — 
-        <span class="project-status">Sold Out</span>
-      </li>
-      <li class="funded-item" data-status="funded">
-        <img class="project-img" src="https://via.placeholder.com/32" alt="Project D" />
-        <span class="project-name">Project D</span> — 
-        <span class="project-amount">$1,500</span> — 
-        <span class="project-status">Funded</span>
-      </li>
-      <li class="funded-item" data-status="funded">
-        <img class="project-img" src="https://via.placeholder.com/32" alt="Project E" />
-        <span class="project-name">Project E</span> — 
-        <span class="project-amount">$1,000</span> — 
-        <span class="project-status">Funded</span>
-      </li>
-    </ul>
+    <ul id="fundedList" class="funded-list" role="list"></ul>
   </div>
 </section>
 <!-- /FUNDED FEED -->
 
-<style>
-  :root {
-    --bg-1: #0b0b0b;
-    --bg-2: #151515;
-    --rim: #000;          /* solid black outline */
-    --bevel-hi: rgba(255,255,255,.06);
-    --bevel-lo: rgba(0,0,0,.65);
-    --glow: rgba(0,255,200,.55);
+<script>
+  // This could be loaded from funded.txt or a backend API
+  // funded.txt should be in JSON format like:
+  // [
+  //   {"name": "Project A", "amount": 1200, "status": "funded", "img": "https://link/to/image.jpg"},
+  //   ...
+  // ]
+  
+  let projects = [];
+
+  function loadProjects() {
+    // For now, simulate a fetch with local data
+    projects = [
+      { name: "Project A", amount: 1200, status: "funded", img: "https://via.placeholder.com/32" },
+      { name: "Project B", amount: 850, status: "funded", img: "https://via.placeholder.com/32" },
+      { name: "Project C", amount: 600, status: "sold-out", img: "https://via.placeholder.com/32" },
+      { name: "Project D", amount: 1500, status: "funded", img: "https://via.placeholder.com/32" },
+      { name: "Project E", amount: 1000, status: "funded", img: "https://via.placeholder.com/32" },
+      { name: "Project F", amount: 2300, status: "funded", img: "https://via.placeholder.com/32" },
+      { name: "Project G", amount: 450, status: "funded", img: "https://via.placeholder.com/32" }
+    ];
+
+    renderProjects();
   }
 
-  .funded-feed {
-    position: relative;
-    background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
-    color: #fff;
-    padding: 12px 14px;
-    border-radius: 10px;
+  function renderProjects() {
+    const fundedList = document.getElementById("fundedList");
+    fundedList.innerHTML = "";
 
-    /* Solid black outline + always-on glow */
-    border: 3px solid var(--rim);
-    box-shadow:
-      0 0 38px var(--glow),             /* always glowing */
-      0 10px 22px var(--bevel-lo),      /* drop shadow (3D depth) */
-      inset 0 1px 0 var(--bevel-hi),    /* top lip highlight */
-      inset 0 -2px 0 rgba(255,255,255,.03); /* lower lip */
+    projects.forEach(project => {
+      const li = document.createElement("li");
+      li.className = "funded-item";
+      li.setAttribute("data-status", project.status);
 
-    overflow: hidden;
-    white-space: nowrap;
-    transform: translateZ(0);
+      li.innerHTML = `
+        <img class="project-img" src="${project.img}" alt="${project.name}" />
+        <span class="project-name">${project.name}</span> — 
+        <span class="project-amount">$${Number(project.amount).toLocaleString()}</span> — 
+        <span class="project-status">${project.status === "funded" ? "Funded" : "Sold Out"}</span>
+      `;
+
+      fundedList.appendChild(li);
+    });
   }
 
-  /* Inner bevel for depth */
-  .funded-feed::before {
-    content: "";
-    position: absolute; inset: 3px;
-    border-radius: 7px;
-    box-shadow:
-      inset 0 10px 18px rgba(0,0,0,.35),
-      inset 0 -10px 18px rgba(0,0,0,.45);
-    pointer-events: none;
-  }
+  // When you switch to funded.txt:
+  // fetch("funded.txt")
+  //   .then(res => res.json())
+  //   .then(data => { projects = data; renderProjects(); });
 
-  /* Pause ticker on hover */
-  .funded-feed:hover .funded-list { animation-play-state: paused; }
-
-  .funded-feed-header { margin-bottom: 6px; }
-  .funded-feed-header h2 { margin: 0; font-weight: 700; letter-spacing: .2px; }
-
-  .ticker {
-    display: flex;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .funded-list {
-    display: flex;
-    gap: 2rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
-    animation: tickerMove 20s linear infinite;
-    will-change: transform;
-  }
-
-  .funded-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.98rem;
-    padding: 6px 10px;
-    border-radius: 8px;
-
-    background: rgba(255,255,255,.03);
-    border: 2px solid var(--rim);
-    box-shadow:
-      0 0 12px var(--glow), /* subtle chip glow */
-      0 4px 10px rgba(0,0,0,.45),
-      inset 0 1px 0 rgba(255,255,255,.04);
-  }
-
-  .funded-item:hover {
-    background: rgba(255,255,255,.06);
-    box-shadow:
-      0 0 20px var(--glow),
-      0 6px 14px rgba(0,0,0,.5),
-      inset 0 1px 0 rgba(255,255,255,.06);
-  }
-
-  .project-img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    border: 2px solid var(--rim);
-    box-shadow: 0 0 10px rgba(0,0,0,.5);
-  }
-
-  .funded-item[data-status="funded"] .project-status { color: #00f57a; }
-  .funded-item[data-status="sold-out"] .project-status { color: #ff3b3b; }
-
-  @keyframes tickerMove {
-    from { transform: translateX(100%); }
-    to   { transform: translateX(-100%); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .funded-list { animation: none; }
-  }
-</style>
-
+  loadProjects();
+</script>
