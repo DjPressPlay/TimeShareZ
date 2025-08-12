@@ -2,11 +2,11 @@
   .hot-feed {
     background: #111;
     border: 2px solid #ff5e5e;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
     max-width: 650px; /* smaller width */
     margin: 0.5rem auto;
-    box-shadow: 0 0 12px rgba(255, 94, 94, 0.3);
+    box-shadow: 0 0 10px rgba(255, 94, 94, 0.25);
   }
 
   .hot-feed-header {
@@ -31,13 +31,13 @@
     margin: 0;
     padding: 0.6rem;
     display: flex;
-    flex-wrap: wrap; /* ✅ allows wrapping to stay on screen */
     gap: 0.6rem;
-    justify-content: center; /* ✅ centers the items */
+    overflow-x: auto;
+    scrollbar-width: thin;
   }
 
   .hot-item {
-    width: 120px; /* fixed smaller width */
+    flex: 0 0 120px; /* smaller card */
     background: #222;
     border: 1px solid #333;
     border-radius: 6px;
@@ -51,7 +51,7 @@
 
   .hot-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 3px 8px rgba(255, 94, 94, 0.3);
+    box-shadow: 0 3px 8px rgba(255, 94, 94, 0.25);
   }
 
   .hot-item[data-rank="1"] {
@@ -63,7 +63,7 @@
   .hot-rank {
     font-weight: bold;
     font-size: 0.8rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
   }
 
   .hot-thumb {
@@ -105,3 +105,48 @@
     background: #ff7a7a;
   }
 </style>
+
+<section class="hot-feed" aria-label="Hot Projects Today">
+  <header class="hot-feed-header">
+    <span>🔥</span>
+    <h2>HOT Feed – Top 5 Today</h2>
+  </header>
+
+  <ol class="hot-list" role="list">
+    <li class="hot-item" data-rank="1">
+      <span class="hot-rank">#1</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 1">
+      <span class="project-name">Project 1</span>
+      <p class="project-desc">Short description for Project 1 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="2">
+      <span class="hot-rank">#2</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 2">
+      <span class="project-name">Project 2</span>
+      <p class="project-desc">Short description for Project 2 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="3">
+      <span class="hot-rank">#3</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 3">
+      <span class="project-name">Project 3</span>
+      <p class="project-desc">Short description for Project 3 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="4">
+      <span class="hot-rank">#4</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 4">
+      <span class="project-name">Project 4</span>
+      <p class="project-desc">Short description for Project 4 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="5">
+      <span class="hot-rank">#5</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 5">
+      <span class="project-name">Project 5</span>
+      <p class="project-desc">Short description for Project 5 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+  </ol>
+</section>
