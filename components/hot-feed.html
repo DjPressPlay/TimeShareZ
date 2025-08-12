@@ -31,34 +31,17 @@
     margin: 0;
     padding: 1rem;
     display: flex;
-    gap: 0.8rem;
+    gap: 1rem;
     overflow-x: auto;
     scrollbar-width: thin;
-    scrollbar-color: #000 transparent; /* Firefox */
   }
 
-  /* Black scrollbar for WebKit */
-  .hot-list::-webkit-scrollbar {
-    height: 8px;
-  }
-  .hot-list::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .hot-list::-webkit-scrollbar-thumb {
-    background: #000;
-    border-radius: 4px;
-  }
-  .hot-list::-webkit-scrollbar-thumb:hover {
-    background: #222;
-  }
-
-  /* Smaller box size */
   .hot-item {
-    flex: 0 0 130px;
+    flex: 0 0 160px;
     background: #222;
     border: 1px solid #333;
     border-radius: 8px;
-    padding: 0.5rem;
+    padding: 0.6rem;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -79,37 +62,37 @@
 
   .hot-rank {
     font-weight: bold;
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
   }
 
   .hot-thumb {
     width: 100%;
-    height: 75px;
+    height: 90px;
     object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
   }
 
   .project-name {
     font-weight: bold;
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
   }
 
   .project-desc {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: #bbb;
     flex-grow: 1;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
   }
 
   .view-btn {
     background: #ff5e5e;
     border: none;
-    padding: 0.3rem;
+    padding: 0.4rem;
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 4px;
@@ -121,67 +104,49 @@
   .view-btn:hover {
     background: #ff7a7a;
   }
-
-  /* Placeholder styling */
-  .placeholder {
-    opacity: 0.4;
-    background: repeating-linear-gradient(
-      45deg,
-      #333,
-      #333 10px,
-      #444 10px,
-      #444 20px
-    );
-  }
 </style>
 
-<section class="hot-feed" aria-label="In Progress">
+<section class="hot-feed" aria-label="Hot Projects Today">
   <header class="hot-feed-header">
-    <span>💰</span>
-    <h2>In Progress</h2>
+    <span>🔥</span>
+    <h2>HOT Feed – Top 5 Today</h2>
   </header>
 
-  <ol id="hotList" class="hot-list" role="list"></ol>
+  <ol class="hot-list" role="list">
+    <li class="hot-item" data-rank="1">
+      <span class="hot-rank">#1</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 1">
+      <span class="project-name">Project 1</span>
+      <p class="project-desc">Short description for Project 1 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="2">
+      <span class="hot-rank">#2</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 2">
+      <span class="project-name">Project 2</span>
+      <p class="project-desc">Short description for Project 2 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="3">
+      <span class="hot-rank">#3</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 3">
+      <span class="project-name">Project 3</span>
+      <p class="project-desc">Short description for Project 3 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="4">
+      <span class="hot-rank">#4</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 4">
+      <span class="project-name">Project 4</span>
+      <p class="project-desc">Short description for Project 4 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+    <li class="hot-item" data-rank="5">
+      <span class="hot-rank">#5</span>
+      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 5">
+      <span class="project-name">Project 5</span>
+      <p class="project-desc">Short description for Project 5 goes here.</p>
+      <button class="view-btn">View</button>
+    </li>
+  </ol>
 </section>
-
-<script>
-  // Example data with another box added
-  const hotProjects = [
-    { name: "Project Alpha", desc: "Short description for Alpha.", img: "https://via.placeholder.com/160x90" },
-    { name: "Project Beta", desc: "Short description for Beta.", img: "https://via.placeholder.com/160x90" },
-    { name: "Project Gamma", desc: "Short description for Gamma.", img: "https://via.placeholder.com/160x90" },
-    { name: "Project Delta", desc: "Short description for Delta.", img: "https://via.placeholder.com/160x90" }
-  ];
-
-  function renderHotFeed() {
-    const hotList = document.getElementById("hotList");
-    hotList.innerHTML = "";
-
-    for (let i = 0; i < 6; i++) {
-      if (hotProjects[i]) {
-        const proj = hotProjects[i];
-        hotList.innerHTML += `
-          <li class="hot-item" data-rank="${i + 1}">
-            <span class="hot-rank">#${i + 1}</span>
-            <img class="hot-thumb" src="${proj.img}" alt="${proj.name}">
-            <span class="project-name">${proj.name}</span>
-            <p class="project-desc">${proj.desc}</p>
-            <button class="view-btn">View</button>
-          </li>
-        `;
-      } else {
-        hotList.innerHTML += `
-          <li class="hot-item placeholder">
-            <span class="hot-rank">—</span>
-            <div class="hot-thumb"></div>
-            <span class="project-name">Empty Slot</span>
-            <p class="project-desc">No project yet.</p>
-            <button class="view-btn" disabled>View</button>
-          </li>
-        `;
-      }
-    }
-  }
-
-  renderHotFeed();
-</script>
