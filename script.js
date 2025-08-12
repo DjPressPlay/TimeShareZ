@@ -1,37 +1,62 @@
-console.log("TimeShareZ containers ready to populate 🚀");
+console.log("TimeShareZ is live 🚀");
 
+// ========================
 // Tutorial Overlay Logic
-(function tutorialOverlay() {
+// ========================
+(function initTutorialOverlay() {
   const overlay = document.getElementById("tz-tutorial");
-  const step1 = overlay?.querySelector('[data-step="1"]');
-  const step2 = overlay?.querySelector('[data-step="2"]');
+  if (!overlay) {
+    console.warn("Tutorial overlay not found in DOM.");
+    return;
+  }
+
+  const steps = overlay.querySelectorAll(".tutorial-step");
+  let currentStepIndex = 0;
+
   const nextBtn = document.getElementById("tz-next");
   const backBtn = document.getElementById("tz-back");
   const closeBtn = document.getElementById("tz-close");
 
-  if (!overlay || !step1 || !step2) return;
-
-  // Remove hidden and display overlay on load
-  overlay.hidden = false;
-  overlay.style.display = "flex";
-
-  // Show a specific step
-  function showStep(stepNumber) {
-    step1.hidden = (stepNumber !== 1);
-    step2.hidden = (stepNumber !== 2);
+  // Show a given step index
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      step.hidden = i !== index;
+    });
+    currentStepIndex = index;
   }
 
-  // Event Listeners
-  nextBtn?.addEventListener("click", () => showStep(2));
-  backBtn?.addEventListener("click", () => showStep(1));
-  closeBtn?.addEventListener("click", () => {
+  // Show overlay on load
+  function openOverlay() {
+    overlay.style.display = "flex";
+    overlay.hidden = false;
+    showStep(0);
+  }
+
+  // Hide overlay
+  function closeOverlay() {
     overlay.style.display = "none";
+  }
+
+  // Event bindings
+  nextBtn?.addEventListener("click", () => {
+    if (currentStepIndex < steps.length - 1) {
+      showStep(currentStepIndex + 1);
+    }
   });
+
+  backBtn?.addEventListener("click", () => {
+    if (currentStepIndex > 0) {
+      showStep(currentStepIndex - 1);
+    }
+  });
+
+  closeBtn?.addEventListener("click", closeOverlay);
 
   // ESC key closes overlay
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      overlay.style.display = "none";
-    }
+    if (e.key === "Escape") closeOverlay();
   });
+
+  // Auto-open tutorial on page load
+  openOverlay();
 })();
