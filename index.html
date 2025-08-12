@@ -14,15 +14,15 @@
     <header class="top-bar">
       <div class="logo">⏳ TimeShareZ</div>
       <div class="search">
-        <input type="text" placeholder="Search projects..." />
+        <input type="text" placeholder="Search projects..." aria-label="Search projects" />
       </div>
       <div class="post-btn">
-        <button>Post Project</button>
+        <button type="button">Post Project</button>
       </div>
     </header>
 
-    <!-- FUNDED FEED -->
-    <section class="funded-feed">
+    <!-- FUNDED FEED (top, under nav) -->
+    <section class="funded-feed" aria-label="Funded projects">
       <h2>✅ Funded Projects</h2>
       <div class="funded-list">
         <div class="funded-item">Project A – $1,200 – Funded</div>
@@ -34,7 +34,7 @@
     </section>
 
     <!-- HOT FEED -->
-    <section class="hot-feed">
+    <section class="hot-feed" aria-label="Hot projects today">
       <h2>🔥 HOT Feed – Top 5 Today</h2>
       <div class="hot-list">
         <div class="hot-item">Project 1</div>
@@ -46,26 +46,51 @@
     </section>
 
     <!-- MAIN ROTATOR -->
-    <section class="main-rotator">
-      <div class="rotator-media">
-        <img src="assets/placeholder.jpg" alt="Project Media" />
+    <section class="main-rotator" aria-label="Main project rotator">
+      <div class="rotator-media" data-rotator="media">
+        <img src="assets/placeholder.jpg" alt="Project media placeholder" />
       </div>
-      <div class="rotator-overlays">
-        <h3>Project Title – Tagline</h3>
-        <p>Countdown: 12:34:56</p>
-        <p>Badge: Early Bird</p>
-        <p>Price: $50</p>
-        <p>Spots Sold: 10/45</p>
-        <p>Pot (R): 500</p>
+
+      <div class="rotator-overlays" data-rotator="overlays">
+        <h3 data-field="title">Project Title – Tagline</h3>
+        <p data-field="countdown">Countdown: 12:34:56</p>
+        <p data-field="badge">Badge: Early Bird</p>
+        <p data-field="price">Price: $50</p>
+        <p data-field="spots">Spots Sold: 10/45</p>
+        <p data-field="pot">Pot (R): 500</p>
       </div>
-      <div class="rotator-controls">
-        <button>Support</button>
-        <button>Play Video</button>
-        <button>View Project</button>
-        <button>Prev</button>
-        <button>Next</button>
+
+      <div class="rotator-controls" data-rotator="controls">
+        <button type="button" data-action="support">Support</button>
+        <button type="button" data-action="play">Play Video</button>
+        <button type="button" data-action="view">View Project</button>
+        <button type="button" data-action="prev">Prev</button>
+        <button type="button" data-action="next">Next</button>
       </div>
     </section>
+
+    <!-- TUTORIAL OVERLAY -->
+    <div class="tutorial-overlay" id="tz-tutorial" aria-modal="true" role="dialog" hidden>
+      <div class="tutorial-card" role="document">
+        <!-- Step 1 -->
+        <div class="tutorial-step" data-step="1">
+          <h3>Welcome to TimeShareZ</h3>
+          <p>Start at the Funded feed for results, scan HOT for today’s leaders, then use the Rotator to preview and support live windows.</p>
+          <button class="btn-primary" id="tz-next" type="button">Next</button>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="tutorial-step" data-step="2" hidden>
+          <h3>How to Support</h3>
+          <p>Click any HOT item to jump the Rotator. Hit <strong>Support</strong> to lock a spot in the current window. Max 2 spots per session.</p>
+          <div class="tutorial-actions">
+            <button class="btn-ghost" id="tz-back" type="button">Back</button>
+            <button class="btn-primary" id="tz-close" type="button">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /TUTORIAL OVERLAY -->
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -74,7 +99,7 @@
         <ul>
           <li>Buy spots in live projects</li>
           <li>Watch the pot grow</li>
-          <li>Claim rewards based on your window</li>
+          <li>Claim rewards by time window</li>
         </ul>
       </div>
       <div class="footer-section">
