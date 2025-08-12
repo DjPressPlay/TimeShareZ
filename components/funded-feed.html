@@ -42,18 +42,57 @@
 <!-- /FUNDED FEED -->
 
 <style>
-  .funded-feed {
-    background: #111;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    overflow: hidden;
-    white-space: nowrap;
+  :root {
+    --bg-1: #0b0b0b;
+    --bg-2: #151515;
+    --rim: #000;          /* solid black outline */
+    --bevel-hi: rgba(255,255,255,.06);
+    --bevel-lo: rgba(0,0,0,.65);
+    --glow: rgba(0,255,200,.55);
   }
 
-  .funded-feed-header {
-    margin-bottom: 6px;
+  .funded-feed {
+    position: relative;
+    background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 10px;
+
+    /* SOLID BLACK OUTLINE + frame */
+    border: 3px solid var(--rim);
+    box-shadow:
+      0 10px 22px var(--bevel-lo),      /* drop shadow (3D depth) */
+      inset 0 1px 0 var(--bevel-hi),    /* top lip highlight */
+      inset 0 -2px 0 rgba(255,255,255,.03); /* lower lip */
+
+    overflow: hidden;
+    white-space: nowrap;
+    transform: translateZ(0); /* promote to its own layer */
   }
+
+  /* Inner bevel ring to sell the 3D look */
+  .funded-feed::before {
+    content: "";
+    position: absolute; inset: 3px;
+    border-radius: 7px;
+    box-shadow:
+      inset 0 10px 18px rgba(0,0,0,.35),
+      inset 0 -10px 18px rgba(0,0,0,.45);
+    pointer-events: none;
+  }
+
+  /* Neon glow on hover (and pause the ticker) */
+  .funded-feed:hover {
+    box-shadow:
+      0 0 38px var(--glow),
+      0 10px 22px var(--bevel-lo),
+      inset 0 1px 0 var(--bevel-hi),
+      inset 0 -2px 0 rgba(255,255,255,.03);
+  }
+  .funded-feed:hover .funded-list { animation-play-state: paused; }
+
+  .funded-feed-header { margin-bottom: 6px; }
+  .funded-feed-header h2 { margin: 0; font-weight: 700; letter-spacing: .2px; }
 
   .ticker {
     display: flex;
@@ -63,18 +102,37 @@
 
   .funded-list {
     display: flex;
-    animation: tickerMove 20s linear infinite;
     gap: 2rem;
     padding: 0;
     margin: 0;
     list-style: none;
+
+    animation: tickerMove 20s linear infinite;
+    will-change: transform;
   }
 
   .funded-item {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.95rem;
+    gap: 0.5rem;
+    font-size: 0.98rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    /* subtle chip with black outline to match container */
+    background: rgba(255,255,255,.03);
+    border: 2px solid var(--rim);
+    box-shadow:
+      0 4px 10px rgba(0,0,0,.45),
+      inset 0 1px 0 rgba(255,255,255,.04);
+  }
+
+  .funded-item:hover {
+    background: rgba(255,255,255,.06);
+    box-shadow:
+      0 0 16px var(--glow),
+      0 6px 14px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(255,255,255,.06);
   }
 
   .project-img {
@@ -83,13 +141,20 @@
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
+    border: 2px solid var(--rim);
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
   }
 
-  .funded-item[data-status="funded"] .project-status { color: #0f0; }
-  .funded-item[data-status="sold-out"] .project-status { color: #f00; }
+  .funded-item[data-status="funded"] .project-status { color: #00f57a; }
+  .funded-item[data-status="sold-out"] .project-status { color: #ff3b3b; }
 
   @keyframes tickerMove {
     from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
+    to   { transform: translateX(-100%); }
+  }
+
+  /* Accessibility: respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .funded-list { animation: none; }
   }
 </style>
