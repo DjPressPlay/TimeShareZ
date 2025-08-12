@@ -58,19 +58,20 @@
     padding: 12px 14px;
     border-radius: 10px;
 
-    /* SOLID BLACK OUTLINE + frame */
+    /* Solid black outline + always-on glow */
     border: 3px solid var(--rim);
     box-shadow:
+      0 0 38px var(--glow),             /* always glowing */
       0 10px 22px var(--bevel-lo),      /* drop shadow (3D depth) */
       inset 0 1px 0 var(--bevel-hi),    /* top lip highlight */
       inset 0 -2px 0 rgba(255,255,255,.03); /* lower lip */
 
     overflow: hidden;
     white-space: nowrap;
-    transform: translateZ(0); /* promote to its own layer */
+    transform: translateZ(0);
   }
 
-  /* Inner bevel ring to sell the 3D look */
+  /* Inner bevel for depth */
   .funded-feed::before {
     content: "";
     position: absolute; inset: 3px;
@@ -81,14 +82,7 @@
     pointer-events: none;
   }
 
-  /* Neon glow on hover (and pause the ticker) */
-  .funded-feed:hover {
-    box-shadow:
-      0 0 38px var(--glow),
-      0 10px 22px var(--bevel-lo),
-      inset 0 1px 0 var(--bevel-hi),
-      inset 0 -2px 0 rgba(255,255,255,.03);
-  }
+  /* Pause ticker on hover */
   .funded-feed:hover .funded-list { animation-play-state: paused; }
 
   .funded-feed-header { margin-bottom: 6px; }
@@ -119,10 +113,10 @@
     padding: 6px 10px;
     border-radius: 8px;
 
-    /* subtle chip with black outline to match container */
     background: rgba(255,255,255,.03);
     border: 2px solid var(--rim);
     box-shadow:
+      0 0 12px var(--glow), /* subtle chip glow */
       0 4px 10px rgba(0,0,0,.45),
       inset 0 1px 0 rgba(255,255,255,.04);
   }
@@ -130,7 +124,7 @@
   .funded-item:hover {
     background: rgba(255,255,255,.06);
     box-shadow:
-      0 0 16px var(--glow),
+      0 0 20px var(--glow),
       0 6px 14px rgba(0,0,0,.5),
       inset 0 1px 0 rgba(255,255,255,.06);
   }
@@ -153,8 +147,8 @@
     to   { transform: translateX(-100%); }
   }
 
-  /* Accessibility: respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .funded-list { animation: none; }
   }
 </style>
+
