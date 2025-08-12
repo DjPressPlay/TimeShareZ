@@ -1,4 +1,4 @@
-// Components to load (in order)
+// Components to load
 const components = [
   "top-bar",
   "funded-feed",
@@ -13,15 +13,12 @@ async function loadComponents() {
   for (const name of components) {
     try {
       const res = await fetch(`components/${name}.html`);
-      if (!res.ok) throw new Error(`Failed to load ${name}.html`);
-      const html = await res.text();
-      root.insertAdjacentHTML("beforeend", html);
+      if (!res.ok) throw new Error();
+      root.insertAdjacentHTML("beforeend", await res.text());
     } catch (err) {
-      console.error(`Error loading ${name}:`, err);
+      console.error(`Error loading ${name}.html`);
     }
   }
-
-  // Init tutorial after overlay is loaded
   initTutorialOverlay();
 }
 
@@ -30,39 +27,19 @@ function initTutorialOverlay() {
   if (!overlay) return;
 
   const steps = overlay.querySelectorAll(".tutorial-step");
-  let currentStepIndex = 0;
+  let i = 0;
 
-  const nextBtn = document.getElementById("tz-next");
-  const backBtn = document.getElementById("tz-back");
-  const closeBtn = document.getElementById("tz-close");
+  const showStep = (n) => steps.forEach((s, idx) => s.hidden = idx !== n);
+  const close = () => overlay.style.display = "none";
 
-  function showStep(index) {
-    steps.forEach((step, i) => step.hidden = i !== index);
-    currentStepIndex = index;
-  }
-
-  function closeOverlay() {
-    overlay.style.display = "none";
-  }
-
-  nextBtn?.addEventListener("click", () => {
-    if (currentStepIndex < steps.length - 1) showStep(currentStepIndex + 1);
-  });
-
-  backBtn?.addEventListener("click", () => {
-    if (currentStepIndex > 0) showStep(currentStepIndex - 1);
-  });
-
-  closeBtn?.addEventListener("click", closeOverlay);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeOverlay();
-  });
+  overlay.querySelector("#tz-next")?.addEventListener("click", () => { if (i < steps.length - 1) showStep(++i); });
+  overlay.querySelector("#tz-back")?.addEventListener("click", () => { if (i > 0) showStep(--i); });
+  overlay.querySelector("#tz-close")?.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => e.key === "Escape" && close());
 
   overlay.style.display = "flex";
   overlay.hidden = false;
   showStep(0);
 }
 
-// Run on page load
 loadComponents();
