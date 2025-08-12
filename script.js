@@ -1,14 +1,33 @@
-console.log("TimeShareZ is live 🚀");
+// Components to load (in order)
+const components = [
+  "top-bar",
+  "funded-feed",
+  "hot-feed",
+  "main-rotator",
+  "tutorial-overlay",
+  "footer"
+];
 
-// ========================
-// Tutorial Overlay Logic
-// ========================
-(function initTutorialOverlay() {
-  const overlay = document.getElementById("tz-tutorial");
-  if (!overlay) {
-    console.warn("Tutorial overlay not found in DOM.");
-    return;
+async function loadComponents() {
+  const root = document.getElementById("app-root");
+  for (const name of components) {
+    try {
+      const res = await fetch(`components/${name}.html`);
+      if (!res.ok) throw new Error(`Failed to load ${name}.html`);
+      const html = await res.text();
+      root.insertAdjacentHTML("beforeend", html);
+    } catch (err) {
+      console.error(`Error loading ${name}:`, err);
+    }
   }
+
+  // Init tutorial after overlay is loaded
+  initTutorialOverlay();
+}
+
+function initTutorialOverlay() {
+  const overlay = document.getElementById("tz-tutorial");
+  if (!overlay) return;
 
   const steps = overlay.querySelectorAll(".tutorial-step");
   let currentStepIndex = 0;
@@ -17,46 +36,33 @@ console.log("TimeShareZ is live 🚀");
   const backBtn = document.getElementById("tz-back");
   const closeBtn = document.getElementById("tz-close");
 
-  // Show a given step index
   function showStep(index) {
-    steps.forEach((step, i) => {
-      step.hidden = i !== index;
-    });
+    steps.forEach((step, i) => step.hidden = i !== index);
     currentStepIndex = index;
   }
 
-  // Show overlay on load
-  function openOverlay() {
-    overlay.style.display = "flex";
-    overlay.hidden = false;
-    showStep(0);
-  }
-
-  // Hide overlay
   function closeOverlay() {
     overlay.style.display = "none";
   }
 
-  // Event bindings
   nextBtn?.addEventListener("click", () => {
-    if (currentStepIndex < steps.length - 1) {
-      showStep(currentStepIndex + 1);
-    }
+    if (currentStepIndex < steps.length - 1) showStep(currentStepIndex + 1);
   });
 
   backBtn?.addEventListener("click", () => {
-    if (currentStepIndex > 0) {
-      showStep(currentStepIndex - 1);
-    }
+    if (currentStepIndex > 0) showStep(currentStepIndex - 1);
   });
 
   closeBtn?.addEventListener("click", closeOverlay);
 
-  // ESC key closes overlay
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeOverlay();
   });
 
-  // Auto-open tutorial on page load
-  openOverlay();
-})();
+  overlay.style.display = "flex";
+  overlay.hidden = false;
+  showStep(0);
+}
+
+// Run on page load
+loadComponents();
