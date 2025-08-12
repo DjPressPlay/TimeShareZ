@@ -1,4 +1,3 @@
-
 /* ===== GLOBAL ===== */
 body {
   font-family: Arial, sans-serif;
@@ -19,74 +18,4 @@ a:hover {
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
-}
-
-/* ===== TOP BAR ===== */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #1a1a1a;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid #2a2a2a;
-}
-
-.top-bar .logo {
-  font-weight: bold;
-  font-size: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: #00ff88;
-}
-
-.top-bar .logo-text {
-  color: #fff;
-}
-
-.top-bar .search input {
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  background: #111;
-  color: #fff;
-}
-
-.top-bar .post-btn button {
-  background: #00ff88;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.top-bar .post-btn button:hover {
-  background: #00cc6a;
-}
-
-/* ===== FOOTER ===== */
-.site-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem;
-  background: #1a1a1a;
-  border-top: 1px solid #2a2a2a;
-}
-
-.site-footer h4 {
-  margin-top: 0;
-}
-
-.site-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.site-footer li {
-  margin: 0.25rem 0;
 }
