@@ -4,81 +4,77 @@
     <h2>✅ Funded Projects</h2>
   </header>
 
-  <ul class="funded-list" role="list">
-    <li class="funded-item" data-status="funded">
-      <span class="project-name">Project A</span>
-      <span class="project-amount">$1,200</span>
-      <span class="project-status">Funded</span>
-    </li>
-    <li class="funded-item" data-status="funded">
-      <span class="project-name">Project B</span>
-      <span class="project-amount">$850</span>
-      <span class="project-status">Funded</span>
-    </li>
-    <li class="funded-item" data-status="sold-out">
-      <span class="project-name">Project C</span>
-      <span class="project-amount">$600</span>
-      <span class="project-status">Sold Out</span>
-    </li>
-    <li class="funded-item" data-status="funded">
-      <span class="project-name">Project D</span>
-      <span class="project-amount">$1,500</span>
-      <span class="project-status">Funded</span>
-    </li>
-    <li class="funded-item" data-status="funded">
-      <span class="project-name">Project E</span>
-      <span class="project-amount">$1,000</span>
-      <span class="project-status">Funded</span>
-    </li>
-  </ul>
+  <div class="ticker">
+    <ul class="funded-list" role="list">
+      <li class="funded-item" data-status="funded">
+        <span class="project-name">Project A</span> — 
+        <span class="project-amount">$1,200</span> — 
+        <span class="project-status">Funded</span>
+      </li>
+      <li class="funded-item" data-status="funded">
+        <span class="project-name">Project B</span> — 
+        <span class="project-amount">$850</span> — 
+        <span class="project-status">Funded</span>
+      </li>
+      <li class="funded-item" data-status="sold-out">
+        <span class="project-name">Project C</span> — 
+        <span class="project-amount">$600</span> — 
+        <span class="project-status">Sold Out</span>
+      </li>
+      <li class="funded-item" data-status="funded">
+        <span class="project-name">Project D</span> — 
+        <span class="project-amount">$1,500</span> — 
+        <span class="project-status">Funded</span>
+      </li>
+      <li class="funded-item" data-status="funded">
+        <span class="project-name">Project E</span> — 
+        <span class="project-amount">$1,000</span> — 
+        <span class="project-status">Funded</span>
+      </li>
+    </ul>
+  </div>
 </section>
 <!-- /FUNDED FEED -->
 
 <style>
   .funded-feed {
-    padding: 10px;
     background: #111;
     color: #fff;
+    padding: 10px;
     border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .funded-feed-header {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+  }
+
+  .ticker {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
   }
 
   .funded-list {
-    list-style: none;
+    display: flex;
+    animation: tickerMove 20s linear infinite;
+    gap: 2rem;
     padding: 0;
     margin: 0;
+    list-style: none;
   }
 
   .funded-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px;
-    border-bottom: 1px solid #333;
+    display: inline-block;
+    font-size: 0.95rem;
   }
 
-  .funded-item:last-child {
-    border-bottom: none;
-  }
+  .funded-item[data-status="funded"] .project-status { color: #0f0; }
+  .funded-item[data-status="sold-out"] .project-status { color: #f00; }
 
-  .funded-item[data-status="funded"] .project-status {
-    color: #0f0;
-  }
-
-  .funded-item[data-status="sold-out"] .project-status {
-    color: #f00;
+  @keyframes tickerMove {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const fundedItems = document.querySelectorAll(".funded-item");
-    fundedItems.forEach(item => {
-      item.addEventListener("click", () => {
-        alert(`Opening ${item.querySelector(".project-name").textContent}`);
-      });
-    });
-  });
-</script>
