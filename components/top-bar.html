@@ -34,10 +34,6 @@
     text-shadow: 0 0 8px #00ffc8;
   }
 
-  .logo-text {
-    font-size: 1.25rem;
-  }
-
   /* Search */
   .search {
     flex: 1;
@@ -63,19 +59,19 @@
     box-shadow: 0 0 10px #00ffe5;
   }
 
-  /* Post Project Button */
-  .post-btn button {
+  /* Post Project Link as Button */
+  .post-btn a {
+    display: inline-block;
     background: #00ffc8;
     color: #000;
     font-weight: bold;
     padding: 0.5rem 1rem;
-    border: none;
     border-radius: 6px;
-    cursor: pointer;
+    text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .post-btn button:hover {
+  .post-btn a:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px #00ffc8;
   }
@@ -86,7 +82,7 @@
 
     <!-- Left: Logo -->
     <a href="/" class="logo" aria-label="TimeShareZ Home">
-      ⏳ <span class="logo-text">TimeShareZ</span>
+      ⏳ <span>TimeShareZ</span>
     </a>
 
     <!-- Center: Search -->
@@ -101,11 +97,11 @@
       />
     </form>
 
-    <!-- Right: Post Project Button -->
+    <!-- Right: Post Project Link -->
     <div class="post-btn">
-      <button type="button" aria-label="Post a new project">
+      <a href="/post-project" aria-label="Post a new project">
         + Post Project
-      </button>
+      </a>
     </div>
 
   </div>
