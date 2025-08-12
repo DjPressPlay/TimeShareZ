@@ -4,44 +4,44 @@
     border: 2px solid #ff5e5e;
     border-radius: 8px;
     overflow: hidden;
-    max-width: 900px;
-    margin: 1rem auto;
-    box-shadow: 0 0 15px rgba(255, 94, 94, 0.3);
+    max-width: 650px; /* smaller feed width */
+    margin: 0.5rem auto; /* less margin */
+    box-shadow: 0 0 12px rgba(255, 94, 94, 0.3);
   }
 
   .hot-feed-header {
     background: linear-gradient(to right, #ff5e5e, #ff9a5e);
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.6rem;
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 
   .hot-feed-header h2 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   .hot-list {
     list-style: none;
     margin: 0;
-    padding: 1rem;
+    padding: 0.6rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.6rem;
     overflow-x: auto;
     scrollbar-width: thin;
   }
 
   .hot-item {
-    flex: 0 0 160px;
+    flex: 0 0 120px; /* smaller card width */
     background: #222;
     border: 1px solid #333;
-    border-radius: 8px;
-    padding: 0.6rem;
+    border-radius: 6px;
+    padding: 0.4rem;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -50,8 +50,8 @@
   }
 
   .hot-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(255, 94, 94, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 3px 8px rgba(255, 94, 94, 0.3);
   }
 
   .hot-item[data-rank="1"] {
@@ -62,37 +62,37 @@
 
   .hot-rank {
     font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
   }
 
   .hot-thumb {
     width: 100%;
-    height: 90px;
+    height: 70px; /* smaller image height */
     object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
   }
 
   .project-name {
     font-weight: bold;
-    font-size: 0.95rem;
-    margin-bottom: 0.3rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.2rem;
   }
 
   .project-desc {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     color: #bbb;
     flex-grow: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
   }
 
   .view-btn {
     background: #ff5e5e;
     border: none;
-    padding: 0.4rem;
+    padding: 0.25rem;
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 4px;
@@ -105,48 +105,3 @@
     background: #ff7a7a;
   }
 </style>
-
-<section class="hot-feed" aria-label="Hot Projects Today">
-  <header class="hot-feed-header">
-    <span>🔥</span>
-    <h2>HOT Feed – Top 5 Today</h2>
-  </header>
-
-  <ol class="hot-list" role="list">
-    <li class="hot-item" data-rank="1">
-      <span class="hot-rank">#1</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 1">
-      <span class="project-name">Project 1</span>
-      <p class="project-desc">Short description for Project 1 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="2">
-      <span class="hot-rank">#2</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 2">
-      <span class="project-name">Project 2</span>
-      <p class="project-desc">Short description for Project 2 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="3">
-      <span class="hot-rank">#3</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 3">
-      <span class="project-name">Project 3</span>
-      <p class="project-desc">Short description for Project 3 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="4">
-      <span class="hot-rank">#4</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 4">
-      <span class="project-name">Project 4</span>
-      <p class="project-desc">Short description for Project 4 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="5">
-      <span class="hot-rank">#5</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 5">
-      <span class="project-name">Project 5</span>
-      <p class="project-desc">Short description for Project 5 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-  </ol>
-</section>
