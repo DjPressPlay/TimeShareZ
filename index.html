@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TimeShareZ</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header>
-    <h1>⏳ TimeShareZ – Hello World</h1>
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="logo">⏳ TimeShareZ</div>
+    <div class="search">
+      <input type="text" placeholder="Search projects..." />
+    </div>
+    <div class="post-btn">
+      <button>Post Project</button>
+    </div>
   </header>
 
-  <main>
-    <p>Welcome to TimeShareZ! This is the starting point. 🚀</p>
-  </main>
+  <!-- HOT FEED -->
+  <section class="hot-feed">
+    <h2>🔥 HOT Feed – Top 5 Today</h2>
+    <div class="hot-list">
+      <div class="hot-item">Project 1</div>
+      <div class="hot-item">Project 2</div>
+      <div class="hot-item">Project 3</div>
+      <div class="hot-item">Project 4</div>
+      <div class="hot-item">Project 5</div>
+    </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 TimeShareZ</p>
-  </footer>
+  <!-- MAIN ROTATOR -->
+  <section class="main-rotator">
+    <div class="rotator-media">
+      <img src="assets/placeholder.jpg" alt="Project Media" />
+    </div>
+    <div class="rotator-overlays">
+      <h3>Project Title – Tagline</h3>
+      <p>Countdown: 12:34:56</p>
+      <p>Badge: Early Bird</p>
+      <p>Price: $50</p>
+      <p>Spots Sold: 10/45</p>
+      <p>Pot (R): 500</p>
+    </div>
+    <div class="rotator-controls">
+      <button>Support</button>
+      <button>Play Video</button>
+      <button>View Project</button>
+      <button>Prev</button>
+      <button>Next</button>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
