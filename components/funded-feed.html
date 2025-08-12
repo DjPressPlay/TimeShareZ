@@ -1,4 +1,3 @@
-
 <!-- FUNDED FEED -->
 <section class="funded-feed" aria-label="Funded Projects">
   <header class="funded-feed-header">
@@ -34,3 +33,52 @@
   </ul>
 </section>
 <!-- /FUNDED FEED -->
+
+<style>
+  .funded-feed {
+    padding: 10px;
+    background: #111;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  .funded-feed-header {
+    margin-bottom: 8px;
+  }
+
+  .funded-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .funded-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    border-bottom: 1px solid #333;
+  }
+
+  .funded-item:last-child {
+    border-bottom: none;
+  }
+
+  .funded-item[data-status="funded"] .project-status {
+    color: #0f0;
+  }
+
+  .funded-item[data-status="sold-out"] .project-status {
+    color: #f00;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const fundedItems = document.querySelectorAll(".funded-item");
+    fundedItems.forEach(item => {
+      item.addEventListener("click", () => {
+        alert(`Opening ${item.querySelector(".project-name").textContent}`);
+      });
+    });
+  });
+</script>
