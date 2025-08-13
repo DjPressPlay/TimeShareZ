@@ -1,16 +1,25 @@
 <style>
+  @keyframes holoShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
   .hot-feed {
     background: #111;
-    border: 2px solid #ff5e5e;
+    border: 2px solid transparent;
     border-radius: 8px;
     overflow: hidden;
-    max-width: 900px; /* keep same width */
+    max-width: 900px;
     margin: 1rem auto;
-    box-shadow: 0 0 15px rgba(255, 94, 94, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
+    border-image: linear-gradient(270deg, #00c3ff, #7b2ff7, #ff3f3f) 1;
   }
 
   .hot-feed-header {
-    background: linear-gradient(to right, #ff5e5e, #ff9a5e);
+    background: linear-gradient(270deg, #00c3ff, #7b2ff7, #ff3f3f, #00c3ff);
+    background-size: 400% 400%;
+    animation: holoShift 8s ease infinite;
     padding: 0.4rem 0.8rem;
     color: #fff;
     font-weight: bold;
@@ -34,7 +43,7 @@
     gap: 0.6rem;
     overflow-x: auto;
     scrollbar-width: thin;
-    scrollbar-color: #000 transparent; /* black scrollbar for Firefox */
+    scrollbar-color: #000 transparent;
   }
 
   /* Black scrollbar for WebKit browsers */
@@ -50,7 +59,7 @@
   }
 
   .hot-item {
-    flex: 0 0 calc((900px - (0.6rem * 6)) / 7); /* fit 7 items in 900px */
+    flex: 0 0 calc((900px - (0.6rem * 6)) / 7);
     background: #222;
     border: 1px solid #333;
     border-radius: 6px;
@@ -64,12 +73,14 @@
 
   .hot-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 3px 8px rgba(255, 94, 94, 0.3);
+    box-shadow: 0 3px 8px rgba(0, 255, 200, 0.3);
   }
 
   .hot-item[data-rank="1"] {
-    border: 2px solid #ff5e5e;
-    background: linear-gradient(180deg, #ff5e5e, #ff7a5e);
+    border: 2px solid transparent;
+    background: linear-gradient(180deg, #00c3ff, #7b2ff7, #ff3f3f);
+    background-size: 400% 400%;
+    animation: holoShift 8s ease infinite;
     color: #000;
   }
 
@@ -81,7 +92,7 @@
 
   .hot-thumb {
     width: 100%;
-    height: 65px; /* smaller image for 7 across */
+    height: 65px;
     object-fit: cover;
     border-radius: 4px;
     margin-bottom: 0.3rem;
@@ -101,7 +112,9 @@
   }
 
   .view-btn {
-    background: #ff5e5e;
+    background: linear-gradient(270deg, #00c3ff, #7b2ff7, #ff3f3f, #00c3ff);
+    background-size: 400% 400%;
+    animation: holoShift 8s ease infinite;
     border: none;
     padding: 0.25rem;
     color: #fff;
@@ -111,69 +124,10 @@
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
-    transition: background 0.2s ease;
+    transition: transform 0.2s ease;
   }
 
   .view-btn:hover {
-    background: #ff7a7a;
+    transform: scale(1.05);
   }
 </style>
-
-<section class="hot-feed" aria-label="Hot Projects Today">
-  <header class="hot-feed-header">
-    <span>🔥</span>
-    <h2>HOT Feed – Top 7 Today</h2>
-  </header>
-
-  <ol class="hot-list" role="list">
-    <li class="hot-item" data-rank="1">
-      <span class="hot-rank">#1</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 1">
-      <span class="project-name">Project 1</span>
-      <p class="project-desc">Short description for Project 1 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="2">
-      <span class="hot-rank">#2</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 2">
-      <span class="project-name">Project 2</span>
-      <p class="project-desc">Short description for Project 2 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="3">
-      <span class="hot-rank">#3</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 3">
-      <span class="project-name">Project 3</span>
-      <p class="project-desc">Short description for Project 3 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="4">
-      <span class="hot-rank">#4</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 4">
-      <span class="project-name">Project 4</span>
-      <p class="project-desc">Short description for Project 4 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="5">
-      <span class="hot-rank">#5</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 5">
-      <span class="project-name">Project 5</span>
-      <p class="project-desc">Short description for Project 5 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="6">
-      <span class="hot-rank">#6</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 6">
-      <span class="project-name">Project 6</span>
-      <p class="project-desc">Short description for Project 6 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-    <li class="hot-item" data-rank="7">
-      <span class="hot-rank">#7</span>
-      <img class="hot-thumb" src="https://via.placeholder.com/160x90" alt="Project 7">
-      <span class="project-name">Project 7</span>
-      <p class="project-desc">Short description for Project 7 goes here.</p>
-      <button class="view-btn">View</button>
-    </li>
-  </ol>
-</section>
