@@ -16,7 +16,7 @@ const SessionManager = (() => {
 
   /**
    * Generate a display session number in TSZ-0001 format
-   * (TEMP: local generator — replace with backend call to ensure sequential)
+   * (TEMP: local generator — replace with backend call for sequential IDs)
    */
   function generateSessionNumber() {
     const randomNum = Math.floor(Math.random() * 9999) + 1;
@@ -45,12 +45,7 @@ const SessionManager = (() => {
    * Set a recovery code (stores hashed)
    */
   async function setRecoveryCode(code) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(code);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-
+    const hashHex = await hashString(code);
     localStorage.setItem(RECOVERY_CODE_KEY, hashHex);
     return hashHex;
   }
@@ -61,14 +56,19 @@ const SessionManager = (() => {
   async function verifyRecoveryCode(code) {
     const storedHash = localStorage.getItem(RECOVERY_CODE_KEY);
     if (!storedHash) return false;
+    const hashHex = await hashString(code);
+    return storedHash === hashHex;
+  }
 
+  /**
+   * Utility: Hash a string with SHA-256
+   */
+  async function hashString(str) {
     const encoder = new TextEncoder();
-    const data = encoder.encode(code);
+    const data = encoder.encode(str);
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-
-    return storedHash === hashHex;
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
   }
 
   /**
@@ -88,12 +88,12 @@ const SessionManager = (() => {
   };
 })();
 
-// Auto-run on page load if top bar exists
+// Auto-run on page load if #sessionDisplay exists
 document.addEventListener("DOMContentLoaded", () => {
-  const topBarSession = document.getElementById("sessionDisplay");
-  if (topBarSession) {
+  const sessionDisplay = document.getElementById("sessionDisplay");
+  if (sessionDisplay) {
     const { sessionNumber } = SessionManager.getOrCreateSession();
-    topBarSession.textContent = `Session: ${sessionNumber}`;
+    sessionDisplay.textContent = `Session: ${sessionNumber}`;
   }
 });
 
