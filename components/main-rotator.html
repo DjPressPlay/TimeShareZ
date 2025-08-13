@@ -101,7 +101,130 @@
   </div>
 
   <!-- Media Display -->
+  <div class="rotator-media" data-rotator="media"><style>
+  .main-rotator {
+    position: relative;
+    background: #000;
+    color: #fff;
+    border: 2px solid #00ffc8;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 1rem auto;
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+  }
+
+  /* Top Info Area (Centered) */
+  .rotator-overlays {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
+    text-align: center; /* center text */
+  }
+
+  .rotator-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #00ffc8;
+    text-shadow: 0 0 8px #00ffc8;
+  }
+
+  .rotator-info {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center; /* center items */
+  }
+
+  .rotator-info li {
+    white-space: nowrap;
+  }
+
+  /* Media Area */
+  .rotator-media {
+    width: 100%;
+    height: 500px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .rotator-media img,
+  .rotator-media video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+
+  /* Controls */
+  .rotator-controls {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.8rem;
+    background: #111;
+    border-top: 1px solid #00ffc8;
+  }
+
+  .rotator-controls button {
+    background: #00ffc8;
+    color: #000;
+    font-weight: bold;
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .rotator-controls button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px #00ffc8;
+  }
+</style>
+
+<section class="main-rotator" aria-label="Main Project Rotator">
+
+  <!-- Project Details at Top -->
+  <div class="rotator-overlays" data-rotator="overlays">
+    <h3 class="rotator-title" data-field="title">
+      Project Title – Tagline
+    </h3>
+    <ul class="rotator-info">
+      <li data-field="countdown"><strong>Countdown:</strong> 12:34:56</li>
+      <li data-field="badge"><strong>Badge:</strong> Early Bird</li>
+      <li data-field="price"><strong>Price:</strong> $50</li>
+      <li data-field="spots"><strong>Spots Sold:</strong> 10 / 45</li>
+      <li data-field="pot"><strong>Pot (R):</strong> 5</li>
+    </ul>
+  </div>
+
+  <!-- Media Display -->
   <div class="rotator-media" data-rotator="media">
+    <img 
+      src="assets/placeholder.jpg" 
+      alt="Preview of current project" 
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Controls -->
+  <div class="rotator-controls" data-rotator="controls">
+    <button type="button" data-action="support" aria-label="Support this project">Support</button>
+    <button type="button" data-action="play" aria-label="Play project video">Play Video</button>
+    <button type="button" data-action="view" aria-label="View project details">View Project</button>
+    <button type="button" data-action="prev" aria-label="Previous project">Prev</button>
+    <button type="button" data-action="next" aria-label="Next project">Next</button>
+  </div>
+
+</section>
+
     <img 
       src="assets/placeholder.jpg" 
       alt="Preview of current project" 
