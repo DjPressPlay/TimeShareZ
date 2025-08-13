@@ -1,7 +1,7 @@
 /* ===== GLOBAL ===== */
 body {
   font-family: Arial, sans-serif;
-  background: #0d0d0d;
+  background: linear-gradient(to bottom, #000000, #ffffff, #c0c0c0);
   color: #fff;
   margin: 0;
 }
