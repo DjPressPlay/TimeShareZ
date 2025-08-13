@@ -1,4 +1,3 @@
-<!-- mainrotator.html -->
 <style>
   .main-rotator {
     position: relative;
@@ -12,32 +11,11 @@
     box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
   }
 
-  /* Media Area */
-  .rotator-media {
-    width: 100%;
-    height: 500px;
-    background: #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .rotator-media img,
-  .rotator-media video {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
-
-  /* Overlay Info */
+  /* Top Info Area */
   .rotator-overlays {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 0.8rem 1rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
   }
 
   .rotator-title {
@@ -60,6 +38,24 @@
 
   .rotator-info li {
     white-space: nowrap;
+  }
+
+  /* Media Area */
+  .rotator-media {
+    width: 100%;
+    height: 500px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .rotator-media img,
+  .rotator-media video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
   }
 
   /* Controls */
@@ -89,17 +85,8 @@
 </style>
 
 <section class="main-rotator" aria-label="Main Project Rotator">
-  
-  <!-- Media Display -->
-  <div class="rotator-media" data-rotator="media">
-    <img 
-      src="assets/placeholder.jpg" 
-      alt="Preview of current project" 
-      loading="lazy"
-    />
-  </div>
 
-  <!-- Project Details Overlay -->
+  <!-- Project Details at Top -->
   <div class="rotator-overlays" data-rotator="overlays">
     <h3 class="rotator-title" data-field="title">
       Project Title – Tagline
@@ -109,8 +96,17 @@
       <li data-field="badge"><strong>Badge:</strong> Early Bird</li>
       <li data-field="price"><strong>Price:</strong> $50</li>
       <li data-field="spots"><strong>Spots Sold:</strong> 10 / 45</li>
-      <li data-field="pot"><strong>Pot (R):</strong> 500</li>
+      <li data-field="pot"><strong>Pot (R):</strong> 5</li>
     </ul>
+  </div>
+
+  <!-- Media Display -->
+  <div class="rotator-media" data-rotator="media">
+    <img 
+      src="assets/placeholder.jpg" 
+      alt="Preview of current project" 
+      loading="lazy"
+    />
   </div>
 
   <!-- Controls -->
