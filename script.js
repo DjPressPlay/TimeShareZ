@@ -19,7 +19,10 @@ async function loadComponents() {
       console.error(`Error loading ${name}.html`);
     }
   }
+
+  // Init after all components are loaded
   initTutorialOverlay();
+  initSessionDisplay();
 }
 
 function initTutorialOverlay() {
@@ -40,6 +43,23 @@ function initTutorialOverlay() {
   overlay.style.display = "flex";
   overlay.hidden = false;
   showStep(0);
+}
+
+// Independent session display init
+function initSessionDisplay() {
+  import("./sessionManager.js").then(SessionManagerModule => {
+    const SessionManager = SessionManagerModule.default;
+    const { sessionNumber } = SessionManager.getOrCreateSession();
+
+    const sessionEl = document.getElementById("sessionDisplay");
+    if (sessionEl) {
+      sessionEl.textContent = `Session: ${sessionNumber}`;
+    } else {
+      console.warn("Session display element not found in DOM.");
+    }
+  }).catch(err => {
+    console.error("Failed to load sessionManager.js", err);
+  });
 }
 
 loadComponents();
