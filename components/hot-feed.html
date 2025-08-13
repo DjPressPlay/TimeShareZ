@@ -60,11 +60,11 @@
 
   .hot-item {
     flex: 0 0 calc((900px - (0.6rem * 6)) / 7); /* fit 7 items in 900px */
-    background: #222;
-    border: 1px solid #333;
+    background: #fff; /* panels are white now */
+    border: 1px solid #ccc;
     border-radius: 6px;
     padding: 0.4rem;
-    color: #fff;
+    color: #000;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -81,7 +81,7 @@
     background: linear-gradient(180deg, #00c3ff, #7b2ff7, #ff3f3f);
     background-size: 400% 400%;
     animation: holoShift 8s ease infinite;
-    color: #000;
+    color: #fff;
   }
 
   .hot-rank {
@@ -106,7 +106,7 @@
 
   .project-desc {
     font-size: 0.65rem;
-    color: #bbb;
+    color: #333;
     flex-grow: 1;
     margin-bottom: 0.3rem;
   }
