@@ -59,6 +59,19 @@
     box-shadow: 0 0 10px #00ffe5;
   }
 
+  /* Session Display */
+  .session-display {
+    color: #00ffc8;
+    font-weight: bold;
+    padding: 0.4rem 0.75rem;
+    border: 2px solid #00ffc8;
+    border-radius: 6px;
+    background: #000;
+    font-size: 0.9rem;
+    min-width: 110px;
+    text-align: center;
+  }
+
   /* Post Project Link as Button */
   .post-btn a {
     display: inline-block;
@@ -96,6 +109,11 @@
         aria-label="Search projects"
       />
     </form>
+
+    <!-- Session Number Display -->
+    <div class="session-display" id="sessionDisplay">
+      Session: Loading...
+    </div>
 
     <!-- Right: Post Project Link -->
     <div class="post-btn">
