@@ -1,71 +1,102 @@
 // sessionManager.js
 // TimeShareZ Session Manager
-// Handles creation, storage, and retrieval of session IDs & session numbers.
+// Handles creation, storage, and retrieval of session IDs & session numbers from Supabase via Netlify Functions
 
 const SessionManager = (() => {
   const SESSION_ID_KEY = "session_id";
   const SESSION_NUMBER_KEY = "session_number";
-  const RECOVERY_CODE_KEY = "recovery_code_hash";
 
-  function generateUUID() {
-    return crypto.randomUUID();
+  /**
+   * Create a new session via Netlify -> Supabase
+   */
+  async function createSession() {
+    const res = await fetch("/.netlify/functions/createSession", { method: "POST" });
+    if (!res.ok) throw new Error("Failed to create session");
+
+    const { session_id, session_number, all_linked_data } = await res.json();
+
+    localStorage.setItem(SESSION_ID_KEY, session_id);
+    localStorage.setItem(SESSION_NUMBER_KEY, session_number);
+
+    return { session_id, session_number, all_linked_data };
   }
 
-  function generateSessionNumber() {
-    const randomNum = Math.floor(Math.random() * 9999) + 1;
-    return `TSZ-${String(randomNum).padStart(4, "0")}`;
-  }
-
-  function createSession() {
-    const sessionId = generateUUID();
-    const sessionNumber = generateSessionNumber();
-    localStorage.setItem(SESSION_ID_KEY, sessionId);
-    localStorage.setItem(SESSION_NUMBER_KEY, sessionNumber);
-    return { sessionId, sessionNumber };
-  }
-
-  function getSession() {
+  /**
+   * Retrieve existing session via Netlify -> Supabase
+   */
+  async function getSession() {
     const sessionId = localStorage.getItem(SESSION_ID_KEY);
-    const sessionNumber = localStorage.getItem(SESSION_NUMBER_KEY);
+    if (!sessionId) return null;
+
+    const res = await fetch("/.netlify/functions/getSession", {
+      method: "POST",
+      body: JSON.stringify({ session_id: sessionId }),
+    });
+
+    if (!res.ok) throw new Error("Failed to get session");
+
+    const { session_id, session_number, all_linked_data } = await res.json();
+
+    // Update local storage in case server has corrections
+    localStorage.setItem(SESSION_ID_KEY, session_id);
+    localStorage.setItem(SESSION_NUMBER_KEY, session_number);
+
+    return { session_id, session_number, all_linked_data };
+  }
+
+  /**
+   * Get or create session on demand
+   */
+  async function getOrCreateSession() {
+    let sessionId = localStorage.getItem(SESSION_ID_KEY);
+    let sessionNumber = localStorage.getItem(SESSION_NUMBER_KEY);
+
     if (sessionId && sessionNumber) {
-      return { sessionId, sessionNumber };
+      return await getSession();
     }
-    return null;
+
+    return await createSession();
   }
 
-  function getOrCreateSession() {
-    let session = getSession();
-    if (!session) {
-      session = createSession();
-    }
-    return session;
-  }
-
+  /**
+   * Set a recovery code via Supabase
+   */
   async function setRecoveryCode(code) {
-    const hashHex = await hashString(code);
-    localStorage.setItem(RECOVERY_CODE_KEY, hashHex);
-    return hashHex;
+    const res = await fetch("/.netlify/functions/setRecoveryCode", {
+      method: "POST",
+      body: JSON.stringify({ session_id: localStorage.getItem(SESSION_ID_KEY), recovery_code: code }),
+    });
+
+    if (!res.ok) throw new Error("Failed to set recovery code");
+
+    return await res.json();
   }
 
+  /**
+   * Verify recovery code via Supabase
+   */
   async function verifyRecoveryCode(code) {
-    const storedHash = localStorage.getItem(RECOVERY_CODE_KEY);
-    if (!storedHash) return false;
-    const hashHex = await hashString(code);
-    return storedHash === hashHex;
+    const res = await fetch("/.netlify/functions/getSessionByRecoveryCode", {
+      method: "POST",
+      body: JSON.stringify({ recovery_code: code }),
+    });
+
+    if (!res.ok) return null;
+
+    const { session_id, session_number, all_linked_data } = await res.json();
+
+    localStorage.setItem(SESSION_ID_KEY, session_id);
+    localStorage.setItem(SESSION_NUMBER_KEY, session_number);
+
+    return { session_id, session_number, all_linked_data };
   }
 
-  async function hashString(str) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(str);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-  }
-
+  /**
+   * Reset local session storage
+   */
   function resetSession() {
     localStorage.removeItem(SESSION_ID_KEY);
     localStorage.removeItem(SESSION_NUMBER_KEY);
-    localStorage.removeItem(RECOVERY_CODE_KEY);
   }
 
   return {
@@ -78,12 +109,17 @@ const SessionManager = (() => {
   };
 })();
 
-// Auto-run to ensure session exists & display updates
-document.addEventListener("DOMContentLoaded", () => {
+// Auto-run to ensure session exists & update top bar display
+document.addEventListener("DOMContentLoaded", async () => {
   const sessionDisplay = document.getElementById("sessionDisplay");
   if (sessionDisplay) {
-    const { sessionNumber } = SessionManager.getOrCreateSession();
-    sessionDisplay.textContent = `Session: ${sessionNumber}`;
+    try {
+      const { session_number } = await SessionManager.getOrCreateSession();
+      sessionDisplay.textContent = `Session: ${session_number}`;
+    } catch (err) {
+      console.error("Session error:", err);
+      sessionDisplay.textContent = "Session: ERROR";
+    }
   }
 });
 
