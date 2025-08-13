@@ -10,19 +10,24 @@ const components = [
 
 async function loadComponents() {
   const root = document.getElementById("app-root");
+
   for (const name of components) {
     try {
       const res = await fetch(`components/${name}.html`);
       if (!res.ok) throw new Error();
       root.insertAdjacentHTML("beforeend", await res.text());
+
+      // Run session init right after top-bar is added
+      if (name === "top-bar") {
+        await initSessionDisplay();
+      }
     } catch (err) {
       console.error(`Error loading ${name}.html`);
     }
   }
 
-  // Init after all components are loaded
+  // Init tutorial overlay after all components are loaded
   initTutorialOverlay();
-  initSessionDisplay();
 }
 
 function initTutorialOverlay() {
@@ -45,21 +50,23 @@ function initTutorialOverlay() {
   showStep(0);
 }
 
-// Independent session display init
-function initSessionDisplay() {
-  import("./sessionManager.js").then(SessionManagerModule => {
+// Independent session display init (async for Supabase calls)
+async function initSessionDisplay() {
+  try {
+    const SessionManagerModule = await import("./sessionManager.js");
     const SessionManager = SessionManagerModule.default;
-    const { sessionNumber } = SessionManager.getOrCreateSession();
+
+    const { session_number } = await SessionManager.getOrCreateSession(); // ✅ await the promise
 
     const sessionEl = document.getElementById("sessionDisplay");
     if (sessionEl) {
-      sessionEl.textContent = `Session: ${sessionNumber}`;
+      sessionEl.textContent = `Session: ${session_number}`;
     } else {
       console.warn("Session display element not found in DOM.");
     }
-  }).catch(err => {
-    console.error("Failed to load sessionManager.js", err);
-  });
+  } catch (err) {
+    console.error("Failed to load sessionManager.js or fetch session:", err);
+  }
 }
 
 loadComponents();
