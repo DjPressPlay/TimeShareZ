@@ -1,9 +1,16 @@
 <style>
+  /* Animated iridescent gradient */
+  @keyframes holoShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
   .main-rotator {
     position: relative;
     background: #000;
     color: #fff;
-    border: 2px solid transparent; /* we'll use border-image for gradient */
+    border: 2px solid transparent; /* gradient via border-image */
     border-radius: 10px;
     overflow: hidden;
     max-width: 900px;
@@ -12,16 +19,13 @@
     border-image: linear-gradient(90deg, #00c3ff, #7b2ff7, #ff3f3f) 1; /* iridescent border */
   }
 
-  /* Top Info Area (Centered + Gradient) */
+  /* Top Info Area (Centered + Animated Gradient) */
   .rotator-overlays {
     width: 100%;
     padding: 0.8rem 1rem;
-    background: linear-gradient(
-      90deg,
-      rgba(0, 195, 255, 0.9) 0%,
-      rgba(123, 47, 247, 0.9) 50%,
-      rgba(255, 63, 63, 0.9) 100%
-    );
+    background: linear-gradient(270deg, #00c3ff, #7b2ff7, #ff3f3f, #00c3ff);
+    background-size: 400% 400%;
+    animation: holoShift 8s ease infinite;
     text-align: center;
   }
 
@@ -78,7 +82,9 @@
   }
 
   .rotator-controls button {
-    background: linear-gradient(90deg, #00c3ff, #7b2ff7, #ff3f3f);
+    background: linear-gradient(270deg, #00c3ff, #7b2ff7, #ff3f3f, #00c3ff);
+    background-size: 400% 400%;
+    animation: holoShift 8s ease infinite;
     color: #fff;
     font-weight: bold;
     padding: 0.5rem 0.8rem;
@@ -96,7 +102,7 @@
 
 <section class="main-rotator" aria-label="Main Project Rotator">
 
-  <!-- Project Details at Top -->
+  <!-- Project Details at Top (centered + animated gradient) -->
   <div class="rotator-overlays" data-rotator="overlays">
     <h3 class="rotator-title" data-field="title">
       Project Title – Tagline
@@ -119,7 +125,7 @@
     />
   </div>
 
-  <!-- Controls -->
+  <!-- Controls (animated gradient buttons) -->
   <div class="rotator-controls" data-rotator="controls">
     <button type="button" data-action="support" aria-label="Support this project">Support</button>
     <button type="button" data-action="play" aria-label="Play project video">Play Video</button>
