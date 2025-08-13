@@ -3,39 +3,47 @@
     position: relative;
     background: #000;
     color: #fff;
-    border: 2px solid #00ffc8;
+    border: 2px solid transparent; /* we'll use border-image for gradient */
     border-radius: 10px;
     overflow: hidden;
     max-width: 900px;
     margin: 1rem auto;
     box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+    border-image: linear-gradient(90deg, #00c3ff, #7b2ff7, #ff3f3f) 1; /* iridescent border */
   }
 
-  /* Top Info Area (Centered) */
+  /* Top Info Area (Centered + Gradient) */
   .rotator-overlays {
     width: 100%;
     padding: 0.8rem 1rem;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
-    text-align: center; /* ✅ center content */
+    background: linear-gradient(
+      90deg,
+      rgba(0, 195, 255, 0.9) 0%,
+      rgba(123, 47, 247, 0.9) 50%,
+      rgba(255, 63, 63, 0.9) 100%
+    );
+    text-align: center;
   }
 
   .rotator-title {
     font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    color: #00ffc8;
-    text-shadow: 0 0 8px #00ffc8;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
   }
 
   .rotator-info {
     list-style: none;
-    margin: 0 auto; /* ✅ center list container */
+    margin: 0 auto;
     padding: 0;
     font-size: 0.9rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: center; /* ✅ center items in flexbox */
+    justify-content: center;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
   }
 
   .rotator-info li {
@@ -70,8 +78,8 @@
   }
 
   .rotator-controls button {
-    background: #00ffc8;
-    color: #000;
+    background: linear-gradient(90deg, #00c3ff, #7b2ff7, #ff3f3f);
+    color: #fff;
     font-weight: bold;
     padding: 0.5rem 0.8rem;
     border: none;
@@ -82,7 +90,7 @@
 
   .rotator-controls button:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 8px #00ffc8;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   }
 </style>
 
