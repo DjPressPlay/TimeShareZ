@@ -114,28 +114,33 @@
 
 <script>
   (async () => {
+    const displayEl = document.getElementById("sessionDisplay");
     try {
       const sessionId = localStorage.getItem("session_id");
       if (!sessionId) {
-        document.getElementById("sessionDisplay").textContent = "No session";
+        displayEl.textContent = "No session";
         return;
       }
 
       const res = await fetch(`/.netlify/functions/getSession?id=${encodeURIComponent(sessionId)}`);
       if (!res.ok) {
-        document.getElementById("sessionDisplay").textContent = "Session load failed";
+        displayEl.textContent = "Session load failed";
         return;
       }
 
       const data = await res.json();
-      if (data.session_number) {
-        document.getElementById("sessionDisplay").textContent = `Session #${data.session_number}`;
+      if (data && data.session_number) {
+        // Save updated info
+        localStorage.setItem("session_id", data.session_id);
+        localStorage.setItem("session_number", data.session_number);
+
+        displayEl.textContent = `Session #${data.session_number}`;
       } else {
-        document.getElementById("sessionDisplay").textContent = "Session not found";
+        displayEl.textContent = "Session not found";
       }
     } catch (err) {
       console.error("Error loading session:", err);
-      document.getElementById("sessionDisplay").textContent = "Error";
+      displayEl.textContent = "Error";
     }
   })();
 </script>
