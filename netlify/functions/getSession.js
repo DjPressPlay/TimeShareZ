@@ -8,14 +8,31 @@ const supabase = createClient(
 
 exports.handler = async (event) => {
   try {
-    if (event.httpMethod !== "GET") {
+    // Accept GET or POST
+    if (event.httpMethod !== "GET" && event.httpMethod !== "POST") {
       return {
         statusCode: 405,
+        headers: { Allow: "GET, POST" },
         body: JSON.stringify({ error: "Method not allowed" }),
       };
     }
 
-    const id = event.queryStringParameters?.id;
+    let id;
+
+    if (event.httpMethod === "GET") {
+      id = event.queryStringParameters?.id;
+    } else if (event.httpMethod === "POST") {
+      try {
+        const body = JSON.parse(event.body || "{}");
+        id = body.session_id;
+      } catch (parseErr) {
+        return {
+          statusCode: 400,
+          body: JSON.stringify({ error: "invalid_json" }),
+        };
+      }
+    }
+
     if (!id) {
       return {
         statusCode: 400,
@@ -23,7 +40,7 @@ exports.handler = async (event) => {
       };
     }
 
-    // Query by the correct PK
+    // Query by correct PK
     const { data, error } = await supabase
       .from("sessions")
       .select("session_id, session_number, created_at, last_active")
