@@ -1,91 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TimeShareZ</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+<script type="module">
+  import { wireTopBar, initTutorialOverlay } from './script.js';
+  import SessionManager from './sessionManager.js';
 
-  <div class="app-container" id="app-root">
-    <!-- Sections will be loaded here dynamically -->
-  </div>
+  const components = [
+    "top-bar",
+    "funded-feed",
+    "hot-feed",
+    "main-rotator",
+    "tutorial-overlay",
+    "footer"
+  ];
 
-  <script>
-    // Components to load (in order)
-    const components = [
-      "top-bar",
-      "funded-feed",
-      "hot-feed",
-      "main-rotator",
-      "tutorial-overlay",
-      "footer"
-    ];
+  async function loadComponents() {
+    const root = document.getElementById("app-root");
 
-    async function loadComponents() {
-      const root = document.getElementById("app-root");
+    for (const name of components) {
+      const res = await fetch(`components/${name}.html`);
+      const html = await res.text();
+      root.insertAdjacentHTML("beforeend", html);
 
-      for (const name of components) {
-        try {
-          const res = await fetch(`components/${name}.html`);
-          if (!res.ok) throw new Error(`Failed to load ${name}.html`);
-          const html = await res.text();
-          root.insertAdjacentHTML("beforeend", html);
-        } catch (err) {
-          console.error(`Error loading ${name}:`, err);
-        }
+      if (name === "top-bar") {
+        wireTopBar();
+        // 🔹 Call Supabase session function here
+        await SessionManager.getOrCreateSession();
       }
-
-      // Init tutorial after overlay is loaded
-      initTutorialOverlay();
     }
 
-    function initTutorialOverlay() {
-      const overlay = document.getElementById("tz-tutorial");
-      if (!overlay) return;
+    initTutorialOverlay();
+  }
 
-      const steps = overlay.querySelectorAll(".tutorial-step");
-      let currentStepIndex = 0;
-
-      const nextBtn = document.getElementById("tz-next");
-      const backBtn = document.getElementById("tz-back");
-      const closeBtn = document.getElementById("tz-close");
-
-      function showStep(index) {
-        steps.forEach((step, i) => step.hidden = i !== index);
-        currentStepIndex = index;
-      }
-
-      function closeOverlay() {
-        overlay.style.display = "none";
-      }
-
-      nextBtn?.addEventListener("click", () => {
-        if (currentStepIndex < steps.length - 1) {
-          showStep(currentStepIndex + 1);
-        }
-      });
-
-      backBtn?.addEventListener("click", () => {
-        if (currentStepIndex > 0) {
-          showStep(currentStepIndex - 1);
-        }
-      });
-
-      closeBtn?.addEventListener("click", closeOverlay);
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeOverlay();
-      });
-
-      overlay.style.display = "flex";
-      overlay.hidden = false;
-      showStep(0);
-    }
-
-    loadComponents();
-  </script>
-
-</body>
-</html>
+  loadComponents();
+</script>
