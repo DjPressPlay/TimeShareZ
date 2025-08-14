@@ -1,33 +1,57 @@
-<script type="module">
-  import { wireTopBar, initTutorialOverlay } from './script.js';
-  import SessionManager from './sessionManager.js';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimeShareZ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-  const components = [
-    "top-bar",
-    "funded-feed",
-    "hot-feed",
-    "main-rotator",
-    "tutorial-overlay",
-    "footer"
-  ];
+  <div class="app-container" id="app-root">
+    <!-- Sections will be loaded here dynamically -->
+  </div>
 
-  async function loadComponents() {
-    const root = document.getElementById("app-root");
+  <script type="module">
+    import { wireTopBar, initTutorialOverlay } from './script.js';
+    import SessionManager from './sessionManager.js';
 
-    for (const name of components) {
-      const res = await fetch(`components/${name}.html`);
-      const html = await res.text();
-      root.insertAdjacentHTML("beforeend", html);
+    // Components to load (in order)
+    const components = [
+      "top-bar",
+      "funded-feed",
+      "hot-feed",
+      "main-rotator",
+      "tutorial-overlay",
+      "footer"
+    ];
 
-      if (name === "top-bar") {
-        wireTopBar();
-        // 🔹 Call Supabase session function here
-        await SessionManager.getOrCreateSession();
+    async function loadComponents() {
+      const root = document.getElementById("app-root");
+
+      for (const name of components) {
+        try {
+          const res = await fetch(`components/${name}.html`);
+          if (!res.ok) throw new Error(`Failed to load ${name}.html`);
+          const html = await res.text();
+          root.insertAdjacentHTML("beforeend", html);
+
+          // 🔹 When top bar loads, wire it up and create/get session
+          if (name === "top-bar") {
+            wireTopBar();
+            await SessionManager.getOrCreateSession();
+          }
+        } catch (err) {
+          console.error(`Error loading ${name}:`, err);
+        }
       }
+
+      // Init tutorial after overlay is loaded
+      initTutorialOverlay();
     }
 
-    initTutorialOverlay();
-  }
+    loadComponents();
+  </script>
 
-  loadComponents();
-</script>
+</body>
+</html>
