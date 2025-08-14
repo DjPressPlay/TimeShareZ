@@ -1,1 +1,105 @@
 
+<!-- top-bar.html -->
+<style>
+  .top-bar {
+    background: #111;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid #00ffc8;
+    box-shadow: 0 2px 8px rgba(0, 255, 200, 0.3);
+  }
+
+  .top-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #00ffc8;
+    text-decoration: none;
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px #00ffc8;
+  }
+
+  .search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 2px solid #00ffc8;
+    background: #000;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .search input:focus {
+    outline: none;
+    border-color: #00ffe5;
+    box-shadow: 0 0 10px #00ffe5;
+  }
+
+  .post-btn a {
+    display: inline-block;
+    background: #00ffc8;
+    color: #000;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .post-btn a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #00ffc8;
+  }
+</style>
+
+<header class="top-bar" role="banner">
+  <div class="top-bar-inner">
+    <a href="/" class="logo" aria-label="TimeShareZ Home">
+      ⏳ <span>TimeShareZ</span>
+    </a>
+
+    <form class="search" role="search" aria-label="Project Search">
+      <label for="project-search" class="visually-hidden">Search Projects</label>
+      <input id="project-search" type="search" name="q" placeholder="Search projects..." aria-label="Search projects"/>
+    </form>
+
+    <div class="post-btn">
+      <a href="/post-project" aria-label="Post a new project">+ Post Project</a>
+    </div>
+  </div>
+</header>
