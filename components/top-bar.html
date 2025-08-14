@@ -16,6 +16,9 @@
   /* Post Project Button */
   .post-btn button { background: #00ffc8; color: #000; font-weight: bold; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .post-btn button:hover { transform: scale(1.05); box-shadow: 0 0 10px #00ffc8; }
+
+  /* Session display */
+  .session-info { font-size: 0.85rem; color: #ccc; margin-left: 1rem; }
 </style>
 
 <header class="top-bar" role="banner">
@@ -31,11 +34,32 @@
       <input id="project-search" type="search" name="q" placeholder="Search projects..." aria-label="Search projects" />
     </form>
 
-    <!-- Right: Post Project Button -->
-    <div class="post-btn">
-      <button type="button" aria-label="Post a new project">
-        + Post Project
-      </button>
+    <!-- Right: Session + Post Project Button -->
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div class="session-info" id="sessionDisplay">Session: Loading…</div>
+      <div class="post-btn">
+        <button type="button" aria-label="Post a new project">
+          + Post Project
+        </button>
+      </div>
     </div>
   </div>
 </header>
+
+<script type="module">
+  import SessionManager from './sessionManager.js';
+
+  const displayEl = document.getElementById("sessionDisplay");
+
+  try {
+    const s = await SessionManager.getSession();
+    if (s && s.session_number) {
+      displayEl.textContent = `Session: ${s.session_number}`;
+    } else {
+      displayEl.textContent = "Session: Not found";
+    }
+  } catch (err) {
+    console.error("Error loading session:", err);
+    displayEl.textContent = "Session: Failed";
+  }
+</script>
