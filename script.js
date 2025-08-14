@@ -8,12 +8,14 @@ const components = [
   "footer"
 ];
 
-// 🔹 Make sure session is created/fetched immediately on load
 let sessionData = null;
 
+// 🔹 Create/fetch session immediately on load
 (async () => {
+  console.log("[TSZ] script.js loaded - starting session init");
   try {
     const { default: SessionManager } = await import("./sessionManager.js");
+    console.log("[TSZ] SessionManager loaded, calling getOrCreateSession()");
     sessionData = await SessionManager.getOrCreateSession();
     console.log("[TSZ] Session ready at page load:", sessionData);
   } catch (err) {
@@ -22,16 +24,20 @@ let sessionData = null;
 })();
 
 async function loadComponents() {
+  console.log("[TSZ] Loading components:", components);
   const root = document.getElementById("app-root");
 
   for (const name of components) {
     try {
       const res = await fetch(`components/${name}.html`);
       if (!res.ok) throw new Error(`Failed to load ${name}`);
-      root.insertAdjacentHTML("beforeend", await res.text());
+      const html = await res.text();
+      root.insertAdjacentHTML("beforeend", html);
+      console.log(`[TSZ] Loaded component: ${name}`);
 
       // When top-bar is loaded, update its display if we already have session data
       if (name === "top-bar") {
+        console.log("[TSZ] top-bar loaded, initializing session display");
         initSessionDisplay();
       }
     } catch (err) {
@@ -74,8 +80,10 @@ function initSessionDisplay() {
   }
   if (sessionData) {
     sessionEl.textContent = `Session: ${sessionData.session_number}`;
+    console.log("[TSZ] Updated top-bar session display:", sessionData.session_number);
   } else {
     sessionEl.textContent = "Session: ERROR";
+    console.warn("[TSZ] No session data available for display");
   }
 }
 
