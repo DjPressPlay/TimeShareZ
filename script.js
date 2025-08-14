@@ -29,6 +29,7 @@ function setSessionUI({ state, number }) {
     return;
   }
 
+  // error state
   el.textContent = "Session: Failed";
   el.classList.add("is-error");
   if (retry) retry.hidden = false;
@@ -38,10 +39,12 @@ function wireTopBar() {
   topBarReady = true;
   setSessionUI({ state: "loading" });
 
+  // If session was already resolved before top bar mounted
   if (sessionData && sessionData.session_number) {
     setSessionUI({ state: "ready", number: sessionData.session_number });
   }
 
+  // Retry button creates a new session on demand
   const retry = qs("sessionActionBtn");
   if (retry) {
     retry.addEventListener("click", async () => {
@@ -51,6 +54,7 @@ function wireTopBar() {
         sessionData = await SessionManager.createSession();
         if (!sessionData || !sessionData.session_number) throw new Error("No session returned");
         setSessionUI({ state: "ready", number: sessionData.session_number });
+        console.log("[TSZ] Retry created session:", sessionData);
       } catch (err) {
         console.error("[TSZ] Retry failed:", err);
         setSessionUI({ state: "error" });
@@ -58,6 +62,7 @@ function wireTopBar() {
     });
   }
 
+  // Respond to global session events fired by index loader flow
   document.addEventListener("tsz:session-ready", (e) => {
     const n = e.detail?.session_number;
     if (n) setSessionUI({ state: "ready", number: n });
@@ -92,27 +97,8 @@ function initTutorialOverlay() {
   showStep(0);
 }
 
-// ---------- Session bootstrap ----------
-(async () => {
-  try {
-    const { default: SessionManager } = await import("./sessionManager.js");
-    sessionData = await SessionManager.getOrCreateSession();
+// No session bootstrap here.
+// Index will import SessionManager, call getOrCreateSession(),
+// then dispatch events so this file can update UI.
 
-    if (!sessionData || !sessionData.session_number) throw new Error("No session_number in response");
-
-    if (topBarReady) {
-      setSessionUI({ state: "ready", number: sessionData.session_number });
-    }
-
-    document.dispatchEvent(
-      new CustomEvent("tsz:session-ready", { detail: { session_number: sessionData.session_number } })
-    );
-  } catch (err) {
-    console.error("[TSZ] Failed to init session at startup:", err);
-    if (topBarReady) setSessionUI({ state: "error" });
-    document.dispatchEvent(new CustomEvent("tsz:session-error"));
-  }
-})();
-
-// Make these available so index.html can call them
 export { wireTopBar, initTutorialOverlay };
