@@ -8,6 +8,19 @@ const components = [
   "footer"
 ];
 
+// 🔹 Make sure session is created/fetched immediately on load
+let sessionData = null;
+
+(async () => {
+  try {
+    const { default: SessionManager } = await import("./sessionManager.js");
+    sessionData = await SessionManager.getOrCreateSession();
+    console.log("[TSZ] Session ready at page load:", sessionData);
+  } catch (err) {
+    console.error("[TSZ] Failed to init session at startup:", err);
+  }
+})();
+
 async function loadComponents() {
   const root = document.getElementById("app-root");
 
@@ -17,9 +30,9 @@ async function loadComponents() {
       if (!res.ok) throw new Error(`Failed to load ${name}`);
       root.insertAdjacentHTML("beforeend", await res.text());
 
-      // ✅ Only run session init once top-bar is fully in DOM
+      // When top-bar is loaded, update its display if we already have session data
       if (name === "top-bar") {
-        await initSessionDisplay();
+        initSessionDisplay();
       }
     } catch (err) {
       console.error(`Error loading ${name}.html`, err);
@@ -53,29 +66,16 @@ function initTutorialOverlay() {
   showStep(0);
 }
 
-// ✅ Ensure Supabase session is created/fetched
-async function initSessionDisplay() {
-  try {
-    const SessionManagerModule = await import("./sessionManager.js");
-    const SessionManager = SessionManagerModule.default;
-
-    // Always create or fetch from backend
-    const sessionData = await SessionManager.getOrCreateSession();
-    if (!sessionData) {
-      console.error("Failed to get or create session");
-      return;
-    }
-
-    const { session_number } = sessionData;
-
-    const sessionEl = document.getElementById("sessionDisplay");
-    if (sessionEl) {
-      sessionEl.textContent = `Session: ${session_number}`;
-    } else {
-      console.warn("Session display element not found in DOM.");
-    }
-  } catch (err) {
-    console.error("Session init failed:", err);
+function initSessionDisplay() {
+  const sessionEl = document.getElementById("sessionDisplay");
+  if (!sessionEl) {
+    console.warn("[TSZ] Session display element not found in DOM.");
+    return;
+  }
+  if (sessionData) {
+    sessionEl.textContent = `Session: ${sessionData.session_number}`;
+  } else {
+    sessionEl.textContent = "Session: ERROR";
   }
 }
 
