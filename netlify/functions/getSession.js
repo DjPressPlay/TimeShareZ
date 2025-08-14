@@ -1,4 +1,4 @@
-
+// netlify/functions/getSession.js
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
@@ -9,31 +9,41 @@ const supabase = createClient(
 export async function handler(event) {
   try {
     const { session_id } = JSON.parse(event.body || '{}');
+
     if (!session_id) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Missing session_id' }) };
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Missing session_id' })
+      };
     }
 
-    // Get session row
+    // Fetch session row
     const { data: session, error: sessionError } = await supabase
       .from('sessions')
       .select('*')
       .eq('id', session_id)
       .single();
 
-    if (sessionError || !session) throw sessionError || new Error('Session not found');
+    if (sessionError) throw sessionError;
+    if (!session) throw new Error('Session not found');
 
-    // Get linked projects
-    const { data: projects } = await supabase
+    // Fetch linked projects
+    const { data: projects, error: projectsError } = await supabase
       .from('projects')
       .select('*')
       .eq('session_id', session_id);
 
-    // Get linked spots
-    const { data: spots } = await supabase
+    if (projectsError) throw projectsError;
+
+    // Fetch linked spots
+    const { data: spots, error: spotsError } = await supabase
       .from('spots')
       .select('*')
       .eq('session_id', session_id);
 
+    if (spotsError) throw spotsError;
+
+    // Return unified payload
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -46,8 +56,11 @@ export async function handler(event) {
         }
       })
     };
-
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    console.error('Get Session Error:', err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message })
+    };
   }
 }
