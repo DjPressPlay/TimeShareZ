@@ -7,7 +7,6 @@
     border-bottom: 2px solid #00ffc8;
     box-shadow: 0 2px 8px rgba(0, 255, 200, 0.3);
   }
-
   .top-bar-inner {
     display: flex;
     align-items: center;
@@ -16,7 +15,6 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-
   .visually-hidden {
     position: absolute !important;
     height: 1px;
@@ -28,7 +26,6 @@
     padding: 0;
     margin: -1px;
   }
-
   .logo {
     font-size: 1.25rem;
     font-weight: bold;
@@ -39,18 +36,15 @@
     text-decoration: none;
     transition: transform 0.2s ease, text-shadow 0.2s ease;
   }
-
   .logo:hover {
     transform: scale(1.05);
     text-shadow: 0 0 8px #00ffc8;
   }
-
   .search {
     flex: 1;
     display: flex;
     justify-content: center;
   }
-
   .search input {
     width: 100%;
     max-width: 320px;
@@ -62,13 +56,11 @@
     font-size: 0.95rem;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-
   .search input:focus {
     outline: none;
     border-color: #00ffe5;
     box-shadow: 0 0 10px #00ffe5;
   }
-
   .post-btn a {
     display: inline-block;
     background: #00ffc8;
@@ -79,12 +71,10 @@
     text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-
   .post-btn a:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px #00ffc8;
   }
-
   .session-info {
     font-size: 0.85rem;
     color: #ccc;
@@ -111,36 +101,3 @@
     </div>
   </div>
 </header>
-
-<script>
-  (async () => {
-    const displayEl = document.getElementById("sessionDisplay");
-    try {
-      const sessionId = localStorage.getItem("session_id");
-      if (!sessionId) {
-        displayEl.textContent = "No session";
-        return;
-      }
-
-      const res = await fetch(`/.netlify/functions/getSession?id=${encodeURIComponent(sessionId)}`);
-      if (!res.ok) {
-        displayEl.textContent = "Session load failed";
-        return;
-      }
-
-      const data = await res.json();
-      if (data && data.session_number) {
-        // Save updated info
-        localStorage.setItem("session_id", data.session_id);
-        localStorage.setItem("session_number", data.session_number);
-
-        displayEl.textContent = `Session #${data.session_number}`;
-      } else {
-        displayEl.textContent = "Session not found";
-      }
-    } catch (err) {
-      console.error("Error loading session:", err);
-      displayEl.textContent = "Error";
-    }
-  })();
-</script>
