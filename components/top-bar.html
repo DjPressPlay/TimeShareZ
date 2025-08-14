@@ -101,3 +101,35 @@
     </div>
   </div>
 </header>
+
+<script>
+(async () => {
+  const displayEl = document.getElementById("sessionDisplay");
+
+  try {
+    const sessionId = localStorage.getItem("session_id");
+    if (!sessionId) {
+      displayEl.textContent = "No session";
+      return;
+    }
+
+    const res = await fetch(`/.netlify/functions/getSession?id=${encodeURIComponent(sessionId)}`);
+    if (!res.ok) {
+      displayEl.textContent = "Session load failed";
+      return;
+    }
+
+    const data = await res.json();
+    if (data && data.session_number) {
+      localStorage.setItem("session_id", data.session_id);
+      localStorage.setItem("session_number", data.session_number);
+      displayEl.textContent = `Session: ${data.session_number}`;
+    } else {
+      displayEl.textContent = "Session not found";
+    }
+  } catch (err) {
+    console.error("Error loading session:", err);
+    displayEl.textContent = "Error";
+  }
+})();
+</script>
