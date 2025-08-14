@@ -1,14 +1,22 @@
 // netlify/functions/createSession.js
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+const { SUPABASE_URL, SUPABASE_KEY } = process.env;
 
-export default async (req, context) => {
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+export async function handler(event, context) {
   try {
-    // Make a random 6-digit session number as string
+    if (!SUPABASE_URL || !SUPABASE_KEY) {
+      console.error("Missing Supabase env vars");
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "missing_env" })
+      };
+    }
+
     const session_number = String(Math.floor(100000 + Math.random() * 900000));
 
-    // Insert into Supabase — only the columns we need
     const { data, error } = await supabase
       .from("sessions")
       .insert([{ session_number }])
@@ -17,20 +25,22 @@ export default async (req, context) => {
 
     if (error) {
       console.error("Supabase insert error:", error);
-      return new Response(JSON.stringify({ error: "db_insert_failed" }), { status: 500 });
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "db_insert_failed", details: error.message })
+      };
     }
 
-    // Return the new session info
-    return new Response(
-      JSON.stringify({
-        session_id: data.session_id,      // comes from Supabase
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: data.session_id,      // assumes your PK column is session_id (uuid)
         session_number: data.session_number
-      }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
-    );
-
+      })
+    };
   } catch (err) {
     console.error("Server error:", err);
-    return new Response(JSON.stringify({ error: "server_error" }), { status: 500 });
+    return { statusCode: 500, body: JSON.stringify({ error: "server_error" }) };
   }
-};
+}
