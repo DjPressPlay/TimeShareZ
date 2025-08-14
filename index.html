@@ -25,6 +25,7 @@
 
     async function loadComponents() {
       const root = document.getElementById("app-root");
+
       for (const name of components) {
         try {
           const res = await fetch(`components/${name}.html`);
@@ -61,11 +62,15 @@
       }
 
       nextBtn?.addEventListener("click", () => {
-        if (currentStepIndex < steps.length - 1) showStep(currentStepIndex + 1);
+        if (currentStepIndex < steps.length - 1) {
+          showStep(currentStepIndex + 1);
+        }
       });
 
       backBtn?.addEventListener("click", () => {
-        if (currentStepIndex > 0) showStep(currentStepIndex - 1);
+        if (currentStepIndex > 0) {
+          showStep(currentStepIndex - 1);
+        }
       });
 
       closeBtn?.addEventListener("click", closeOverlay);
@@ -82,6 +87,5 @@
     loadComponents();
   </script>
 
-  
 </body>
 </html>
