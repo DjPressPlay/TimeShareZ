@@ -1,4 +1,3 @@
-
 <!-- top-bar.html -->
 <style>
   .top-bar {
@@ -85,6 +84,12 @@
     transform: scale(1.05);
     box-shadow: 0 0 10px #00ffc8;
   }
+
+  .session-info {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-left: 1rem;
+  }
 </style>
 
 <header class="top-bar" role="banner">
@@ -98,8 +103,39 @@
       <input id="project-search" type="search" name="q" placeholder="Search projects..." aria-label="Search projects"/>
     </form>
 
-    <div class="post-btn">
-      <a href="/post-project" aria-label="Post a new project">+ Post Project</a>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <div class="session-info" id="sessionDisplay">Loading session...</div>
+      <div class="post-btn">
+        <a href="/post-project" aria-label="Post a new project">+ Post Project</a>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  (async () => {
+    try {
+      const sessionId = localStorage.getItem("session_id");
+      if (!sessionId) {
+        document.getElementById("sessionDisplay").textContent = "No session";
+        return;
+      }
+
+      const res = await fetch(`/.netlify/functions/getSession?id=${encodeURIComponent(sessionId)}`);
+      if (!res.ok) {
+        document.getElementById("sessionDisplay").textContent = "Session load failed";
+        return;
+      }
+
+      const data = await res.json();
+      if (data.session_number) {
+        document.getElementById("sessionDisplay").textContent = `Session #${data.session_number}`;
+      } else {
+        document.getElementById("sessionDisplay").textContent = "Session not found";
+      }
+    } catch (err) {
+      console.error("Error loading session:", err);
+      document.getElementById("sessionDisplay").textContent = "Error";
+    }
+  })();
+</script>
