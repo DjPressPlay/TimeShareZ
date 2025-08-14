@@ -47,10 +47,10 @@ const SessionManager = (() => {
 
     console.log("[TSZ] Calling getSession() for", sessionId);
     try {
-      const res = await fetch("/.netlify/functions/getSession", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionId })
+      // Use GET with query param so it works with GET-only handlers
+      const res = await fetch(`/.netlify/functions/getSession?id=${encodeURIComponent(sessionId)}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
       });
 
       if (!res.ok) throw new Error(`Failed to get session: ${res.status}`);
@@ -98,8 +98,6 @@ const SessionManager = (() => {
     localStorage.removeItem(SESSION_ID_KEY);
     localStorage.removeItem(SESSION_NUMBER_KEY);
   }
-
-  // Removed: setRecoveryCode() and verifyRecoveryCode() unless you explicitly want them later
 
   return {
     createSession,
