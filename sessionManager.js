@@ -7,6 +7,14 @@ const SessionManager = (() => {
   const SESSION_ID_KEY = "session_id";
   const SESSION_NUMBER_KEY = "session_number";
 
+  // --- NEW: event helpers ---
+  function emitReady(detail) {
+    document.dispatchEvent(new CustomEvent("tsz:session-ready", { detail }));
+  }
+  function emitError() {
+    document.dispatchEvent(new Event("tsz:session-error"));
+  }
+
   /**
    * Create a new session via Netlify -> Supabase
    */
@@ -28,9 +36,12 @@ const SessionManager = (() => {
       localStorage.setItem(SESSION_ID_KEY, session_id);
       localStorage.setItem(SESSION_NUMBER_KEY, session_number);
 
-      return { session_id, session_number, all_linked_data };
+      const payload = { session_id, session_number, all_linked_data };
+      emitReady(payload);           // NEW
+      return payload;
     } catch (err) {
       console.error("[TSZ] createSession error:", err);
+      emitError();                  // NEW
       return null;
     }
   }
@@ -64,9 +75,12 @@ const SessionManager = (() => {
       localStorage.setItem(SESSION_ID_KEY, session_id);
       localStorage.setItem(SESSION_NUMBER_KEY, session_number);
 
-      return { session_id, session_number, all_linked_data };
+      const payload = { session_id, session_number, all_linked_data };
+      emitReady(payload);           // NEW
+      return payload;
     } catch (err) {
       console.error("[TSZ] getSession error:", err);
+      emitError();                  // NEW
       return null;
     }
   }
