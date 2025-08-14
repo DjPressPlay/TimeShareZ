@@ -6,13 +6,14 @@
   node_bundler = "esbuild"
   external_node_modules = ["@supabase/supabase-js"]
 
-# Allow function calls to bypass SPA redirect
+# ✅ Allow function calls to bypass SPA redirect
 [[redirects]]
   from = "/.netlify/functions/*"
   to = "/.netlify/functions/:splat"
   status = 200
+  force = true
 
-# Catch-all redirect for SPA routes
+# ✅ Catch-all redirect for SPA routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
