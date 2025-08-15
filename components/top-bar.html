@@ -1,12 +1,13 @@
 <!-- components/top-bar.html -->
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
   .top-bar {
     background: #111;
     color: #fff;
     padding: 0.5rem 1rem;
     border-bottom: 2px solid #00ffc8;
     box-shadow: 0 2px 8px rgba(0, 255, 200, 0.3);
-    text-align: center;
     font-size: 0.95rem;
   }
 
@@ -18,14 +19,23 @@
   }
 
   .site-name {
-    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
     color: #00ffc8;
+    text-shadow: 0 0 6px rgba(0, 255, 200, 0.7);
     white-space: nowrap;
+  }
+
+  #sessionDisplay {
+    font-size: 0.85rem;
+    opacity: 0.85;
   }
 
   .search-bar {
     flex: 1;
     max-width: 400px;
+    display: flex;
   }
 
   .search-bar input {
@@ -35,33 +45,57 @@
     border-radius: 4px;
     background: #000;
     color: #fff;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-bar input::placeholder {
+    color: #999;
+  }
+
+  .search-bar input:focus {
+    outline: none;
+    border-color: #00ffd9;
+    box-shadow: 0 0 8px rgba(0, 255, 200, 0.5);
   }
 
   .post-btn {
-    background: #00ffc8;
+    background: linear-gradient(135deg, #00ffc8, #00b3ff);
     color: #000;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 6px rgba(0, 255, 200, 0.4);
+    transition: background 0.25s, transform 0.15s;
+  }
+
+  .post-btn:hover {
+    background: linear-gradient(135deg, #00e0b2, #009ee0);
+    transform: translateY(-1px);
+  }
+
+  .post-btn:active {
+    transform: translateY(0);
   }
 </style>
 
 <header class="top-bar" role="banner">
   <div class="top-bar-content">
-    <!-- New: Site Name -->
-    <div class="site-name">YourSiteName</div>
+    <!-- Site Name -->
+    <div class="site-name">TimeShareZ</div>
 
-    <!-- Original session display -->
+    <!-- Your Original Session Display -->
     <div id="sessionDisplay">Loading Session...</div>
 
-    <!-- New: Search Bar -->
+    <!-- Search Bar -->
     <div class="search-bar">
       <input type="text" placeholder="Search..." />
     </div>
 
-    <!-- New: Post Button -->
+    <!-- Post Button -->
     <button class="post-btn">Post</button>
   </div>
 </header>
