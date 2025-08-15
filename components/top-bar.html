@@ -12,19 +12,17 @@
 </style>
 
 <header class="top-bar" role="banner">
-  <div id="sessionDisplay">Session: ???</div>
+  <div id="sessionDisplay"></div>
 </header>
 
 <script type="module">
   import SessionManager from './sessionManager.js';
 
-  const displayEl = document.getElementById("sessionDisplay");
-
   try {
     const session = await SessionManager.getOrCreateSession();
-    displayEl.textContent = `Session: ${session?.session_number || "???"}`;
+    document.getElementById("sessionDisplay").textContent = session?.session_id || "";
   } catch (err) {
     console.error("Error loading session:", err);
-    displayEl.textContent = "Session: Failed";
+    // Leave blank on error
   }
 </script>
