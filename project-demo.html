@@ -25,20 +25,16 @@
       margin: auto;
       padding: 1.5rem;
     }
-    .hero {
+    .section {
       background: #fff;
       padding: 1rem;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .hero h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    .meta {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1rem;
+    .section h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
     }
     .media {
       width: 100%;
@@ -48,12 +44,6 @@
       align-items: center;
       justify-content: center;
       border-radius: 6px;
-      margin-bottom: 1rem;
-    }
-    .stats {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
       margin-bottom: 1rem;
     }
     .funding-bar {
@@ -76,10 +66,9 @@
       border-radius: 4px;
       font-size: 0.85rem;
     }
-    .description {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
+    .placeholder {
+      color: #777;
+      font-style: italic;
     }
   </style>
 </head>
@@ -89,18 +78,15 @@
 
 <div class="container">
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1 id="title">Solar-Powered Water Purifier</h1>
-    <div class="meta">
+  <!-- HERO / OVERVIEW -->
+  <section class="section">
+    <h2>Project Overview</h2>
+    <h3 id="title">Solar-Powered Water Purifier</h3>
+    <p>
       Created: <span id="created_at">2025-08-15</span> |
       Session ID: <span id="session_id">TSZ-823947</span>
-    </div>
+    </p>
     <div class="media">[ Project Media Placeholder ]</div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats">
     <strong>Funding:</strong> <span id="funding">$8,450 / $20,000</span>
     <div class="funding-bar">
       <div class="funding-fill"></div>
@@ -108,12 +94,29 @@
     <span class="status" id="status">Active</span>
   </section>
 
-  <!-- DESCRIPTION -->
-  <section class="description">
-    <p id="description">
-      A portable, eco-friendly purifier that turns any water source into clean drinking water.
-      Designed for travelers, campers, and emergency relief.
-    </p>
+  <!-- BASICS -->
+  <section class="section">
+    <h2>Basics</h2>
+    <p class="placeholder">Name your project, upload an image or video, and set your campaign details.</p>
+  </section>
+
+  <!-- REWARDS -->
+  <section class="section">
+    <h2>Rewards</h2>
+    <p class="placeholder">Set your rewards and shipping costs.</p>
+    <p class="placeholder">Estimated delivery date must be after campaign end date.</p>
+  </section>
+
+  <!-- STORY -->
+  <section class="section">
+    <h2>Story</h2>
+    <p class="placeholder">Add a detailed project description and convey your risks and challenges.</p>
+  </section>
+
+  <!-- PEOPLE -->
+  <section class="section">
+    <h2>People</h2>
+    <p class="placeholder">Edit your Kickstarter profile and add collaborators.</p>
   </section>
 
 </div>
