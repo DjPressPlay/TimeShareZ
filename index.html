@@ -12,15 +12,17 @@
   <div class="app-container" id="app-root"></div>
 
   <script type="module">
-    // Import only the SessionManager as the tutorial is no longer needed.
+    // ADDED BACK: Import the function that initializes the tutorial.
+    import { initTutorialOverlay } from './script.js';
     import SessionManager from './sessionManager.js';
 
-    // The array of components to load, with "tutorial-overlay" removed.
+    // ADDED BACK: The name of the tutorial component file.
     const components = [
       "top-bar",
       "funded-feed",
       "hot-feed",
       "main-rotator",
+      "tutorial-overlay", // This tells the script to load components/tutorial-overlay.html
       "footer"
     ];
 
@@ -42,11 +44,11 @@
           const html = await res.text();
           root.insertAdjacentHTML("beforeend", html);
         }
-        return true; // All components loaded successfully.
+        return true;
       } catch (error) {
         console.error("CRITICAL ERROR DURING COMPONENT LOADING:", error);
         root.innerHTML = `<p style="color:red; text-align:center;">A critical part of the application failed to load. Please refresh.</p>`;
-        return false; // Loading failed.
+        return false;
       }
     }
 
@@ -54,19 +56,15 @@
      * Main function to orchestrate the application's startup sequence.
      */
     async function initializeApp() {
-      // Step 1: Load all the visual components.
       const loadedSuccessfully = await loadComponents();
 
-      // Step 2: If loading failed, halt initialization.
       if (!loadedSuccessfully) {
         console.error("Halting app initialization because components failed to load.");
         return;
       }
       
-      // Step 3: Get session data.
       const sessionData = await SessionManager.getOrCreateSession();
 
-      // Step 4: Update the top bar with the session data.
       const sessionDisplayElement = document.getElementById("sessionDisplay");
       if (sessionDisplayElement) {
         if (sessionData && sessionData.session_number) {
@@ -76,7 +74,8 @@
         }
       }
 
-      // Tutorial initialization has been removed.
+      // ADDED BACK: This line runs the tutorial script after the HTML has been loaded.
+      initTutorialOverlay();
     }
 
     // Start the application.
