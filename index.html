@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TimeShareZ</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -14,7 +14,8 @@
 
   <script type="module">
     import { initTutorialOverlay } from './script.js';
-    import SessionManager from './sessionManager.js';
+    // It's good practice to also import SessionManager if you plan to use it.
+    // import SessionManager from './sessionManager.js';
 
     // Components to load (in order)
     const components = [
@@ -32,16 +33,23 @@
       for (const name of components) {
         try {
           const res = await fetch(`components/${name}.html`);
-          if (!res.ok) throw new Error(`Failed to load ${name}.html`);
+          if (!res.ok) {
+            throw new Error(`Failed to load ${name}.html (Status: ${res.status})`);
+          }
           const html = await res.text();
           root.insertAdjacentHTML("beforeend", html);
+        } catch (error) {
+          console.error("Error loading component:", error);
+          // Optionally, display an error message to the user in the UI
+          root.insertAdjacentHTML("beforeend", `<p>Error loading content. Please try again later.</p>`);
+        }
+      }
 
-          
-
-      // Init tutorial after overlay is loaded
+      // Init tutorial after all components are loaded and in the DOM
       initTutorialOverlay();
-    
+    }
 
+    // Call the function to start loading components
     loadComponents();
   </script>
 
