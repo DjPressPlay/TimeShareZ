@@ -59,7 +59,7 @@
     box-shadow: 0 0 8px rgba(0, 255, 200, 0.5);
   }
 
-  .post-btn {
+  .post-btn, .demo-btn {
     background: linear-gradient(135deg, #00ffc8, #00b3ff);
     color: #000;
     border: none;
@@ -67,17 +67,19 @@
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     box-shadow: 0 2px 6px rgba(0, 255, 200, 0.4);
     transition: background 0.25s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
   }
 
-  .post-btn:hover {
+  .post-btn:hover, .demo-btn:hover {
     background: linear-gradient(135deg, #00e0b2, #009ee0);
     transform: translateY(-1px);
   }
 
-  .post-btn:active {
+  .post-btn:active, .demo-btn:active {
     transform: translateY(0);
   }
 </style>
@@ -94,6 +96,9 @@
     <div class="search-bar">
       <input type="text" placeholder="Search..." />
     </div>
+
+    <!-- Demo Button -->
+    <a href="/project-demo.html" class="demo-btn">Demo</a>
 
     <!-- Post Button -->
     <button class="post-btn">Post</button>
