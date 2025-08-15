@@ -7,39 +7,37 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <div class="app-container" id="app-root"></div>
 
   <script type="module">
+    // CORRECT: Import the function from script.js
+    import { initTutorialOverlay } from './script.js';
     import SessionManager from './sessionManager.js';
 
-    // The list of components to import.
     const components = [
       "top-bar", "funded-feed", "hot-feed",
       "main-rotator", "tutorial-overlay", "footer"
     ];
 
     async function initializeApp() {
-      // Import all the HTML components.
+      // Load the HTML from the components folder
+      const root = document.getElementById("app-root");
       try {
         const responses = await Promise.all(
           components.map(name => fetch(`components/${name}.html`))
         );
-        const htmlPromises = responses.map(res => {
+        for(const res of responses) {
           if (!res.ok) throw new Error(`Import failed: ${res.url}`);
-          return res.text();
-        });
-        const allHtml = await Promise.all(htmlPromises);
-        document.getElementById("app-root").innerHTML = allHtml.join('');
+          const html = await res.text();
+          // Use insertAdjacentHTML which is safer than innerHTML for this.
+          root.insertAdjacentHTML('beforeend', html);
+        }
       } catch (error) {
         console.error("Failed to import required HTML.", error);
         return;
       }
-      
-      // The tutorial will now work automatically because its script was imported
-      // along with its HTML. No function call is needed here.
 
-      // Handle the session display logic.
+      // Handle the session display logic
       const sessionData = await SessionManager.getOrCreateSession();
       const sessionDisplayElement = document.getElementById("sessionDisplay");
       if (sessionDisplayElement) {
@@ -49,10 +47,13 @@
           sessionDisplayElement.textContent = "Error: Could not get session";
         }
       }
+      
+      // CORRECT: Now that the HTML is loaded, call the function
+      // from script.js to make the buttons work.
+      initTutorialOverlay();
     }
 
     initializeApp();
   </script>
-
 </body>
 </html>
