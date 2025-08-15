@@ -1,0 +1,112 @@
+<!-- components/tutorial-overlay.html -->
+<style>
+  /* Styles specific to the tutorial component */
+  tz-tutorial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: none; /* Initially hidden, JS will control this */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+  }
+
+  .tutorial-content {
+    background: #1e1e1e;
+    color: #fff;
+    border: 1px solid #00ffc8;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0, 255, 200, 0.2);
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .tutorial-step h3 {
+    color: #00ffc8;
+    margin-top: 0;
+  }
+
+  .tutorial-nav {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tutorial-nav button {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  .tutorial-nav button:hover {
+    background-color: #00ffc8;
+    border-color: #00ffc8;
+    color: #111;
+  }
+
+  #tz-close {
+    background: transparent;
+    border: none;
+    color: #888;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+  }
+  #tz-close:hover {
+    color: #fff;
+  }
+</style>
+
+<tz-tutorial>
+  <div class="tutorial-content">
+    <button id="tz-close" title="Close (Esc)">&times;</button>
+    
+    <!-- Step 1 -->
+    <div class="tutorial-step">
+      <h3>Welcome to TimeShareZ!</h3>
+      <p>This is a quick tour to get you started.</p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="tutorial-step" hidden>
+      <h3>The Feeds</h3>
+      <p>You can browse different feeds to see what's hot and what's recently been funded.</p>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="tutorial-step" hidden>
+      <h3>Ready to Go!</h3>
+      <p>You're all set. Enjoy your experience!</p>
+    </div>
+
+    <div class="tutorial-nav">
+      <button id="tz-back">Back</button>
+      <button id="tz-next">Next</button>
+    </div>
+  </div>
+</tz-tutorial>```
+
+### 2. No Changes Needed Elsewhere
+
+Your `index.html` and the corrected `script.js` from my last message are already set up perfectly to work with this new file.
+
+**Here’s a recap of the workflow:**
+
+1.  `index.html` starts loading components.
+2.  It loads `tutorial-overlay.html`, which puts the `<tz-tutorial>` element and its content into the page.
+3.  After all components are loaded, `initializeApp()` calls `initTutorialOverlay()`.
+4.  `initTutorialOverlay()` now successfully finds `<tz-tutorial>`, hooks up the "Next," "Back," and "Close" buttons, and sets its `display` to `flex` to make it visible.
+
+Now, when you run your application, the tutorial overlay should appear correctly right after the page loads.
