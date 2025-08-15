@@ -14,9 +14,9 @@
 
   <script type="module">
     import { initTutorialOverlay } from './script.js';
-    import SessionManager from './sessionManager.js'; // Make sure to import the manager
+    import SessionManager from './sessionManager.js';
 
-    // An array defining the components and the order they should be loaded in
+    // The list of components to load in order. "tutorial-overlay" is correctly included.
     const components = [
       "top-bar",
       "funded-feed",
@@ -41,28 +41,22 @@
           root.insertAdjacentHTML("beforeend", html);
         } catch (error) {
           console.error(`Error loading component ${name}.html:`, error);
-          // Display a user-friendly error message within the app container
           root.insertAdjacentHTML("beforeend", `<p style="color:red; text-align:center;">Could not load a critical component. Please refresh.</p>`);
         }
       }
     }
 
     /**
-     * Main function to initialize the entire application.
-     * This controls the order of operations:
-     * 1. Load UI components.
-     * 2. Fetch data.
-     * 3. Update UI with data.
-     * 4. Initialize other scripts.
+     * Main function that controls the application's startup sequence.
      */
     async function initializeApp() {
-      // Step 1: Load all the visual components into the DOM
+      // Step 1: Wait until all HTML components are loaded onto the page.
       await loadComponents();
 
-      // Step 2: Get the session data using the SessionManager
+      // Step 2: While components were loading, we can now fetch session data.
       const sessionData = await SessionManager.getOrCreateSession();
 
-      // Step 3: Find the session display element and update its content
+      // Step 3: Update the UI with the session data. This is safe because top-bar.html is already loaded.
       const sessionDisplayElement = document.getElementById("sessionDisplay");
       if (sessionDisplayElement) {
         if (sessionData && sessionData.session_number) {
@@ -73,11 +67,11 @@
         }
       }
 
-      // Step 4: Now that everything is loaded and displayed, initialize other scripts
+      // Step 4: Initialize the tutorial. This is safe because tutorial-overlay.html is already loaded.
       initTutorialOverlay();
     }
 
-    // Run the main application function
+    // Start the application.
     initializeApp();
   </script>
 
