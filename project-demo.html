@@ -80,6 +80,29 @@
       border-radius: 6px;
       margin-bottom: 1rem;
     }
+    /* Image gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .img-slot {
+      background: #ddd;
+      border-radius: 6px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #555;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .img-slot:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
     .funding-bar {
       background: #eee;
       height: 18px;
@@ -163,7 +186,22 @@
         Created: <span id="created_at">2025-08-15</span> |
         Session ID: <span id="session_id">TSZ-823947</span>
       </p>
-      <div class="media">[ Project Media Placeholder ]</div>
+
+      <!-- Video Placeholder -->
+      <div class="media">[ Project Video Placeholder ]</div>
+
+      <!-- Image Gallery -->
+      <div class="image-gallery">
+        <div class="img-slot" id="img1">Image 1</div>
+        <div class="img-slot" id="img2">Image 2</div>
+        <div class="img-slot" id="img3">Image 3</div>
+        <div class="img-slot" id="img4">Image 4</div>
+        <div class="img-slot" id="img5">Image 5</div>
+        <div class="img-slot" id="img6">Image 6</div>
+        <div class="img-slot" id="img7">Image 7</div>
+        <div class="img-slot" id="img8">Image 8</div>
+      </div>
+
       <strong>Funding:</strong> <span id="funding">$8,450 / $20,000</span>
       <div class="funding-bar">
         <div class="funding-fill"></div>
