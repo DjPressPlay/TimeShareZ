@@ -12,7 +12,7 @@
 </style>
 
 <header class="top-bar" role="banner">
-  <div id="sessionDisplay">Session: Loading…</div>
+  <div id="sessionDisplay">Session: ???</div>
 </header>
 
 <script type="module">
@@ -22,11 +22,7 @@
 
   try {
     const session = await SessionManager.getOrCreateSession();
-    if (session && session.session_number) {
-      displayEl.textContent = `Session: ${session.session_number}`;
-    } else {
-      displayEl.textContent = "Session: Not found";
-    }
+    displayEl.textContent = `Session: ${session?.session_number || "???"}`;
   } catch (err) {
     console.error("Error loading session:", err);
     displayEl.textContent = "Session: Failed";
