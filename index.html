@@ -12,18 +12,15 @@
   <div class="app-container" id="app-root"></div>
 
   <script type="module">
-    // Import the required functions from our JavaScript files.
-    import { initTutorialOverlay } from './script.js';
+    // Import only the SessionManager as the tutorial is no longer needed.
     import SessionManager from './sessionManager.js';
 
-    // This array tells our script which HTML files to load from the 'components' folder.
-    // The name "tutorial-overlay" here correctly matches the filename "tutorial-overlay.html".
+    // The array of components to load, with "tutorial-overlay" removed.
     const components = [
       "top-bar",
       "funded-feed",
       "hot-feed",
       "main-rotator",
-      "tutorial-overlay", // This line correctly points to the component file.
       "footer"
     ];
 
@@ -34,14 +31,12 @@
     async function loadComponents() {
       const root = document.getElementById("app-root");
       try {
-        // Fetch all components simultaneously for faster loading.
         const responses = await Promise.all(
           components.map(name => fetch(`components/${name}.html`))
         );
 
         for (const res of responses) {
           if (!res.ok) {
-            // If a file is not found (404) or another error occurs, stop the process.
             throw new Error(`Failed to load component: ${res.url} (Status: ${res.status})`);
           }
           const html = await res.text();
@@ -59,16 +54,16 @@
      * Main function to orchestrate the application's startup sequence.
      */
     async function initializeApp() {
-      // Step 1: Load all the visual components and wait for completion.
+      // Step 1: Load all the visual components.
       const loadedSuccessfully = await loadComponents();
 
-      // Step 2: If loading failed, halt initialization to prevent further errors.
+      // Step 2: If loading failed, halt initialization.
       if (!loadedSuccessfully) {
         console.error("Halting app initialization because components failed to load.");
         return;
       }
       
-      // Step 3: Now that components are loaded, get session data.
+      // Step 3: Get session data.
       const sessionData = await SessionManager.getOrCreateSession();
 
       // Step 4: Update the top bar with the session data.
@@ -81,9 +76,7 @@
         }
       }
 
-      // Step 5: Initialize the tutorial. This is now safe because we know
-      // the HTML with '#tutorial-overlay' is on the page.
-      initTutorialOverlay();
+      // Tutorial initialization has been removed.
     }
 
     // Start the application.
