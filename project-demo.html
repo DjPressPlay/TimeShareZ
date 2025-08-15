@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TimeShareZ Project Demo</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -103,25 +105,47 @@
       transform: scale(1.05);
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .funding-bar {
-      background: #eee;
-      height: 18px;
-      border-radius: 10px;
-      overflow: hidden;
+    /* Funding section styling */
+    .funding-info {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-align: center;
       margin: 0.5rem 0;
+      color: #fff;
+      background: linear-gradient(90deg, #00f0ff, #7a00ff, #ff0055);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+    }
+    .funding-bar {
+      background: #111;
+      height: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0.5rem 0 0.8rem 0;
+      box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
     }
     .funding-fill {
-      background: #00b15d;
       height: 100%;
       width: 42%; /* Placeholder percent */
+      background: linear-gradient(90deg, #00f0ff, #7a00ff, #ff0055);
+      background-size: 200% 200%;
+      animation: gradientMove 3s ease infinite;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     .status {
       display: inline-block;
       padding: 0.3rem 0.6rem;
-      background: #00b15d;
+      background: #7a00ff;
       color: #fff;
       border-radius: 4px;
       font-size: 0.85rem;
+      box-shadow: 0 0 8px rgba(122, 0, 255, 0.5);
     }
     .placeholder {
       color: #777;
@@ -202,7 +226,10 @@
         <div class="img-slot" id="img8">Image 8</div>
       </div>
 
-      <strong>Funding:</strong> <span id="funding">$8,450 / $20,000</span>
+      <!-- Funding Section -->
+      <div class="funding-info">
+        Funding: <span id="funding">$8,450 / $20,000</span>
+      </div>
       <div class="funding-bar">
         <div class="funding-fill"></div>
       </div>
