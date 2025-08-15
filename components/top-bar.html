@@ -6,63 +6,62 @@
     padding: 0.5rem 1rem;
     border-bottom: 2px solid #00ffc8;
     box-shadow: 0 2px 8px rgba(0, 255, 200, 0.3);
+    text-align: center;
     font-size: 0.95rem;
   }
-  .top-bar-inner {
+
+  .top-bar-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
   }
+
   .site-name {
     font-weight: bold;
     color: #00ffc8;
-    font-size: 1.1rem;
     white-space: nowrap;
   }
+
   .search-bar {
     flex: 1;
-    display: flex;
-    justify-content: center;
+    max-width: 400px;
   }
+
   .search-bar input {
     width: 100%;
-    max-width: 400px;
     padding: 0.4rem 0.6rem;
     border: 1px solid #00ffc8;
     border-radius: 4px;
     background: #000;
     color: #fff;
   }
+
   .post-btn {
     background: #00ffc8;
     color: #000;
-    font-weight: bold;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
     border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s ease;
-    white-space: nowrap;
-  }
-  .post-btn:hover {
-    background: #00d8a8;
   }
 </style>
 
 <header class="top-bar" role="banner">
-  <div class="top-bar-inner">
-    <!-- Left: Site Name -->
-    <div class="site-name">TimeShareZ</div>
+  <div class="top-bar-content">
+    <!-- New: Site Name -->
+    <div class="site-name">YourSiteName</div>
 
-    <!-- Center: Search -->
+    <!-- Original session display -->
+    <div id="sessionDisplay">Loading Session...</div>
+
+    <!-- New: Search Bar -->
     <div class="search-bar">
-      <input type="text" placeholder="Search projects..." id="topSearch" />
+      <input type="text" placeholder="Search..." />
     </div>
 
-    <!-- Right: Post Button -->
-    <button class="post-btn" id="postProjectBtn">Post Project</button>
+    <!-- New: Post Button -->
+    <button class="post-btn">Post</button>
   </div>
 </header>
