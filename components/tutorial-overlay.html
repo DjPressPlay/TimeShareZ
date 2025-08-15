@@ -1,159 +1,78 @@
-<!-- tutorial-overlay.html -->
+<!-- components/tutorial-overlay.html (Corrected and Self-Contained) -->
 <style>
-  .tutorial-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: swoopIn 0.8s ease-out;
+  #tutorial-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+    backdrop-filter: blur(5px);
   }
-
-  @keyframes swoopIn {
-    from { transform: translateX(-100%) scale(0.95); opacity: 0; }
-    70%  { transform: translateX(5%) scale(1.02); opacity: 1; }
-    to   { transform: translateX(0) scale(1); }
+  .tutorial-content {
+    background: #1e1e1e; color: #fff; border: 1px solid #00ffc8;
+    border-radius: 8px; box-shadow: 0 5px 25px rgba(0, 255, 200, 0.2);
+    width: 90%; max-width: 500px; padding: 2rem; text-align: center;
+    position: relative;
   }
-
-  .tutorial-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 2rem;
-    max-width: 480px;
-    color: #fff;
-    box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
-    animation: fadeIn 0.6s ease-out;
+  .tutorial-step h3 { color: #00ffc8; margin-top: 0; }
+  .tutorial-nav { margin-top: 1.5rem; display: flex; justify-content: space-between; }
+  .tutorial-nav button {
+    background: #333; color: #fff; border: 1px solid #555; padding: 0.5rem 1rem;
+    border-radius: 4px; cursor: pointer;
   }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to   { opacity: 1; transform: scale(1); }
-  }
-
-  .tutorial-step {
-    animation: stepFade 0.5s ease;
-  }
-
-  @keyframes stepFade {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .tutorial-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .btn-primary,
-  .btn-ghost {
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.2s ease;
-  }
-
-  .btn-primary {
-    background: #00ffc8;
-    border: none;
-    color: #000;
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 0 12px #00ffc8;
-    transform: scale(1.05);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    border: 2px solid #00ffc8;
-    color: #00ffc8;
-  }
-
-  .btn-ghost:hover {
-    box-shadow: 0 0 12px #00ffc8;
-    transform: scale(1.05);
+  #tz-close {
+    background: transparent; border: none; color: #888; position: absolute;
+    top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer;
   }
 </style>
 
-<div class="tutorial-overlay" id="tz-tutorial" aria-modal="true" role="dialog">
-  <div class="tutorial-card" role="document">
-
-    <!-- Step 1 -->
-    <section class="tutorial-step" data-step="1" aria-label="Tutorial Step 1">
-      <h3>Welcome to TimeShareZ</h3>
-      <p>
-        Start at the <strong>Funded Feed</strong> for results, scan the 
-        <strong>HOT Feed</strong> for today’s leaders, then use the 
-        <strong>Rotator</strong> to preview and support live windows.
-      </p>
-      <div class="tutorial-actions">
-        <button class="btn-primary" id="tz-next" type="button">Next</button>
-      </div>
-    </section>
-
-    <!-- Step 2 -->
-    <section class="tutorial-step" data-step="2" aria-label="Tutorial Step 2" hidden>
-      <h3>How to Support</h3>
-      <p>
-        Click any <strong>HOT</strong> item to jump to the Rotator. 
-        Hit <strong>Support</strong> to lock a spot in the current window. 
-        You can buy a maximum of <strong>2 spots per session</strong>.
-      </p>
-      <div class="tutorial-actions">
-        <button class="btn-ghost" id="tz-back" type="button">Back</button>
-        <button class="btn-primary" id="tz-close" type="button">Close</button>
-      </div>
-    </section>
-
+<div id="tutorial-overlay">
+  <div class="tutorial-content">
+    <button id="tz-close" title="Close (Esc)">&times;</button>
+    <div class="tutorial-step">
+      <h3>Welcome to TimeShareZ!</h3>
+      <p>This is a quick tour to get you started.</p>
+    </div>
+    <div class="tutorial-step" hidden>
+      <h3>The Feeds</h3>
+      <p>You can browse different feeds.</p>
+    </div>
+    <div class="tutorial-nav">
+      <button id="tz-back">Back</button>
+      <button id="tz-next">Next</button>
+    </div>
   </div>
 </div>
 
+<!-- NEW: The JavaScript logic is now INSIDE the HTML file. -->
+<!-- This script runs automatically when the HTML is added to the page. -->
 <script>
-(function(){
-  const overlay = document.getElementById("tz-tutorial");
-  if (!overlay) return;
+  (() => {
+    const overlay = document.querySelector("#tutorial-overlay");
+    if (!overlay) { return; }
 
-  const steps = overlay.querySelectorAll(".tutorial-step");
-  let currentStepIndex = 0;
+    const steps = overlay.querySelectorAll(".tutorial-step");
+    const nextButton = overlay.querySelector("#tz-next");
+    const backButton = overlay.querySelector("#tz-back");
+    const closeButton = overlay.querySelector("#tz-close");
+    let currentStepIndex = 0;
 
-  const nextBtn = document.getElementById("tz-next");
-  const backBtn = document.getElementById("tz-back");
-  const closeBtn = document.getElementById("tz-close");
+    if (steps.length === 0) return;
 
-  function showStep(index) {
-    steps.forEach((step, i) => step.hidden = i !== index);
-    currentStepIndex = index;
-  }
+    const showStep = (index) => {
+      steps.forEach((step, idx) => { step.hidden = (idx !== index); });
+    };
+    const closeTutorial = () => { overlay.style.display = "none"; };
 
-  function closeOverlay() {
-    overlay.style.display = "none";
-  }
+    if (nextButton) nextButton.addEventListener("click", () => {
+      if (currentStepIndex < steps.length - 1) showStep(++currentStepIndex);
+    });
+    if (backButton) backButton.addEventListener("click", () => {
+      if (currentStepIndex > 0) showStep(--currentStepIndex);
+    });
+    if (closeButton) closeButton.addEventListener("click", closeTutorial);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeTutorial();
+    });
 
-  nextBtn?.addEventListener("click", () => {
-    if (currentStepIndex < steps.length - 1) {
-      showStep(currentStepIndex + 1);
-    }
-  });
-
-  backBtn?.addEventListener("click", () => {
-    if (currentStepIndex > 0) {
-      showStep(currentStepIndex - 1);
-    }
-  });
-
-  closeBtn?.addEventListener("click", closeOverlay);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeOverlay();
-  });
-
-  // Show on load
-  overlay.style.display = "flex";
-  showStep(0);
-})();
+    showStep(0);
+  })();
 </script>
