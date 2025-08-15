@@ -30,4 +30,4 @@ function initTutorialOverlay() {
   showStep(0);
 }
 
-export { wireTopBar, initTutorialOverlay };
+export { initTutorialOverlay };
