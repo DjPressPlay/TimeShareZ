@@ -16,15 +16,17 @@
 </header>
 
 <script type="module">
-  import SessionManager from './sessionManager.js';
+  const SESSION_ID_KEY = "session_id";
+  const SESSION_NUMBER_KEY = "session_number";
 
   const displayEl = document.getElementById("sessionDisplay");
 
-  try {
-    const session = await SessionManager.getOrCreateSession();
-    displayEl.textContent = Session: ${session?.session_number || "???"};
-  } catch (err) {
-    console.error("Error loading session:", err);
-    displayEl.textContent = "Session: Failed";
+  const sessionId = localStorage.getItem(SESSION_ID_KEY);
+  const sessionNumber = localStorage.getItem(SESSION_NUMBER_KEY);
+
+  if (sessionId && sessionNumber) {
+    displayEl.textContent = `Session: ${sessionNumber}`;
+  } else {
+    displayEl.textContent = "Session: Not Found";
   }
 </script>
