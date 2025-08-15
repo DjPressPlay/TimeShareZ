@@ -36,15 +36,7 @@
           const html = await res.text();
           root.insertAdjacentHTML("beforeend", html);
 
-          // 🔹 When top bar loads, wire it up and create/get session
-          if (name === "top-bar") {
-            wireTopBar();
-            await SessionManager.getOrCreateSession();
-          }
-        } catch (err) {
-          console.error(`Error loading ${name}:`, err);
-        }
-      }
+          
 
       // Init tutorial after overlay is loaded
       initTutorialOverlay();
