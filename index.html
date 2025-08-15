@@ -8,15 +8,12 @@
 </head>
 <body>
 
-  <div class="app-container" id="app-root">
-    <!-- All dynamic content, including the top bar, will be loaded here -->
-  </div>
+  <div class="app-container" id="app-root"></div>
 
   <script type="module">
     import { initTutorialOverlay } from './script.js';
     import SessionManager from './sessionManager.js';
 
-    // The list of components to load in order. "tutorial-overlay" is correctly included.
     const components = [
       "top-bar",
       "funded-feed",
@@ -27,51 +24,65 @@
     ];
 
     /**
-     * Fetches and injects all HTML components into the app-root container.
+     * Fetches and injects all HTML components.
+     * Returns true on success, false on failure.
      */
     async function loadComponents() {
       const root = document.getElementById("app-root");
-      for (const name of components) {
-        try {
-          const response = await fetch(`components/${name}.html`);
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+      // Use Promise.all to fetch all components in parallel for speed.
+      try {
+        const responses = await Promise.all(
+          components.map(name => fetch(`components/${name}.html`))
+        );
+
+        for (const res of responses) {
+          if (!res.ok) {
+            // If any fetch failed, throw an error.
+            throw new Error(`Failed to load component: ${res.url} (Status: ${res.status})`);
           }
-          const html = await response.text();
+          const html = await res.text();
           root.insertAdjacentHTML("beforeend", html);
-        } catch (error) {
-          console.error(`Error loading component ${name}.html:`, error);
-          root.insertAdjacentHTML("beforeend", `<p style="color:red; text-align:center;">Could not load a critical component. Please refresh.</p>`);
         }
+        return true; // Success!
+      } catch (error) {
+        console.error("CRITICAL ERROR DURING COMPONENT LOADING:", error);
+        root.insertAdjacentHTML("beforeend", `<p style="color:red; text-align:center;">A critical part of the application could not be loaded. Please refresh the page.</p>`);
+        return false; // Failure!
       }
     }
 
     /**
-     * Main function that controls the application's startup sequence.
+     * Main function to initialize the application.
      */
     async function initializeApp() {
-      // Step 1: Wait until all HTML components are loaded onto the page.
-      await loadComponents();
+      // Step 1: Load components and check if it was successful.
+      const loadedSuccessfully = await loadComponents();
 
-      // Step 2: While components were loading, we can now fetch session data.
+      // IMPORTANT: If loading failed, do not proceed.
+      if (!loadedSuccessfully) {
+        console.error("Halting app initialization because components failed to load.");
+        return;
+      }
+      
+      // --- The rest of the app will only run on success ---
+
+      // Step 2: Get session data.
       const sessionData = await SessionManager.getOrCreateSession();
 
-      // Step 3: Update the UI with the session data. This is safe because top-bar.html is already loaded.
+      // Step 3: Update the UI.
       const sessionDisplayElement = document.getElementById("sessionDisplay");
       if (sessionDisplayElement) {
         if (sessionData && sessionData.session_number) {
           sessionDisplayElement.textContent = `Session ID = TSZ ${sessionData.session_number}`;
         } else {
           sessionDisplayElement.textContent = "Error: Could not get session";
-          console.error("Failed to retrieve session data for display.");
         }
       }
 
-      // Step 4: Initialize the tutorial. This is safe because tutorial-overlay.html is already loaded.
+      // Step 4: Initialize other scripts.
       initTutorialOverlay();
     }
 
-    // Start the application.
     initializeApp();
   </script>
 
