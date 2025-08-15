@@ -104,6 +104,28 @@
       color: #777;
       font-style: italic;
     }
+    /* Likes & Shares */
+    .likes-shares {
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+      border-top: 2px solid #eee;
+    }
+    .like-btn, .share-btn {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      margin: 0.2rem 0.2rem 0 0;
+      background: #00ffc8;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #000;
+      transition: background 0.2s;
+    }
+    .like-btn:hover, .share-btn:hover {
+      background: #00e0b2;
+    }
   </style>
 </head>
 <body>
@@ -112,14 +134,22 @@
 
 <div class="layout">
 
-  <!-- LEFT SIDEBAR (Rewards) -->
+  <!-- LEFT SIDEBAR (Social Links + Likes & Shares) -->
   <aside class="sidebar">
-    <h3>Rewards</h3>
+    <h3>Follow Us</h3>
     <ul>
-      <li><strong>$25</strong> — Sticker Pack</li>
-      <li><strong>$50</strong> — T-Shirt</li>
-      <li><strong>$100</strong> — Limited Edition Purifier</li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">TikTok</a></li>
+      <li><a href="#">Reddit</a></li>
     </ul>
+
+    <!-- Likes & Shares -->
+    <div class="likes-shares">
+      <h4>Likes & Shares</h4>
+      <button class="like-btn">👍 Like</button>
+      <button class="share-btn">🔗 Share</button>
+    </div>
   </aside>
 
   <!-- MAIN CONTENT -->
@@ -161,14 +191,13 @@
 
   </div>
 
-  <!-- RIGHT SIDEBAR (Social Links) -->
+  <!-- RIGHT SIDEBAR (Rewards) -->
   <aside class="sidebar">
-    <h3>Follow Us</h3>
+    <h3>Rewards</h3>
     <ul>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">Facebook</a></li>
-      <li><a href="#">TikTok</a></li>
-      <li><a href="#">Reddit</a></li>
+      <li><strong>$25</strong> — Sticker Pack</li>
+      <li><strong>$50</strong> — T-Shirt</li>
+      <li><strong>$100</strong> — Limited Edition Purifier</li>
     </ul>
   </aside>
 
