@@ -15,20 +15,6 @@ function setSessionUI(sessionId) {
   el.textContent = sessionId || "";
 }
 
-function wireTopBar() {
-  topBarReady = true;
-
-  // Show immediately if we already have it
-  if (sessionData?.session_id) {
-    setSessionUI(sessionData.session_id);
-  } else {
-    // Update when the session becomes available
-    document.addEventListener("tsz:session-ready", (e) => {
-      const id = e.detail?.session_id;
-      if (id) setSessionUI(id);
-    });
-  }
-}
 
 function initTutorialOverlay() {
   const overlay = qs("tz-tutorial");
