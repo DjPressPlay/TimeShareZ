@@ -52,9 +52,9 @@
   const displayEl = document.getElementById("sessionDisplay");
 
   try {
-    const s = await SessionManager.getSession();
-    if (s && s.session_number) {
-      displayEl.textContent = `Session: ${s.session_number}`;
+    const session = await SessionManager.getOrCreateSession();
+    if (session && session.session_number) {
+      displayEl.textContent = `Session: ${session.session_number}`;
     } else {
       displayEl.textContent = "Session: Not found";
     }
