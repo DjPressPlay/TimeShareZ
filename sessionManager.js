@@ -20,6 +20,7 @@ const SessionManager = (() => {
       if (!res.ok) throw new Error(`Failed to create session: ${res.status}`);
 
       const { session_id, session_number, all_linked_data } = await res.json();
+
       if (!session_id || !session_number) {
         throw new Error("Invalid session payload from createSession");
       }
@@ -46,13 +47,16 @@ const SessionManager = (() => {
 
     console.log("[TSZ] Calling getSession() for", sessionId);
     try {
+      // Use GET with query param so it works with GET-only handlers
       const res = await fetch(`/.netlify/functions/getSession?id=${encodeURIComponent(sessionId)}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
+
       if (!res.ok) throw new Error(`Failed to get session: ${res.status}`);
 
       const { session_id, session_number, all_linked_data } = await res.json();
+
       if (!session_id || !session_number) {
         throw new Error("Invalid session payload from getSession");
       }
@@ -75,12 +79,14 @@ const SessionManager = (() => {
     const sessionId = localStorage.getItem(SESSION_ID_KEY);
     const sessionNumber = localStorage.getItem(SESSION_NUMBER_KEY);
 
+    // If we have both saved, try to validate with backend
     if (sessionId && sessionNumber) {
       const existing = await getSession();
       if (existing) return existing;
       console.warn("[TSZ] Stored session invalid, creating a new one");
     }
 
+    // Otherwise, create a new session
     return await createSession();
   }
 
