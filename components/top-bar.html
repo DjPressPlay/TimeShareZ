@@ -12,7 +12,7 @@
 </style>
 
 <header class="top-bar" role="banner">
-  <div id="sessionDisplay">Session: ???</div>
+  <div id="sessionDisplay"></div>
 </header>
 
 <script type="module">
@@ -20,13 +20,7 @@
   const SESSION_NUMBER_KEY = "session_number";
 
   const displayEl = document.getElementById("sessionDisplay");
-
-  const sessionId = localStorage.getItem(SESSION_ID_KEY);
   const sessionNumber = localStorage.getItem(SESSION_NUMBER_KEY);
 
-  if (sessionId && sessionNumber) {
-    displayEl.textContent = `Session: ${sessionNumber}`;
-  } else {
-    displayEl.textContent = "Session: Not Found";
-  }
+  displayEl.textContent = sessionNumber || "";
 </script>
