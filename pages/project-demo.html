@@ -1,0 +1,122 @@
+<!-- /project-demo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimeShareZ Project Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f6f6f6;
+      color: #222;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      border-bottom: 3px solid #00ffc8;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 1.5rem;
+    }
+    .hero {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .media {
+      width: 100%;
+      height: 350px;
+      background: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .stats {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .funding-bar {
+      background: #eee;
+      height: 18px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0.5rem 0;
+    }
+    .funding-fill {
+      background: #00b15d;
+      height: 100%;
+      width: 42%; /* Placeholder percent */
+    }
+    .status {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      background: #00b15d;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+    .description {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header>TimeShareZ — Project Demo</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 id="title">Solar-Powered Water Purifier</h1>
+    <div class="meta">
+      Created: <span id="created_at">2025-08-15</span> |
+      Session ID: <span id="session_id">TSZ-823947</span>
+    </div>
+    <div class="media">[ Project Media Placeholder ]</div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <strong>Funding:</strong> <span id="funding">$8,450 / $20,000</span>
+    <div class="funding-bar">
+      <div class="funding-fill"></div>
+    </div>
+    <span class="status" id="status">Active</span>
+  </section>
+
+  <!-- DESCRIPTION -->
+  <section class="description">
+    <p id="description">
+      A portable, eco-friendly purifier that turns any water source into clean drinking water.
+      Designed for travelers, campers, and emergency relief.
+    </p>
+  </section>
+
+</div>
+
+</body>
+</html>
