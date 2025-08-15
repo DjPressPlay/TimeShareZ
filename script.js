@@ -3,31 +3,7 @@
 // ==========================
 
 let sessionData = null;
-let topBarReady = true;
 
-function qs(id) {
-  return document.getElementById(id);
-}
-
-function setSessionUI(sessionId) {
-  const el = qs("sessionDisplay");
-  if (!el) return;
-  el.textContent = sessionId || "";
-}
-function wireTopBar() {
-  topBarReady = true;
-
-  // Show immediately if we already have it
-  if (sessionData?.session_id) {
-    setSessionUI(sessionData.session_id);
-  } else {
-    // Update when the session becomes available
-    document.addEventListener("tsz:session-ready", (e) => {
-      const id = e.detail?.session_id;
-      if (id) setSessionUI(id);
-    });
-  }
-}
 
 
 function initTutorialOverlay() {
