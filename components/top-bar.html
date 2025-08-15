@@ -1,49 +1,18 @@
 <!-- topbar.html -->
 <style>
-  .top-bar { background: #111; color: #fff; padding: 0.5rem 1rem; border-bottom: 2px solid #00ffc8; box-shadow: 0 2px 8px rgba(0, 255, 200, 0.3); }
-  .top-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1200px; margin: 0 auto; }
-
-  /* Logo */
-  .logo { font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 0.4rem; color: #00ffc8; text-decoration: none; transition: transform 0.2s ease, text-shadow 0.2s ease; }
-  .logo:hover { transform: scale(1.05); text-shadow: 0 0 8px #00ffc8; }
-  .logo-text { font-size: 1.25rem; }
-
-  /* Search */
-  .search { flex: 1; display: flex; justify-content: center; }
-  .search input { width: 100%; max-width: 320px; padding: 0.5rem 0.75rem; border-radius: 6px; border: 2px solid #00ffc8; background: #000; color: #fff; font-size: 0.95rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-  .search input:focus { outline: none; border-color: #00ffe5; box-shadow: 0 0 10px #00ffe5; }
-
-  /* Post Project Button */
-  .post-btn button { background: #00ffc8; color: #000; font-weight: bold; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-  .post-btn button:hover { transform: scale(1.05); box-shadow: 0 0 10px #00ffc8; }
-
-  /* Session display */
-  .session-info { font-size: 0.85rem; color: #ccc; margin-left: 1rem; }
+  .top-bar {
+    background: #111;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid #00ffc8;
+    box-shadow: 0 2px 8px rgba(0, 255, 200, 0.3);
+    text-align: center;
+    font-size: 0.95rem;
+  }
 </style>
 
 <header class="top-bar" role="banner">
-  <div class="top-bar-inner">
-    <!-- Left: Logo -->
-    <a href="/" class="logo" aria-label="TimeShareZ Home">
-      ⏳ <span class="logo-text">TimeShareZ</span>
-    </a>
-
-    <!-- Center: Search -->
-    <form class="search" role="search" aria-label="Project Search">
-      <label for="project-search" class="visually-hidden">Search Projects</label>
-      <input id="project-search" type="search" name="q" placeholder="Search projects..." aria-label="Search projects" />
-    </form>
-
-    <!-- Right: Session + Post Project Button -->
-    <div style="display:flex;align-items:center;gap:1rem;">
-      <div class="session-info" id="sessionDisplay">Session: Loading…</div>
-      <div class="post-btn">
-        <button type="button" aria-label="Post a new project">
-          + Post Project
-        </button>
-      </div>
-    </div>
-  </div>
+  <div id="sessionDisplay">Session: Loading…</div>
 </header>
 
 <script type="module">
