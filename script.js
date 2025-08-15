@@ -9,27 +9,23 @@ function qs(id) {
   return document.getElementById(id);
 }
 
-function setSessionUI(number) {
+function setSessionUI(sessionId) {
   const el = qs("sessionDisplay");
-  const retry = qs("sessionActionBtn");
   if (!el) return;
-
-  el.classList.remove("is-loading", "is-error");
-  el.textContent = `Session: ${number || "???"}`;
-  if (retry) retry.hidden = true;
+  el.textContent = sessionId || "";
 }
 
 function wireTopBar() {
   topBarReady = true;
 
-  // Immediately display whatever we have
-  if (sessionData?.session_number) {
-    setSessionUI(sessionData.session_number);
+  // Show immediately if we already have it
+  if (sessionData?.session_id) {
+    setSessionUI(sessionData.session_id);
   } else {
-    // If session comes later, still update instantly
+    // Update when the session becomes available
     document.addEventListener("tsz:session-ready", (e) => {
-      const n = e.detail?.session_number;
-      if (n) setSessionUI(n);
+      const id = e.detail?.session_id;
+      if (id) setSessionUI(id);
     });
   }
 }
