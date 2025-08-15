@@ -1,4 +1,4 @@
-<!-- topbar.html -->
+<!-- components/top-bar.html -->
 <style>
   .top-bar {
     background: #111;
@@ -12,15 +12,6 @@
 </style>
 
 <header class="top-bar" role="banner">
-  <div id="sessionDisplay"></div>
+  <!-- The main script will populate this div -->
+  <div id="sessionDisplay">Loading Session...</div>
 </header>
-
-<script type="module">
-  const SESSION_ID_KEY = "session_id";
-  const SESSION_NUMBER_KEY = "session_number";
-
-  const displayEl = document.getElementById("sessionDisplay");
-  const sessionNumber = localStorage.getItem(SESSION_NUMBER_KEY);
-
-  displayEl.textContent = sessionNumber || "";
-</script>
