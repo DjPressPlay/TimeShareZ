@@ -185,6 +185,40 @@
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
     }
+    
+    /* NEW CSS FOR TEAM SECTION */
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      padding-top: 0.5rem;
+    }
+    .team-ticket {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .team-ticket img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #00ffc8;
+      object-fit: cover;
+      margin-bottom: 0.75rem;
+    }
+    .team-ticket .name {
+      font-weight: bold;
+      font-size: 1rem;
+      margin: 0.5rem 0 0.25rem 0;
+    }
+    .team-ticket .title {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -248,6 +282,43 @@
       <span class="status" id="status">Active</span>
     </section>
 
+    <!-- TEAM (was PEOPLE) - MOVED & REDESIGNED -->
+    <section class="section">
+      <h2>Team</h2>
+      <div class="team-container">
+        <!-- Team Member Ticket 1 -->
+        <div class="team-ticket">
+          <img src="https://placehold.co/100x100/EEE/31343C" alt="Team Member Photo">
+          <p class="name">Alex Doe</p>
+          <p class="title">Lead Engineer</p>
+        </div>
+        <!-- Team Member Ticket 2 -->
+        <div class="team-ticket">
+          <img src="https://placehold.co/100x100/DDD/31343C" alt="Team Member Photo">
+          <p class="name">Jamie Smith</p>
+          <p class="title">Project Manager</p>
+        </div>
+        <!-- Team Member Ticket 3 -->
+        <div class="team-ticket">
+          <img src="https://placehold.co/100x100/CCC/31343C" alt="Team Member Photo">
+          <p class="name">Sam Rivera</p>
+          <p class="title">Designer</p>
+        </div>
+        <!-- Team Member Ticket 4 -->
+        <div class="team-ticket">
+          <img src="https://placehold.co/100x100/BBB/31343C" alt="Team Member Photo">
+          <p class="name">Casey Chen</p>
+          <p class="title">Marketing Lead</p>
+        </div>
+        <!-- Team Member Ticket 5 -->
+        <div class="team-ticket">
+          <img src="https://placehold.co/100x100/AAA/31343C" alt="Team Member Photo">
+          <p class="name">Morgan Lee</p>
+          <p class="title">Outreach</p>
+        </div>
+      </div>
+    </section>
+
     <!-- EDITOR (was BASICS) -->
     <section class="section">
       <h2>Basics</h2>
@@ -297,12 +368,6 @@
       <div id="editor-story" style="height: 400px;">
         <p>Add a detailed project description and convey your risks and challenges.</p>
       </div>
-    </section>
-
-    <!-- PEOPLE -->
-    <section class="section">
-      <h2>People</h2>
-      <p class="placeholder">Edit your Kickstarter profile and add collaborators.</p>
     </section>
 
   </div>
