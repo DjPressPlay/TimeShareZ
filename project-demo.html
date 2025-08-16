@@ -186,12 +186,16 @@
       border-bottom-right-radius: 6px;
     }
     
-    /* NEW CSS FOR TEAM SECTION */
+    /* CSS FOR TEAM SECTION */
     .team-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 1rem;
       padding-top: 0.5rem;
+      /* Add a bottom border to separate from the title */
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #eee;
     }
     .team-ticket {
       background: #f9f9f9;
@@ -251,40 +255,8 @@
     <!-- HERO / OVERVIEW -->
     <section class="section">
       <h2>Project Overview</h2>
-      <h3 id="title">Solar-Powered Water Purifier</h3>
-      <p>
-        Created: <span id="created_at">2025-08-15</span> |
-        Session ID: <span id="session_id">TSZ-823947</span>
-      </p>
 
-      <!-- Video Placeholder -->
-      <div class="media">[ Project Video Placeholder ]</div>
-
-      <!-- Image Gallery -->
-      <div class="image-gallery">
-        <div class="img-slot" id="img1">Image 1</div>
-        <div class="img-slot" id="img2">Image 2</div>
-        <div class="img-slot" id="img3">Image 3</div>
-        <div class="img-slot" id="img4">Image 4</div>
-        <div class="img-slot" id="img5">Image 5</div>
-        <div class="img-slot" id="img6">Image 6</div>
-        <div class="img-slot" id="img7">Image 7</div>
-        <div class="img-slot" id="img8">Image 8</div>
-      </div>
-
-      <!-- Funding Section -->
-      <div class="funding-info">
-        Funding: <span id="funding">$8,450 / $20,000</span>
-      </div>
-      <div class="funding-bar">
-        <div class="funding-fill"></div>
-      </div>
-      <span class="status" id="status">Active</span>
-    </section>
-
-    <!-- TEAM (was PEOPLE) - MOVED & REDESIGNED -->
-    <section class="section">
-      <h2>Team</h2>
+      <!-- TEAM SECTION IS NOW HERE -->
       <div class="team-container">
         <!-- Team Member Ticket 1 -->
         <div class="team-ticket">
@@ -317,6 +289,36 @@
           <p class="title">Outreach</p>
         </div>
       </div>
+      
+      <h3 id="title">Solar-Powered Water Purifier</h3>
+      <p>
+        Created: <span id="created_at">2025-08-15</span> |
+        Session ID: <span id="session_id">TSZ-823947</span>
+      </p>
+
+      <!-- Video Placeholder -->
+      <div class="media">[ Project Video Placeholder ]</div>
+
+      <!-- Image Gallery -->
+      <div class="image-gallery">
+        <div class="img-slot" id="img1">Image 1</div>
+        <div class="img-slot" id="img2">Image 2</div>
+        <div class="img-slot" id="img3">Image 3</div>
+        <div class="img-slot" id="img4">Image 4</div>
+        <div class="img-slot" id="img5">Image 5</div>
+        <div class="img-slot" id="img6">Image 6</div>
+        <div class="img-slot" id="img7">Image 7</div>
+        <div class="img-slot" id="img8">Image 8</div>
+      </div>
+
+      <!-- Funding Section -->
+      <div class="funding-info">
+        Funding: <span id="funding">$8,450 / $20,000</span>
+      </div>
+      <div class="funding-bar">
+        <div class="funding-fill"></div>
+      </div>
+      <span class="status" id="status">Active</span>
     </section>
 
     <!-- EDITOR (was BASICS) -->
