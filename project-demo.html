@@ -175,6 +175,16 @@
     .like-btn:hover, .share-btn:hover {
       background: #00e0b2;
     }
+    /* Quill editor toolbar styling */
+    .ql-toolbar {
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+    /* Quill editor container styling */
+    .ql-container {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -242,12 +252,12 @@
     <section class="section">
       <h2>Basics</h2>
       <!-- Create the toolbar container -->
-      <div id="toolbar">
+      <div id="toolbar-basics">
         <button class="ql-bold">Bold</button>
         <button class="ql-italic">Italic</button>
       </div>
       <!-- Create the editor container -->
-      <div id="editor" style="height: 250px;">
+      <div id="editor-basics" style="height: 250px;">
         <p>Name your project, upload an image or video, and set your campaign details.</p>
       </div>
     </section>
@@ -255,7 +265,38 @@
     <!-- STORY -->
     <section class="section">
       <h2>Story</h2>
-      <p class="placeholder">Add a detailed project description and convey your risks and challenges.</p>
+      <!-- Create the toolbar container for the Story editor -->
+      <div id="toolbar-story">
+        <span class="ql-formats">
+          <select class="ql-header">
+            <option value="1">Heading</option>
+            <option value="2">Subheading</option>
+            <option selected>Normal</option>
+          </select>
+        </span>
+        <span class="ql-formats">
+          <button class="ql-bold"></button>
+          <button class="ql-italic"></button>
+          <button class="ql-underline"></button>
+        </span>
+        <span class="ql-formats">
+          <button class="ql-list" value="ordered"></button>
+          <button class="ql-list" value="bullet"></button>
+          <button class="ql-indent" value="-1"></button>
+          <button class="ql-indent" value="+1"></button>
+        </span>
+        <span class="ql-formats">
+          <button class="ql-link"></button>
+          <button class="ql-image"></button>
+        </span>
+        <span class="ql-formats">
+          <button class="ql-clean"></button>
+        </span>
+      </div>
+      <!-- Create the editor container for the Story editor -->
+      <div id="editor-story" style="height: 400px;">
+        <p>Add a detailed project description and convey your risks and challenges.</p>
+      </div>
     </section>
 
     <!-- PEOPLE -->
@@ -281,30 +322,24 @@
 <!-- Include the Quill library -->
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
-<!-- Initialize Quill editor -->
+<!-- Initialize Quill editors -->
 <script>
-  const quill = new Quill('#editor', {
+  // Initialize Basics Editor
+  const quillBasics = new Quill('#editor-basics', {
     theme: 'snow',
     modules: {
-      toolbar: '#toolbar'
+      toolbar: '#toolbar-basics'
+    }
+  });
+
+  // Initialize Story Editor
+  const quillStory = new Quill('#editor-story', {
+    theme: 'snow',
+    modules: {
+      toolbar: '#toolbar-story'
     }
   });
 </script>
 
 </body>
-</html>```
-
-### Key Changes:
-
-1.  **CSS and JavaScript Inclusion:**
-    *   I've added a `<link>` tag in the `<head>` to include the Quill editor's stylesheet.
-[[2](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQHPYmick1fcbhKO3S1Uk0LSqiODj3RkrB58zN4PIZbJyJ5oU6huq13kZ0s4BB9LrNeA7tSfoYW9bj7eBRiMF6IcffdFtLIz26-abfPVJA4Mo7FJJIXp8Co4k5Ypaef3)]    *   A `<script>` tag has been added just before the closing `</body>` tag to include the Quill JavaScript library.
-[[3](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQF3uCPlWU7RAWKzpXDmcogLI3A2_FHQfgwX8yVivTdqN9WqDLP7QG6wIP4nd00GFZIyTFUCBuIrMm7F-4HRsdJygRhcYrJXlnZlS14Cs1ZTT2K5OGLoxFjOUTdrhSnUvc4%3D)]
-2.  **HTML Structure for the Editor:**
-    *   The original "Basics" section has been modified.
-    *   A `<div>` with the ID `toolbar` has been added. This will contain the formatting buttons for the editor. I've included "Bold" and "Italic" buttons as a starting point.
-    *   The paragraph with the placeholder text has been replaced with a `<div>` with the ID `editor`. This is where the text editor itself will appear. I've given it a fixed height of `250px` for better layout.
-
-3.  **JavaScript Initialization:**
-    *   A final `<script>` block is added at the end of the `<body>`.
-    *   This script initializes Quill on the `#editor` div, tells it to use the "snow" theme (a clean, modern look), and links it to the `#toolbar` container for the formatting options.
+</html>
