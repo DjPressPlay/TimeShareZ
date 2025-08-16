@@ -74,6 +74,15 @@
       border-bottom: 2px solid #eee;
       padding-bottom: 0.5rem;
     }
+    /* Added style for sub-headings like 'The Team' */
+    .section h4 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
     .media {
       width: 100%;
       height: 350px;
@@ -191,8 +200,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 1rem;
-      padding-top: 0.5rem;
-      /* Add a bottom border to separate from the title */
+      /* Adjusted spacing */
       padding-bottom: 1rem;
       margin-bottom: 1rem;
       border-bottom: 2px solid #eee;
@@ -255,8 +263,10 @@
     <!-- HERO / OVERVIEW -->
     <section class="section">
       <h2>Project Overview</h2>
-
-      <!-- TEAM SECTION IS NOW HERE -->
+      
+      <!-- ADDED TEAM LABEL HERE -->
+      <h4>The Team</h4>
+      
       <div class="team-container">
         <!-- Team Member Ticket 1 -->
         <div class="team-ticket">
