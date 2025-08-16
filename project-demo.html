@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TimeShareZ Project Demo</title>
+  <!-- Include Quill's stylesheet -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
@@ -236,10 +238,18 @@
       <span class="status" id="status">Active</span>
     </section>
 
-    <!-- BASICS -->
+    <!-- EDITOR (was BASICS) -->
     <section class="section">
       <h2>Basics</h2>
-      <p class="placeholder">Name your project, upload an image or video, and set your campaign details.</p>
+      <!-- Create the toolbar container -->
+      <div id="toolbar">
+        <button class="ql-bold">Bold</button>
+        <button class="ql-italic">Italic</button>
+      </div>
+      <!-- Create the editor container -->
+      <div id="editor" style="height: 250px;">
+        <p>Name your project, upload an image or video, and set your campaign details.</p>
+      </div>
     </section>
 
     <!-- STORY -->
@@ -268,5 +278,33 @@
 
 </div>
 
+<!-- Include the Quill library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+  const quill = new Quill('#editor', {
+    theme: 'snow',
+    modules: {
+      toolbar: '#toolbar'
+    }
+  });
+</script>
+
 </body>
-</html>
+</html>```
+
+### Key Changes:
+
+1.  **CSS and JavaScript Inclusion:**
+    *   I've added a `<link>` tag in the `<head>` to include the Quill editor's stylesheet.
+[[2](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQHPYmick1fcbhKO3S1Uk0LSqiODj3RkrB58zN4PIZbJyJ5oU6huq13kZ0s4BB9LrNeA7tSfoYW9bj7eBRiMF6IcffdFtLIz26-abfPVJA4Mo7FJJIXp8Co4k5Ypaef3)]    *   A `<script>` tag has been added just before the closing `</body>` tag to include the Quill JavaScript library.
+[[3](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQF3uCPlWU7RAWKzpXDmcogLI3A2_FHQfgwX8yVivTdqN9WqDLP7QG6wIP4nd00GFZIyTFUCBuIrMm7F-4HRsdJygRhcYrJXlnZlS14Cs1ZTT2K5OGLoxFjOUTdrhSnUvc4%3D)]
+2.  **HTML Structure for the Editor:**
+    *   The original "Basics" section has been modified.
+    *   A `<div>` with the ID `toolbar` has been added. This will contain the formatting buttons for the editor. I've included "Bold" and "Italic" buttons as a starting point.
+    *   The paragraph with the placeholder text has been replaced with a `<div>` with the ID `editor`. This is where the text editor itself will appear. I've given it a fixed height of `250px` for better layout.
+
+3.  **JavaScript Initialization:**
+    *   A final `<script>` block is added at the end of the `<body>`.
+    *   This script initializes Quill on the `#editor` div, tells it to use the "snow" theme (a clean, modern look), and links it to the `#toolbar` container for the formatting options.
