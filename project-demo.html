@@ -43,21 +43,55 @@
       font-size: 1.1rem;
       border-bottom: 2px solid #eee;
       padding-bottom: 0.4rem;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
+    }<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimeShareZ Project Setup</title>
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
+      background: #f6f6f6;
+      color: #222;
     }
-    .sidebar ul li {
-      margin-bottom: 0.5rem;
+    header {
+      background: #111;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      border-bottom: 3px solid #00ffc8;
     }
-    /* Styles for new input fields in sidebars */
+    .layout {
+      display: flex;
+      max-width: 1400px;
+      margin: auto;
+      padding: 1rem;
+      gap: 1rem;
+      align-items: flex-start; /* Align items to the top */
+    }
+    .sidebar {
+      width: 200px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      height: fit-content;
+      flex-shrink: 0; /* Prevent sidebars from shrinking */
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.4rem;
+    }
     .sidebar .input-group { margin-bottom: 0.75rem; }
     .sidebar label { font-weight: bold; font-size: 0.85rem; display: block; margin-bottom: 0.25rem; }
     .sidebar input, .sidebar select { width: 100%; padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
-    
-    /* Main content */
     .container {
       flex: 1;
       display: flex;
@@ -82,8 +116,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    
-    /* Style for the title input to make it look like a heading */
     .title-input {
       font-size: 1.75rem;
       font-family: inherit;
@@ -99,11 +131,20 @@
       outline: none;
       border-color: #00ffc8;
     }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
 
-    /* CSS FOR TEAM SECTION */
+    /* --- CSS FOR EDITABLE TEAM SECTION --- */
     .team-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 1rem;
       padding-bottom: 1rem;
       margin-bottom: 1rem;
@@ -114,29 +155,66 @@
       border: 1px solid #eee;
       border-radius: 8px;
       padding: 1rem;
-      text-align: center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .team-ticket img {
+    .team-image-upload {
+      position: relative;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+    .team-image-upload:hover .photo-upload-overlay {
+      opacity: 1;
+    }
+    .team-member-photo-preview {
       width: 80px;
       height: 80px;
       border-radius: 50%;
       border: 3px solid #00ffc8;
       object-fit: cover;
-      margin-bottom: 0.75rem;
+      display: block;
     }
-    .team-ticket .name {
+    .photo-upload-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 4px;
+    }
+    .team-ticket input[type="text"] {
+      width: 100%;
+      border: 1px solid transparent;
+      background: transparent;
+      text-align: center;
+      padding: 0.25rem;
+      border-radius: 4px;
+      transition: border 0.2s, background 0.2s;
+    }
+    .team-ticket input[type="text"]:focus {
+      border: 1px solid #ccc;
+      background: #fff;
+      outline: none;
+    }
+    .team-member-name {
       font-weight: bold;
       font-size: 1rem;
-      margin: 0.5rem 0 0.25rem 0;
     }
-    .team-ticket .title {
+    .team-member-role {
       font-size: 0.85rem;
       color: #666;
-      margin: 0;
     }
 
-    /* Submit Button Style */
     .submit-btn {
       display: block;
       width: 100%;
@@ -161,67 +239,80 @@
 
 <div class="layout">
 
-  <!-- LEFT SIDEBAR - NOW A FORM SECTION -->
   <aside class="sidebar">
     <h3>Socials</h3>
     <div id="socials-container">
       <div class="input-group">
-        <label for="social_instagram">Instagram URL</label>
+        <label for="social_instagram">Instagram</label>
         <input type="url" id="social_instagram" name="social_instagram" placeholder="https://instagram.com/...">
       </div>
       <div class="input-group">
-        <label for="social_facebook">Facebook URL</label>
+        <label for="social_facebook">Facebook</label>
         <input type="url" id="social_facebook" name="social_facebook" placeholder="https://facebook.com/...">
       </div>
       <div class="input-group">
-        <label for="social_tiktok">TikTok URL</label>
+        <label for="social_tiktok">TikTok</label>
         <input type="url" id="social_tiktok" name="social_tiktok" placeholder="https://tiktok.com/...">
       </div>
       <div class="input-group">
-        <label for="social_reddit">Reddit URL</label>
+        <label for="social_reddit">Reddit</label>
         <input type="url" id="social_reddit" name="social_reddit" placeholder="https://reddit.com/u/...">
       </div>
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
   <div class="container">
-    <!-- WRAP EVERYTHING IN A FORM TAG -->
     <form id="project-form">
       
-      <!-- HERO / OVERVIEW -->
       <section class="section">
         <h2>Project Overview</h2>
         
         <h4>The Team</h4>
         <div class="team-container" id="team-container">
-          <!-- Team data will be collected from here via JS -->
+          <!-- Team Member Ticket 1 (Editable) -->
           <div class="team-ticket">
-            <img src="https://placehold.co/100x100/EEE/31343C" alt="Team Member Photo">
-            <p class="name">Alex Doe</p><p class="title">Lead Engineer</p>
+            <label class="team-image-upload">
+              <img src="https://placehold.co/100x100/EEE/31343C" class="team-member-photo-preview" alt="Upload Photo">
+              <div class="photo-upload-overlay">Click to add image</div>
+              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
+            </label>
+            <input type="text" class="team-member-name" placeholder="Team Member Name">
+            <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
+          <!-- Team Member Ticket 2 (Editable) -->
           <div class="team-ticket">
-            <img src="https://placehold.co/100x100/DDD/31343C" alt="Team Member Photo">
-            <p class="name">Jamie Smith</p><p class="title">Project Manager</p>
+            <label class="team-image-upload">
+              <img src="https://placehold.co/100x100/DDD/31343C" class="team-member-photo-preview" alt="Upload Photo">
+              <div class="photo-upload-overlay">Click to add image</div>
+              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
+            </label>
+            <input type="text" class="team-member-name" placeholder="Team Member Name">
+            <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
+          <!-- Team Member Ticket 3 (Editable) -->
           <div class="team-ticket">
-            <img src="https://placehold.co/100x100/CCC/31343C" alt="Team Member Photo">
-            <p class="name">Sam Rivera</p><p class="title">Designer</p>
+            <label class="team-image-upload">
+              <img src="https://placehold.co/100x100/CCC/31343C" class="team-member-photo-preview" alt="Upload Photo">
+              <div class="photo-upload-overlay">Click to add image</div>
+              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
+            </label>
+            <input type="text" class="team-member-name" placeholder="Team Member Name">
+            <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
+          <!-- Team Member Ticket 4 (Editable) -->
           <div class="team-ticket">
-            <img src="https://placehold.co/100x100/BBB/31343C" alt="Team Member Photo">
-            <p class="name">Casey Chen</p><p class="title">Marketing Lead</p>
-          </div>
-          <div class="team-ticket">
-            <img src="https://placehold.co/100x100/AAA/31343C" alt="Team Member Photo">
-            <p class="name">Morgan Lee</p><p class="title">Outreach</p>
+            <label class="team-image-upload">
+              <img src="https://placehold.co/100x100/BBB/31343C" class="team-member-photo-preview" alt="Upload Photo">
+              <div class="photo-upload-overlay">Click to add image</div>
+              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
+            </label>
+            <input type="text" class="team-member-name" placeholder="Team Member Name">
+            <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
         </div>
         
-        <!-- project_title -->
         <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Your Amazing Project Title">
         
-        <!-- video and images - these would be more complex file uploaders in a real app -->
         <div class="input-group">
             <label for="video_upload">Main Video</label>
             <input type="file" id="video_upload" name="video_upload" accept="video/*">
@@ -232,15 +323,12 @@
         </div>
       </section>
 
-      <!-- BASICS -->
       <section class="section">
         <h2>Basics</h2>
-        
         <div class="input-group">
           <label for="funding_goal">Funding Goal ($)</label>
           <input type="number" id="funding_goal" name="funding_goal" placeholder="20000" step="100">
         </div>
-
         <div class="input-group">
           <label for="status">Project Status</label>
           <select id="status" name="status">
@@ -248,18 +336,13 @@
             <option value="Active">Active</option>
           </select>
         </div>
-        
-        <!-- basics (Quill editor) -->
         <label>Basics Description</label>
         <div id="toolbar-basics"><button class="ql-bold"></button><button class="ql-italic"></button></div>
         <div id="editor-basics" style="height: 150px;"><p>Briefly describe your project here.</p></div>
       </section>
 
-      <!-- STORY -->
       <section class="section">
         <h2>Story</h2>
-        
-        <!-- story (Quill editor) -->
         <div id="toolbar-story">
           <span class="ql-formats"><select class="ql-header"><option value="1"></option><option value="2"></option><option selected></option></select></span>
           <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button></span>
@@ -270,7 +353,6 @@
         <div id="editor-story" style="height: 400px;"><p>Tell your full story here...</p></div>
       </section>
 
-      <!-- SUBMIT BUTTON -->
       <section class="section">
         <button type="submit" class="submit-btn">Save Project</button>
       </section>
@@ -278,7 +360,6 @@
     </form>
   </div>
 
-  <!-- RIGHT SIDEBAR - NOW A FORM SECTION -->
   <aside class="sidebar">
     <h3>Rewards</h3>
     <div id="rewards-container">
@@ -302,28 +383,47 @@
 
 </div>
 
-<!-- Include the Quill library -->
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-
-<!-- Initialize Quill editors and Form Submission Logic -->
 <script>
   // Initialize Quill editors
   const quillBasics = new Quill('#editor-basics', { theme: 'snow', modules: { toolbar: '#toolbar-basics' }});
   const quillStory = new Quill('#editor-story', { theme: 'snow', modules: { toolbar: '#toolbar-story' }});
 
-  // Get the form element
-  const projectForm = document.getElementById('project-form');
+  // Handle Team Image Previews
+  document.querySelectorAll('.team-member-photo-input').forEach(input => {
+    input.addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (file) {
+        const preview = event.target.closest('.team-ticket').querySelector('.team-member-photo-preview');
+        preview.src = URL.createObjectURL(file);
+      }
+    });
+  });
 
+  // Handle Form Submission
+  const projectForm = document.getElementById('project-form');
   projectForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // --- 1. GATHER DATA FROM ALL INPUTS ---
+    // --- Gather Team Data from Inputs ---
     const teamMembers = [];
     document.querySelectorAll('#team-container .team-ticket').forEach(ticket => {
-      const name = ticket.querySelector('.name').innerText;
-      const title = ticket.querySelector('.title').innerText;
-      const image_url = ticket.querySelector('img').src;
-      teamMembers.push({ name, title, image_url });
+      const name = ticket.querySelector('.team-member-name').value;
+      const role = ticket.querySelector('.team-member-role').value;
+      const imageInput = ticket.querySelector('.team-member-photo-input').files[0];
+      
+      // In a real app, you would upload the 'imageInput' file to Supabase Storage.
+      // For this example, we'll just note its presence and name.
+      // If you save the preview src, it will be a temporary 'blob:' URL which is not permanent.
+      
+      if (name && role) { // Only add team members that have a name and role
+        teamMembers.push({ 
+          name, 
+          role, 
+          // Storing the filename for now. The file itself needs to be uploaded separately.
+          image_filename: imageInput ? imageInput.name : null 
+        });
+      }
     });
 
     const socials = {
@@ -337,17 +437,17 @@
     document.querySelectorAll('#rewards-container .input-group').forEach(rewardGroup => {
         const amount = rewardGroup.querySelector('.reward-amount').value;
         const description = rewardGroup.querySelector('.reward-description').value;
-        if(amount && description) {
+        if (amount && description) {
             rewards.push({ amount: parseInt(amount), description });
         }
     });
 
-    // --- 2. ASSEMBLE THE FINAL DATA OBJECT (matches Supabase schema) ---
+    // --- Assemble Final Data Object ---
     const projectData = {
       project_title: document.getElementById('project_title').value,
       basics: quillBasics.root.innerHTML,
       story: quillStory.root.innerHTML,
-      funding: parseInt(document.getElementById('funding_goal').value),
+      funding: parseInt(document.getElementById('funding_goal').value) || 0,
       status: document.getElementById('status').value,
       team: JSON.stringify(teamMembers),
       socials: JSON.stringify(socials),
@@ -356,31 +456,31 @@
       images: null
     };
     
-    // --- 3. SEND DATA TO SUPERBASE ---
-    const supabaseUrl = 'YOUR_SUPABASE_URL'; // <-- PUT YOUR URL HERE
-    const supabaseKey = 'YOUR_SUPABASE_PUBLIC_ANON_KEY'; // <-- PUT YOUR ANON KEY HERE
-    const tableName = 'projects'; // <-- CONFIRM THIS IS YOUR TABLE NAME
+    console.log("Data ready to be sent to Supabase:", projectData);
+    alert("Check the browser console (F12) to see the final data object!");
+
+    // --- Send Data to Supabase ---
+    const supabaseUrl = 'YOUR_SUPABASE_URL'; 
+    const supabaseKey = 'YOUR_SUPABASE_PUBLIC_ANON_KEY';
+    const tableName = 'projects';
+
+    if (supabaseUrl === 'YOUR_SUPABASE_URL' || supabaseKey === 'YOUR_SUPABASE_PUBLIC_ANON_KEY') {
+        console.warn("Supabase URL or Key not provided. Skipping submission.");
+        return;
+    }
 
     fetch(`${supabaseUrl}/rest/v1/${tableName}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': supabaseKey,
-        'Authorization': `Bearer ${supabaseKey}`
-      },
+      headers: { 'Content-Type': 'application/json', 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` },
       body: JSON.stringify(projectData)
     })
     .then(response => {
-      if (!response.ok) { 
-        // If the server returns an error, get more details
-        return response.json().then(err => { throw new Error(JSON.stringify(err)) });
-      }
+      if (!response.ok) { return response.json().then(err => { throw new Error(JSON.stringify(err)) }); }
       return response.json();
     })
     .then(data => {
       console.log('Success:', data);
       alert('Project saved successfully!');
-      // You could redirect the user here, e.g., window.location.href = '/success.html';
     })
     .catch(error => {
       console.error('Error:', error);
