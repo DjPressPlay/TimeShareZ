@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TimeShareZ Project Demo</title>
+  <title>TimeShareZ Project Setup</title>
   <!-- Include Quill's stylesheet -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
   <style>
@@ -52,11 +52,11 @@
     .sidebar ul li {
       margin-bottom: 0.5rem;
     }
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #00b3ff;
-      font-weight: bold;
-    }
+    /* Styles for new input fields in sidebars */
+    .sidebar .input-group { margin-bottom: 0.75rem; }
+    .sidebar label { font-weight: bold; font-size: 0.85rem; display: block; margin-bottom: 0.25rem; }
+    .sidebar input, .sidebar select { width: 100%; padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
+    
     /* Main content */
     .container {
       flex: 1;
@@ -74,7 +74,6 @@
       border-bottom: 2px solid #eee;
       padding-bottom: 0.5rem;
     }
-    /* Added style for sub-headings like 'The Team' */
     .section h4 {
       margin-top: 1rem;
       margin-bottom: 0.5rem;
@@ -83,124 +82,29 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    .media {
-      width: 100%;
-      height: 350px;
-      background: #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-    }
-    /* Image gallery */
-    .image-gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .img-slot {
-      background: #ddd;
-      border-radius: 6px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: #555;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .img-slot:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    /* Funding section styling */
-    .funding-info {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.1rem;
-      font-weight: bold;
-      text-align: center;
-      margin: 0.5rem 0;
-      color: #fff;
-      background: linear-gradient(90deg, #00f0ff, #7a00ff, #ff0055);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
-    }
-    .funding-bar {
-      background: #111;
-      height: 20px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 0.5rem 0 0.8rem 0;
-      box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-    }
-    .funding-fill {
-      height: 100%;
-      width: 42%; /* Placeholder percent */
-      background: linear-gradient(90deg, #00f0ff, #7a00ff, #ff0055);
-      background-size: 200% 200%;
-      animation: gradientMove 3s ease infinite;
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .status {
-      display: inline-block;
-      padding: 0.3rem 0.6rem;
-      background: #7a00ff;
-      color: #fff;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      box-shadow: 0 0 8px rgba(122, 0, 255, 0.5);
-    }
-    .placeholder {
-      color: #777;
-      font-style: italic;
-    }
-    /* Likes & Shares */
-    .likes-shares {
-      margin-top: 1rem;
-      padding-top: 0.5rem;
-      border-top: 2px solid #eee;
-    }
-    .like-btn, .share-btn {
-      display: inline-block;
-      padding: 0.4rem 0.8rem;
-      margin: 0.2rem 0.2rem 0 0;
-      background: #00ffc8;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: bold;
-      color: #000;
-      transition: background 0.2s;
-    }
-    .like-btn:hover, .share-btn:hover {
-      background: #00e0b2;
-    }
-    /* Quill editor toolbar styling */
-    .ql-toolbar {
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-    }
-    /* Quill editor container styling */
-    .ql-container {
-      border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
-    }
     
+    /* Style for the title input to make it look like a heading */
+    .title-input {
+      font-size: 1.75rem;
+      font-family: inherit;
+      font-weight: bold;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      padding: 0.5rem;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 0.5rem;
+    }
+    .title-input:focus {
+      outline: none;
+      border-color: #00ffc8;
+    }
+
     /* CSS FOR TEAM SECTION */
     .team-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 1rem;
-      /* Adjusted spacing */
       padding-bottom: 1rem;
       margin-bottom: 1rem;
       border-bottom: 2px solid #eee;
@@ -231,167 +135,169 @@
       color: #666;
       margin: 0;
     }
+
+    /* Submit Button Style */
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: #7a00ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover {
+      background: #6a00e6;
+    }
   </style>
 </head>
 <body>
 
-<header>TimeShareZ — Project Demo</header>
+<header>TimeShareZ — Project Setup</header>
 
 <div class="layout">
 
-  <!-- LEFT SIDEBAR (Social Links + Likes & Shares) -->
+  <!-- LEFT SIDEBAR - NOW A FORM SECTION -->
   <aside class="sidebar">
-    <h3>Follow Us</h3>
-    <ul>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">Facebook</a></li>
-      <li><a href="#">TikTok</a></li>
-      <li><a href="#">Reddit</a></li>
-    </ul>
-
-    <!-- Likes & Shares -->
-    <div class="likes-shares">
-      <h4>Likes & Shares</h4>
-      <button class="like-btn">👍 Like</button>
-      <button class="share-btn">🔗 Share</button>
+    <h3>Socials</h3>
+    <div id="socials-container">
+      <div class="input-group">
+        <label for="social_instagram">Instagram URL</label>
+        <input type="url" id="social_instagram" name="social_instagram" placeholder="https://instagram.com/...">
+      </div>
+      <div class="input-group">
+        <label for="social_facebook">Facebook URL</label>
+        <input type="url" id="social_facebook" name="social_facebook" placeholder="https://facebook.com/...">
+      </div>
+      <div class="input-group">
+        <label for="social_tiktok">TikTok URL</label>
+        <input type="url" id="social_tiktok" name="social_tiktok" placeholder="https://tiktok.com/...">
+      </div>
+      <div class="input-group">
+        <label for="social_reddit">Reddit URL</label>
+        <input type="url" id="social_reddit" name="social_reddit" placeholder="https://reddit.com/u/...">
+      </div>
     </div>
   </aside>
 
   <!-- MAIN CONTENT -->
   <div class="container">
-
-    <!-- HERO / OVERVIEW -->
-    <section class="section">
-      <h2>Project Overview</h2>
+    <!-- WRAP EVERYTHING IN A FORM TAG -->
+    <form id="project-form">
       
-      <!-- ADDED TEAM LABEL HERE -->
-      <h4>The Team</h4>
-      
-      <div class="team-container">
-        <!-- Team Member Ticket 1 -->
-        <div class="team-ticket">
-          <img src="https://placehold.co/100x100/EEE/31343C" alt="Team Member Photo">
-          <p class="name">Alex Doe</p>
-          <p class="title">Lead Engineer</p>
+      <!-- HERO / OVERVIEW -->
+      <section class="section">
+        <h2>Project Overview</h2>
+        
+        <h4>The Team</h4>
+        <div class="team-container" id="team-container">
+          <!-- Team data will be collected from here via JS -->
+          <div class="team-ticket">
+            <img src="https://placehold.co/100x100/EEE/31343C" alt="Team Member Photo">
+            <p class="name">Alex Doe</p><p class="title">Lead Engineer</p>
+          </div>
+          <div class="team-ticket">
+            <img src="https://placehold.co/100x100/DDD/31343C" alt="Team Member Photo">
+            <p class="name">Jamie Smith</p><p class="title">Project Manager</p>
+          </div>
+          <div class="team-ticket">
+            <img src="https://placehold.co/100x100/CCC/31343C" alt="Team Member Photo">
+            <p class="name">Sam Rivera</p><p class="title">Designer</p>
+          </div>
+          <div class="team-ticket">
+            <img src="https://placehold.co/100x100/BBB/31343C" alt="Team Member Photo">
+            <p class="name">Casey Chen</p><p class="title">Marketing Lead</p>
+          </div>
+          <div class="team-ticket">
+            <img src="https://placehold.co/100x100/AAA/31343C" alt="Team Member Photo">
+            <p class="name">Morgan Lee</p><p class="title">Outreach</p>
+          </div>
         </div>
-        <!-- Team Member Ticket 2 -->
-        <div class="team-ticket">
-          <img src="https://placehold.co/100x100/DDD/31343C" alt="Team Member Photo">
-          <p class="name">Jamie Smith</p>
-          <p class="title">Project Manager</p>
+        
+        <!-- project_title -->
+        <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Your Amazing Project Title">
+        
+        <!-- video and images - these would be more complex file uploaders in a real app -->
+        <div class="input-group">
+            <label for="video_upload">Main Video</label>
+            <input type="file" id="video_upload" name="video_upload" accept="video/*">
         </div>
-        <!-- Team Member Ticket 3 -->
-        <div class="team-ticket">
-          <img src="https://placehold.co/100x100/CCC/31343C" alt="Team Member Photo">
-          <p class="name">Sam Rivera</p>
-          <p class="title">Designer</p>
+        <div class="input-group">
+            <label for="images_upload">Project Images</label>
+            <input type="file" id="images_upload" name="images_upload" accept="image/*" multiple>
         </div>
-        <!-- Team Member Ticket 4 -->
-        <div class="team-ticket">
-          <img src="https://placehold.co/100x100/BBB/31343C" alt="Team Member Photo">
-          <p class="name">Casey Chen</p>
-          <p class="title">Marketing Lead</p>
+      </section>
+
+      <!-- BASICS -->
+      <section class="section">
+        <h2>Basics</h2>
+        
+        <div class="input-group">
+          <label for="funding_goal">Funding Goal ($)</label>
+          <input type="number" id="funding_goal" name="funding_goal" placeholder="20000" step="100">
         </div>
-        <!-- Team Member Ticket 5 -->
-        <div class="team-ticket">
-          <img src="https://placehold.co/100x100/AAA/31343C" alt="Team Member Photo">
-          <p class="name">Morgan Lee</p>
-          <p class="title">Outreach</p>
-        </div>
-      </div>
-      
-      <h3 id="title">Solar-Powered Water Purifier</h3>
-      <p>
-        Created: <span id="created_at">2025-08-15</span> |
-        Session ID: <span id="session_id">TSZ-823947</span>
-      </p>
 
-      <!-- Video Placeholder -->
-      <div class="media">[ Project Video Placeholder ]</div>
-
-      <!-- Image Gallery -->
-      <div class="image-gallery">
-        <div class="img-slot" id="img1">Image 1</div>
-        <div class="img-slot" id="img2">Image 2</div>
-        <div class="img-slot" id="img3">Image 3</div>
-        <div class="img-slot" id="img4">Image 4</div>
-        <div class="img-slot" id="img5">Image 5</div>
-        <div class="img-slot" id="img6">Image 6</div>
-        <div class="img-slot" id="img7">Image 7</div>
-        <div class="img-slot" id="img8">Image 8</div>
-      </div>
-
-      <!-- Funding Section -->
-      <div class="funding-info">
-        Funding: <span id="funding">$8,450 / $20,000</span>
-      </div>
-      <div class="funding-bar">
-        <div class="funding-fill"></div>
-      </div>
-      <span class="status" id="status">Active</span>
-    </section>
-
-    <!-- EDITOR (was BASICS) -->
-    <section class="section">
-      <h2>Basics</h2>
-      <!-- Create the toolbar container -->
-      <div id="toolbar-basics">
-        <button class="ql-bold">Bold</button>
-        <button class="ql-italic">Italic</button>
-      </div>
-      <!-- Create the editor container -->
-      <div id="editor-basics" style="height: 250px;">
-        <p>Name your project, upload an image or video, and set your campaign details.</p>
-      </div>
-    </section>
-
-    <!-- STORY -->
-    <section class="section">
-      <h2>Story</h2>
-      <!-- Create the toolbar container for the Story editor -->
-      <div id="toolbar-story">
-        <span class="ql-formats">
-          <select class="ql-header">
-            <option value="1">Heading</option>
-            <option value="2">Subheading</option>
-            <option selected>Normal</option>
+        <div class="input-group">
+          <label for="status">Project Status</label>
+          <select id="status" name="status">
+            <option value="Draft" selected>Draft</option>
+            <option value="Active">Active</option>
           </select>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-bold"></button>
-          <button class="ql-italic"></button>
-          <button class="ql-underline"></button>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-list" value="ordered"></button>
-          <button class="ql-list" value="bullet"></button>
-          <button class="ql-indent" value="-1"></button>
-          <button class="ql-indent" value="+1"></button>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-link"></button>
-          <button class="ql-image"></button>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-clean"></button>
-        </span>
-      </div>
-      <!-- Create the editor container for the Story editor -->
-      <div id="editor-story" style="height: 400px;">
-        <p>Add a detailed project description and convey your risks and challenges.</p>
-      </div>
-    </section>
+        </div>
+        
+        <!-- basics (Quill editor) -->
+        <label>Basics Description</label>
+        <div id="toolbar-basics"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+        <div id="editor-basics" style="height: 150px;"><p>Briefly describe your project here.</p></div>
+      </section>
 
+      <!-- STORY -->
+      <section class="section">
+        <h2>Story</h2>
+        
+        <!-- story (Quill editor) -->
+        <div id="toolbar-story">
+          <span class="ql-formats"><select class="ql-header"><option value="1"></option><option value="2"></option><option selected></option></select></span>
+          <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button></span>
+          <span class="ql-formats"><button class="ql-list" value="ordered"></button><button class="ql-list" value="bullet"></button></span>
+          <span class="ql-formats"><button class="ql-link"></button><button class="ql-image"></button></span>
+          <span class="ql-formats"><button class="ql-clean"></button></span>
+        </div>
+        <div id="editor-story" style="height: 400px;"><p>Tell your full story here...</p></div>
+      </section>
+
+      <!-- SUBMIT BUTTON -->
+      <section class="section">
+        <button type="submit" class="submit-btn">Save Project</button>
+      </section>
+      
+    </form>
   </div>
 
-  <!-- RIGHT SIDEBAR (Rewards) -->
+  <!-- RIGHT SIDEBAR - NOW A FORM SECTION -->
   <aside class="sidebar">
     <h3>Rewards</h3>
-    <ul>
-      <li><strong>$25</strong> — Sticker Pack</li>
-      <li><strong>$50</strong> — T-Shirt</li>
-      <li><strong>$100</strong> — Limited Edition Purifier</li>
-    </ul>
+    <div id="rewards-container">
+      <div class="input-group">
+        <label>Reward 1</label>
+        <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
+        <input type="text" name="reward_description" placeholder="Sticker Pack" class="reward-description">
+      </div>
+      <div class="input-group" style="margin-top:1rem; border-top:1px solid #eee; padding-top:1rem;">
+        <label>Reward 2</label>
+        <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
+        <input type="text" name="reward_description" placeholder="T-Shirt" class="reward-description">
+      </div>
+      <div class="input-group" style="margin-top:1rem; border-top:1px solid #eee; padding-top:1rem;">
+        <label>Reward 3</label>
+        <input type="number" name="reward_amount" placeholder="100" class="reward-amount">
+        <input type="text" name="reward_description" placeholder="Limited Edition Purifier" class="reward-description">
+      </div>
+    </div>
   </aside>
 
 </div>
@@ -399,22 +305,87 @@
 <!-- Include the Quill library -->
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
-<!-- Initialize Quill editors -->
+<!-- Initialize Quill editors and Form Submission Logic -->
 <script>
-  // Initialize Basics Editor
-  const quillBasics = new Quill('#editor-basics', {
-    theme: 'snow',
-    modules: {
-      toolbar: '#toolbar-basics'
-    }
-  });
+  // Initialize Quill editors
+  const quillBasics = new Quill('#editor-basics', { theme: 'snow', modules: { toolbar: '#toolbar-basics' }});
+  const quillStory = new Quill('#editor-story', { theme: 'snow', modules: { toolbar: '#toolbar-story' }});
 
-  // Initialize Story Editor
-  const quillStory = new Quill('#editor-story', {
-    theme: 'snow',
-    modules: {
-      toolbar: '#toolbar-story'
-    }
+  // Get the form element
+  const projectForm = document.getElementById('project-form');
+
+  projectForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // --- 1. GATHER DATA FROM ALL INPUTS ---
+    const teamMembers = [];
+    document.querySelectorAll('#team-container .team-ticket').forEach(ticket => {
+      const name = ticket.querySelector('.name').innerText;
+      const title = ticket.querySelector('.title').innerText;
+      const image_url = ticket.querySelector('img').src;
+      teamMembers.push({ name, title, image_url });
+    });
+
+    const socials = {
+      instagram: document.getElementById('social_instagram').value,
+      facebook: document.getElementById('social_facebook').value,
+      tiktok: document.getElementById('social_tiktok').value,
+      reddit: document.getElementById('social_reddit').value,
+    };
+
+    const rewards = [];
+    document.querySelectorAll('#rewards-container .input-group').forEach(rewardGroup => {
+        const amount = rewardGroup.querySelector('.reward-amount').value;
+        const description = rewardGroup.querySelector('.reward-description').value;
+        if(amount && description) {
+            rewards.push({ amount: parseInt(amount), description });
+        }
+    });
+
+    // --- 2. ASSEMBLE THE FINAL DATA OBJECT (matches Supabase schema) ---
+    const projectData = {
+      project_title: document.getElementById('project_title').value,
+      basics: quillBasics.root.innerHTML,
+      story: quillStory.root.innerHTML,
+      funding: parseInt(document.getElementById('funding_goal').value),
+      status: document.getElementById('status').value,
+      team: JSON.stringify(teamMembers),
+      socials: JSON.stringify(socials),
+      rewards: JSON.stringify(rewards),
+      video: null,
+      images: null
+    };
+    
+    // --- 3. SEND DATA TO SUPERBASE ---
+    const supabaseUrl = 'YOUR_SUPABASE_URL'; // <-- PUT YOUR URL HERE
+    const supabaseKey = 'YOUR_SUPABASE_PUBLIC_ANON_KEY'; // <-- PUT YOUR ANON KEY HERE
+    const tableName = 'projects'; // <-- CONFIRM THIS IS YOUR TABLE NAME
+
+    fetch(`${supabaseUrl}/rest/v1/${tableName}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`
+      },
+      body: JSON.stringify(projectData)
+    })
+    .then(response => {
+      if (!response.ok) { 
+        // If the server returns an error, get more details
+        return response.json().then(err => { throw new Error(JSON.stringify(err)) });
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+      alert('Project saved successfully!');
+      // You could redirect the user here, e.g., window.location.href = '/success.html';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert(`Error saving project. See console for details.\n\nError: ${error.message}`);
+    });
   });
 </script>
 
