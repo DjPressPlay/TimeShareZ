@@ -147,23 +147,59 @@
       <div id="editor-risks" style="height: 200px;"></div>
     </section>
 
-    <!-- Rewards -->
-    <section class="section">
-      <h2>Rewards</h2>
-      <div id="rewards-container">
-        <div class="reward-tier">
-          <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name (e.g., Early Bird)">
-          <div class="input-group">
-            <label>Price ($)</label>
-            <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
-          </div>
-          <div class="input-group">
-            <label>Description</label>
-            <input type="text" name="reward_description" placeholder="Custom supporter badge..." class="reward-description">
-          </div>
-        </div>
+   <!-- Rewards -->
+<section class="section">
+  <h2>Rewards</h2>
+  <p class="explanation">
+    Choose how backers are rewarded at different stages of your campaign.
+    <br><strong>Early Backers</strong> → Get better gifts, but standard returns.  
+    <br><strong>Late Backers</strong> → Get better returns, but a standard gift.  
+    <br><strong>Mid Tiers</strong> → Balanced gifts and returns.  
+  </p>
+
+  <div id="rewards-container">
+
+    <!-- Early Reward Tier -->
+    <div class="reward-tier">
+      <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name (e.g., Early Bird)">
+      <div class="input-group">
+        <label>Price ($)</label>
+        <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
       </div>
-    </section>
+      <div class="input-group">
+        <label>Description</label>
+        <input type="text" name="reward_description" placeholder="Exclusive gift for early supporters (limited edition)..." class="reward-description">
+      </div>
+    </div>
+
+    <!-- Mid Reward Tier -->
+    <div class="reward-tier">
+      <input type="text" value="Standard Supporter" class="reward-badge" placeholder="Tier Name (e.g., Standard)">
+      <div class="input-group">
+        <label>Price ($)</label>
+        <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
+      </div>
+      <div class="input-group">
+        <label>Description</label>
+        <input type="text" name="reward_description" placeholder="Balanced gift and fair return for mid supporters..." class="reward-description">
+      </div>
+    </div>
+
+    <!-- Late Reward Tier -->
+    <div class="reward-tier">
+      <input type="text" value="Late Supporter" class="reward-badge" placeholder="Tier Name (e.g., Late Backer)">
+      <div class="input-group">
+        <label>Price ($)</label>
+        <input type="number" name="reward_amount" placeholder="100" class="reward-amount">
+      </div>
+      <div class="input-group">
+        <label>Description</label>
+        <input type="text" name="reward_description" placeholder="Higher return perks for late supporters + standard gift..." class="reward-description">
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <!-- FAQ -->
     <section class="section">
