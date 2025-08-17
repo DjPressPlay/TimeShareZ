@@ -32,10 +32,7 @@ header {
 
 .sidebar {
   width: 200px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 1rem;
-  height: fit-content;
+  
   flex-shrink: 0; /* Prevent sidebars from shrinking */
 }
 .sidebar h3 {
