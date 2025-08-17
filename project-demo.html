@@ -15,24 +15,25 @@
 
 <div class="layout">
 
+  <!-- UPDATED: Socials Sidebar to match example -->
   <aside class="sidebar">
-    <h3>Socials</h3>
+    <h3>Endorsements / Social Links</h3>
     <div id="socials-container">
+      <div class="input-group">
+        <label for="social_twitter">Twitter</label>
+        <input type="url" id="social_twitter" name="social_twitter" placeholder="https://twitter.com/...">
+      </div>
       <div class="input-group">
         <label for="social_instagram">Instagram</label>
         <input type="url" id="social_instagram" name="social_instagram" placeholder="https://instagram.com/...">
       </div>
       <div class="input-group">
-        <label for="social_facebook">Facebook</label>
-        <input type="url" id="social_facebook" name="social_facebook" placeholder="https://facebook.com/...">
+        <label for="social_website">Website</label>
+        <input type="url" id="social_website" name="social_website" placeholder="https://yoursite.com/...">
       </div>
       <div class="input-group">
-        <label for="social_tiktok">TikTok</label>
-        <input type="url" id="social_tiktok" name="social_tiktok" placeholder="https://tiktok.com/...">
-      </div>
-      <div class="input-group">
-        <label for="social_reddit">Reddit</label>
-        <input type="url" id="social_reddit" name="social_reddit" placeholder="https://reddit.com/u/...">
+        <label for="social_github">GitHub</label>
+        <input type="url" id="social_github" name="social_github" placeholder="https://github.com/...">
       </div>
     </div>
   </aside>
@@ -45,7 +46,7 @@
         
         <h4>The Team</h4>
         <div class="team-container" id="team-container">
-          <!-- Team Member Ticket 1 (Editable) -->
+          <!-- Team Member Tickets ... -->
           <div class="team-ticket">
             <label class="team-image-upload">
               <img src="https://placehold.co/100x100/EEE/31343C" class="team-member-photo-preview" alt="Upload Photo">
@@ -55,7 +56,6 @@
             <input type="text" class="team-member-name" placeholder="Team Member Name">
             <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
-          <!-- Team Member Ticket 2 (Editable) -->
           <div class="team-ticket">
             <label class="team-image-upload">
               <img src="https://placehold.co/100x100/DDD/31343C" class="team-member-photo-preview" alt="Upload Photo">
@@ -65,7 +65,6 @@
             <input type="text" class="team-member-name" placeholder="Team Member Name">
             <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
-          <!-- Team Member Ticket 3 (Editable) -->
           <div class="team-ticket">
             <label class="team-image-upload">
               <img src="https://placehold.co/100x100/CCC/31343C" class="team-member-photo-preview" alt="Upload Photo">
@@ -75,7 +74,6 @@
             <input type="text" class="team-member-name" placeholder="Team Member Name">
             <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
-          <!-- Team Member Ticket 4 (Editable) -->
           <div class="team-ticket">
             <label class="team-image-upload">
               <img src="https://placehold.co/100x100/BBB/31343C" class="team-member-photo-preview" alt="Upload Photo">
@@ -85,7 +83,6 @@
             <input type="text" class="team-member-name" placeholder="Team Member Name">
             <input type="text" class="team-member-role" placeholder="Role / Title">
           </div>
-             <!-- Team Member Ticket 5 (Editable) -->
           <div class="team-ticket">
             <label class="team-image-upload">
               <img src="https://placehold.co/100x100/BBB/31343C" class="team-member-photo-preview" alt="Upload Photo">
@@ -97,34 +94,48 @@
           </div>
         </div>
         
-        <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Your Amazing Project Title">
+        <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Project Title">
         
+        <!-- ADDED: Tagline field -->
         <div class="input-group">
-            <label for="video_upload">Main Video</label>
-            <input type="file" id="video_upload" name="video_upload" accept="video/*">
+          <input type="text" id="project_tagline" name="project_tagline" class="title-input" style="font-size: 1.25rem; font-weight: normal;" placeholder="Tagline (one-liner)">
+        </div>
+
+        <!-- UPDATED: Cover Media Section -->
+        <h4>Cover Media</h4>
+        <div class="input-group">
+            <label for="video_url">YouTube/Vimeo Link (Optional)</label>
+            <input type="url" id="video_url" name="video_url" placeholder="https://youtube.com/...">
         </div>
         <div class="input-group">
-            <label for="images_upload">Project Images</label>
-            <input type="file" id="images_upload" name="images_upload" accept="image/*" multiple>
+            <label for="cover_image_upload">Cover Image</label>
+            <input type="file" id="cover_image_upload" name="cover_image_upload" accept="image/*">
         </div>
       </section>
 
       <section class="section">
         <h2>Basics</h2>
+        
+        <!-- ADDED: Run Length field -->
         <div class="input-group">
-          <label for="funding_goal">Funding Goal ($)</label>
-          <input type="number" id="funding_goal" name="funding_goal" placeholder="20000" step="100">
-        </div>
-        <div class="input-group">
-          <label for="status">Project Status</label>
-          <select id="status" name="status">
-            <option value="Draft" selected>Draft</option>
-            <option value="Active">Active</option>
+          <label for="run_length">Run Length</label>
+          <select id="run_length" name="run_length">
+            <option value="1 Day" selected>1 Day</option>
+            <option value="3 Days">3 Days</option>
+            <option value="5 Days">5 Days</option>
+            <option value="7 Days">7 Days</option>
           </select>
         </div>
-        <label>Basics Description</label>
+
+        <div class="input-group">
+          <label for="funding_goal">Funding Goal ($)</label>
+          <input type="number" id="funding_goal" name="funding_goal" placeholder="1500">
+        </div>
+        
+        <!-- UPDATED: Label for Short About -->
+        <label>Short About</label>
         <div id="toolbar-basics"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-        <div id="editor-basics" style="height: 150px;"><p>Briefly describe your project here.</p></div>
+        <div id="editor-basics" style="height: 150px;"><p>We’re building smart solar streetlights that...</p></div>
       </section>
 
       <section class="section">
@@ -140,7 +151,8 @@
       </section>
 
       <section class="section">
-        <button type="submit" class="submit-btn">Save Project</button>
+        <!-- UPDATED: Button text -->
+        <button type="submit" class="submit-btn">Submit Project</button>
       </section>
       
     </form>
@@ -148,14 +160,12 @@
 
   <aside class="sidebar">
     <h3>Rewards</h3>
-
-    <!-- UPDATED: Informational text explaining the reward system -->
     <div class="rewards-info">
       <p>Rewards are based on participation windows. Early backers get the best deals, and higher tiers receive greater returns!</p>
     </div>
 
+    <!-- UPDATED: Reward placeholders to match example -->
     <div id="rewards-container">
-      <!-- Reward 1: Early Bird -->
       <div class="reward-tier">
         <div class="reward-badge-container">
           <input type="text" value="Early Bird" class="reward-badge" placeholder="e.g., Early Bird">
@@ -166,14 +176,12 @@
         </div>
         <div class="input-group">
           <label>Description</label>
-          <input type="text" name="reward_description" placeholder="Reward for the first backers" class="reward-description">
+          <input type="text" name="reward_description" placeholder="Custom supporter badge..." class="reward-description">
         </div>
       </div>
-
-      <!-- Reward 2: Mid Catch -->
       <div class="reward-tier">
         <div class="reward-badge-container">
-          <input type="text" value="Mid Catch" class="reward-badge" placeholder="e.g., Mid Catch">
+          <input type="text" value="Mid Field Catch" class="reward-badge" placeholder="e.g., Mid Catch">
         </div>
         <div class="input-group">
           <label>Price ($)</label>
@@ -181,14 +189,12 @@
         </div>
         <div class="input-group">
           <label>Description</label>
-          <input type="text" name="reward_description" placeholder="Reward for mid-range backers" class="reward-description">
+          <input type="text" name="reward_description" placeholder="Downloadable 3D model..." class="reward-description">
         </div>
       </div>
-
-      <!-- Reward 3: After Hours -->
       <div class="reward-tier">
         <div class="reward-badge-container">
-          <input type="text" value="After Hours" class="reward-badge" placeholder="e.g., After Hours">
+          <input type="text" value="Afterhours Special" class="reward-badge" placeholder="e.g., After Hours">
         </div>
         <div class="input-group">
           <label>Price ($)</label>
@@ -196,7 +202,7 @@
         </div>
         <div class="input-group">
           <label>Description</label>
-          <input type="text" name="reward_description" placeholder="Reward for later backers" class="reward-description">
+          <input type="text" name="reward_description" placeholder="Exclusive invite to launch..." class="reward-description">
         </div>
       </div>
     </div>
@@ -222,92 +228,55 @@
   });
 
   // Handle Form Submission
-  const projectForm = document.getElementById('project-form');
   projectForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // --- Gather Team Data from Inputs ---
+    // --- Gather Team Data ---
     const teamMembers = [];
     document.querySelectorAll('#team-container .team-ticket').forEach(ticket => {
       const name = ticket.querySelector('.team-member-name').value;
       const role = ticket.querySelector('.team-member-role').value;
       const imageInput = ticket.querySelector('.team-member-photo-input').files[0];
-      
-      if (name && role) {
-        teamMembers.push({ 
-          name, 
-          role, 
-          image_filename: imageInput ? imageInput.name : null 
-        });
-      }
+      if (name && role) { teamMembers.push({ name, role, image_filename: imageInput ? imageInput.name : null }); }
     });
 
+    // --- UPDATED: Gather Socials Data ---
     const socials = {
+      twitter: document.getElementById('social_twitter').value,
       instagram: document.getElementById('social_instagram').value,
-      facebook: document.getElementById('social_facebook').value,
-      tiktok: document.getElementById('social_tiktok').value,
-      reddit: document.getElementById('social_reddit').value,
+      website: document.getElementById('social_website').value,
+      github: document.getElementById('social_github').value,
     };
 
-    // --- UPDATED: Gather Rewards Data from New Tiered Structure ---
+    // --- Gather Rewards Data ---
     const rewards = [];
     document.querySelectorAll('#rewards-container .reward-tier').forEach(rewardTier => {
-        const badge = rewardTier.querySelector('.reward-badge').value;
-        const amount = rewardTier.querySelector('.reward-amount').value;
-        const description = rewardTier.querySelector('.reward-description').value;
-        if (badge && amount && description) {
-            rewards.push({ 
-              badge: badge,
-              amount: parseInt(amount), 
-              description: description 
-            });
-        }
+      const badge = rewardTier.querySelector('.reward-badge').value;
+      const amount = rewardTier.querySelector('.reward-amount').value;
+      const description = rewardTier.querySelector('.reward-description').value;
+      if (badge && amount && description) { rewards.push({ badge, amount: parseInt(amount), description }); }
     });
 
-    // --- Assemble Final Data Object ---
+    // --- UPDATED: Assemble Final Data Object ---
     const projectData = {
       project_title: document.getElementById('project_title').value,
-      basics: quillBasics.root.innerHTML,
+      project_tagline: document.getElementById('project_tagline').value, // ADDED
+      short_about: quillBasics.root.innerHTML,
       story: quillStory.root.innerHTML,
-      funding: parseInt(document.getElementById('funding_goal').value) || 0,
-      status: document.getElementById('status').value,
+      funding_goal: parseInt(document.getElementById('funding_goal').value) || 0,
+      run_length: document.getElementById('run_length').value, // ADDED
       team: JSON.stringify(teamMembers),
       socials: JSON.stringify(socials),
-      rewards: JSON.stringify(rewards), // Now contains structured reward data
-      video: null,
-      images: null
+      rewards: JSON.stringify(rewards),
+      video_url: document.getElementById('video_url').value, // ADDED
+      // Note: You'll still need a separate process to handle the actual file upload for 'cover_image_upload'
+      cover_image: document.getElementById('cover_image_upload').files[0]?.name || null,
     };
     
     console.log("Data ready to be sent to Supabase:", projectData);
     alert("Check the browser console (F12) to see the final data object!");
 
-    // --- Send Data to Supabase ---
-    const supabaseUrl = 'YOUR_SUPABASE_URL'; 
-    const supabaseKey = 'YOUR_SUPABASE_PUBLIC_ANON_KEY';
-    const tableName = 'projects';
-
-    if (supabaseUrl === 'YOUR_SUPABASE_URL' || supabaseKey === 'YOUR_SUPABASE_PUBLIC_ANON_KEY') {
-        console.warn("Supabase URL or Key not provided. Skipping submission.");
-        return;
-    }
-
-    fetch(`${supabaseUrl}/rest/v1/${tableName}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` },
-      body: JSON.stringify(projectData)
-    })
-    .then(response => {
-      if (!response.ok) { return response.json().then(err => { throw new Error(JSON.stringify(err)) }); }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Success:', data);
-      alert('Project saved successfully!');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert(`Error saving project. See console for details.\n\nError: ${error.message}`);
-    });
+    // --- Supabase submission logic would go here ---
   });
 </script>
 
