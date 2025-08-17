@@ -88,11 +88,12 @@ label {
   margin-bottom: 0.25rem;
 }
 
-/* --- CSS FOR EDITABLE TEAM SECTION --- */
+/* --- CSS FOR EDITABLE TEAM SECTION (UPDATED) --- */
 .team-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
+  /* Reduced the minimum width to allow more items to fit */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem; /* Slightly reduced gap */
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid #eee;
@@ -101,12 +102,12 @@ label {
   background: #f9f9f9;
   border: 1px solid #eee;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.75rem; /* Reduced padding */
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem; /* Reduced gap between elements */
 }
 .team-image-upload {
   position: relative;
@@ -117,8 +118,9 @@ label {
   opacity: 1;
 }
 .team-member-photo-preview {
-  width: 80px;
-  height: 80px;
+  /* Made the photo smaller */
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: 3px solid #00ffc8;
   object-fit: cover;
@@ -155,10 +157,10 @@ label {
 }
 .team-member-name {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reduced font size */
 }
 .team-member-role {
-  font-size: 0.85rem;
+  font-size: 0.8rem; /* Reduced font size */
   color: #666;
 }
 
