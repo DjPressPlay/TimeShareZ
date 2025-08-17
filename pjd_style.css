@@ -22,6 +22,14 @@ header {
   gap: 1rem;
   align-items: flex-start; /* Align items to the top */
 }
+.sidebar-ticket {
+  background: #fff; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  padding: 1rem; 
+  margin-bottom: 1rem;
+}
+
 .sidebar {
   width: 200px;
   background: #fff;
