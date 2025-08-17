@@ -1,33 +1,122 @@
-/* --- CSS FOR EDITABLE TEAM SECTION (UPDATED) --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f6f6f6;
+  color: #222;
+}
+header {
+  background: #111;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 3px solid #00ffc8;
+}
+.layout {
+  display: flex;
+  max-width: 1400px;
+  margin: auto;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: flex-start; /* Align items to the top */
+}
+.sidebar {
+  width: 200px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  height: fit-content;
+  flex-shrink: 0; /* Prevent sidebars from shrinking */
+}
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.4rem;
+}
+.sidebar .input-group { margin-bottom: 0.75rem; }
+.sidebar label { font-weight: bold; font-size: 0.85rem; display: block; margin-bottom: 0.25rem; }
+.sidebar input, .sidebar select { width: 100%; padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.section {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.section h2 {
+  margin-top: 0;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+.section h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.title-input {
+  font-size: 1.75rem;
+  font-family: inherit;
+  font-weight: bold;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+.title-input:focus {
+  outline: none;
+  border-color: #00ffc8;
+}
+.input-group {
+  margin-bottom: 1rem;
+}
+label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* --- CSS FOR EDITABLE TEAM SECTION --- */
 .team-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.75rem; 
+  gap: 0.75rem;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid #eee;
 }
 .team-ticket {
   background: #f9f9f9;
-  /* UPDATED: Changed border to a subtle gray */
-  border: 1px solid #e0e0e0; 
+  border: 1px solid #e0e0e0; /* Added a slightly more visible border */
   border-radius: 8px;
   padding: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04); /* Soft initial shadow */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04); /* Initial soft shadow */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  /* ADDED: Smooth transition for hover effects */
+  /* Added transition for smooth hover effects */
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
-/* ADDED: Hover state for the team ticket */
+/* Hover state for the team ticket */
 .team-ticket:hover {
-  /* Expands the card slightly */
-  transform: scale(1.05) translateY(-5px); 
+  /* Expands and lifts the card */
+  transform: scale(1.05) translateY(-5px);
   /* Adds a glow effect using the accent color */
-  box-shadow: 0 8px 25px rgba(0, 255, 200, 0.4); 
+  box-shadow: 0 8px 25px rgba(0, 255, 200, 0.4);
 }
 
 .team-image-upload {
@@ -77,9 +166,26 @@
 }
 .team-member-name {
   font-weight: bold;
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
 }
 .team-member-role {
-  font-size: 0.8rem; 
+  font-size: 0.8rem;
   color: #666;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: #7a00ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.submit-btn:hover {
+  background: #6a00e6;
 }
