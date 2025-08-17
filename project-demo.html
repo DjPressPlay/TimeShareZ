@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TimeShareZ Project Setup</title>
-  <!-- Include Quill's stylesheet -->
+  <!-- Quill's stylesheet -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-  <!-- Link to your stylesheet -->
+  <!-- Your stylesheet -->
   <link href="pjd_style.css" rel="stylesheet" />
 </head>
 <body>
@@ -15,27 +15,24 @@
 
 <div class="layout">
 
-  <!-- UPDATED: Socials Sidebar to match example -->
+  <!-- NEW LEFT SIDEBAR: CREATOR DETAILS -->
   <aside class="sidebar">
-    <h3>Endorsements / Social Links</h3>
-    <div id="socials-container">
-      <div class="input-group">
-        <label for="social_twitter">Twitter</label>
-        <input type="url" id="social_twitter" name="social_twitter" placeholder="https://twitter.com/...">
-      </div>
-      <div class="input-group">
-        <label for="social_instagram">Instagram</label>
-        <input type="url" id="social_instagram" name="social_instagram" placeholder="https://instagram.com/...">
-      </div>
-      <div class="input-group">
-        <label for="social_website">Website</label>
-        <input type="url" id="social_website" name="social_website" placeholder="https://yoursite.com/...">
-      </div>
-      <div class="input-group">
-        <label for="social_github">GitHub</label>
-        <input type="url" id="social_github" name="social_github" placeholder="https://github.com/...">
-      </div>
+    <h3>Creator Details</h3>
+    <div class="input-group">
+      <label for="creator_name">Creator Name</label>
+      <input type="text" id="creator_name" name="creator_name" placeholder="Jane Doe">
     </div>
+    <div class="input-group">
+        <label for="creator_photo">Profile Picture</label>
+        <input type="file" id="creator_photo" name="creator_photo" accept="image/*">
+    </div>
+    <div class="input-group">
+      <label for="project_location">Project Location</label>
+      <input type="text" id="project_location" name="project_location" placeholder="Detroit, MI">
+    </div>
+    <label>Creator Bio</label>
+    <div id="toolbar-creator"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+    <div id="editor-creator" style="height: 120px;"><p>A little about you or your team...</p></div>
   </aside>
 
   <div class="container">
@@ -43,68 +40,13 @@
       
       <section class="section">
         <h2>Project Overview</h2>
-        
-        <h4>The Team</h4>
-        <div class="team-container" id="team-container">
-          <!-- Team Member Tickets ... -->
-          <div class="team-ticket">
-            <label class="team-image-upload">
-              <img src="https://placehold.co/100x100/EEE/31343C" class="team-member-photo-preview" alt="Upload Photo">
-              <div class="photo-upload-overlay">Click to add image</div>
-              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
-            </label>
-            <input type="text" class="team-member-name" placeholder="Team Member Name">
-            <input type="text" class="team-member-role" placeholder="Role / Title">
-          </div>
-          <div class="team-ticket">
-            <label class="team-image-upload">
-              <img src="https://placehold.co/100x100/DDD/31343C" class="team-member-photo-preview" alt="Upload Photo">
-              <div class="photo-upload-overlay">Click to add image</div>
-              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
-            </label>
-            <input type="text" class="team-member-name" placeholder="Team Member Name">
-            <input type="text" class="team-member-role" placeholder="Role / Title">
-          </div>
-          <div class="team-ticket">
-            <label class="team-image-upload">
-              <img src="https://placehold.co/100x100/CCC/31343C" class="team-member-photo-preview" alt="Upload Photo">
-              <div class="photo-upload-overlay">Click to add image</div>
-              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
-            </label>
-            <input type="text" class="team-member-name" placeholder="Team Member Name">
-            <input type="text" class="team-member-role" placeholder="Role / Title">
-          </div>
-          <div class="team-ticket">
-            <label class="team-image-upload">
-              <img src="https://placehold.co/100x100/BBB/31343C" class="team-member-photo-preview" alt="Upload Photo">
-              <div class="photo-upload-overlay">Click to add image</div>
-              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
-            </label>
-            <input type="text" class="team-member-name" placeholder="Team Member Name">
-            <input type="text" class="team-member-role" placeholder="Role / Title">
-          </div>
-          <div class="team-ticket">
-            <label class="team-image-upload">
-              <img src="https://placehold.co/100x100/BBB/31343C" class="team-member-photo-preview" alt="Upload Photo">
-              <div class="photo-upload-overlay">Click to add image</div>
-              <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
-            </label>
-            <input type="text" class="team-member-name" placeholder="Team Member Name">
-            <input type="text" class="team-member-role" placeholder="Role / Title">
-          </div>
-        </div>
-        
         <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Project Title">
-        
-        <!-- ADDED: Tagline field -->
         <div class="input-group">
           <input type="text" id="project_tagline" name="project_tagline" class="title-input" style="font-size: 1.25rem; font-weight: normal;" placeholder="Tagline (one-liner)">
         </div>
-
-        <!-- UPDATED: Cover Media Section -->
         <h4>Cover Media</h4>
         <div class="input-group">
-            <label for="video_url">YouTube/Vimeo Link (Optional)</label>
+            <label for="video_url">YouTube/Vimeo Link</label>
             <input type="url" id="video_url" name="video_url" placeholder="https://youtube.com/...">
         </div>
         <div class="input-group">
@@ -115,8 +57,6 @@
 
       <section class="section">
         <h2>Basics</h2>
-        
-        <!-- ADDED: Run Length field -->
         <div class="input-group">
           <label for="run_length">Run Length</label>
           <select id="run_length" name="run_length">
@@ -126,50 +66,52 @@
             <option value="7 Days">7 Days</option>
           </select>
         </div>
-
         <div class="input-group">
           <label for="funding_goal">Funding Goal ($)</label>
           <input type="number" id="funding_goal" name="funding_goal" placeholder="1500">
         </div>
-        
-        <!-- UPDATED: Label for Short About -->
         <label>Short About</label>
         <div id="toolbar-basics"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-        <div id="editor-basics" style="height: 150px;"><p>We’re building smart solar streetlights that...</p></div>
+        <div id="editor-basics" style="height: 150px;"><p>A brief summary of your project...</p></div>
       </section>
 
       <section class="section">
-        <h2>Story</h2>
+        <h2>Full Story</h2>
         <div id="toolbar-story">
+          <!-- Full toolbar controls -->
           <span class="ql-formats"><select class="ql-header"><option value="1"></option><option value="2"></option><option selected></option></select></span>
           <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button></span>
-          <span class="ql-formats"><button class="ql-list" value="ordered"></button><button class="ql-list" value="bullet"></button></span>
-          <span class="ql-formats"><button class="ql-link"></button><button class="ql-image"></button></span>
-          <span class="ql-formats"><button class="ql-clean"></button></span>
         </div>
         <div id="editor-story" style="height: 400px;"><p>Tell your full story here...</p></div>
       </section>
+      
+      <!-- NEW SECTION: RISKS AND FAQ -->
+      <section class="section">
+        <h2>Risks & FAQ</h2>
+        <label>Risks and Challenges</label>
+        <div id="toolbar-risks"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-list" value="bullet"></button></div>
+        <div id="editor-risks" style="height: 150px;"><p>Be transparent about the hurdles you face...</p></div>
+
+        <h4 style="margin-top: 2rem;">Frequently Asked Questions</h4>
+        <div id="faq-container">
+          <!-- FAQ pairs will be added here dynamically -->
+        </div>
+        <button type="button" id="add-faq-btn" class="submit-btn" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">+ Add Question</button>
+      </section>
 
       <section class="section">
-        <!-- UPDATED: Button text -->
         <button type="submit" class="submit-btn">Submit Project</button>
       </section>
-      
     </form>
   </div>
 
+  <!-- RIGHT SIDEBAR: Rewards & Socials -->
   <aside class="sidebar">
     <h3>Rewards</h3>
-    <div class="rewards-info">
-      <p>Rewards are based on participation windows. Early backers get the best deals, and higher tiers receive greater returns!</p>
-    </div>
-
-    <!-- UPDATED: Reward placeholders to match example -->
     <div id="rewards-container">
+      <!-- REWARD TIER WITH NEW FIELDS -->
       <div class="reward-tier">
-        <div class="reward-badge-container">
-          <input type="text" value="Early Bird" class="reward-badge" placeholder="e.g., Early Bird">
-        </div>
+        <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name (e.g., Early Bird)">
         <div class="input-group">
           <label>Price ($)</label>
           <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
@@ -178,33 +120,24 @@
           <label>Description</label>
           <input type="text" name="reward_description" placeholder="Custom supporter badge..." class="reward-description">
         </div>
-      </div>
-      <div class="reward-tier">
-        <div class="reward-badge-container">
-          <input type="text" value="Mid Field Catch" class="reward-badge" placeholder="e.g., Mid Catch">
+        <div class="input-group">
+          <label>Estimated Delivery</label>
+          <input type="text" name="reward_delivery" placeholder="Jan 2026" class="reward-delivery">
         </div>
         <div class="input-group">
-          <label>Price ($)</label>
-          <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
-        </div>
-        <div class="input-group">
-          <label>Description</label>
-          <input type="text" name="reward_description" placeholder="Downloadable 3D model..." class="reward-description">
+          <label>Quantity Available (Optional)</label>
+          <input type="number" name="reward_quantity" placeholder="50" class="reward-quantity">
         </div>
       </div>
-      <div class="reward-tier">
-        <div class="reward-badge-container">
-          <input type="text" value="Afterhours Special" class="reward-badge" placeholder="e.g., After Hours">
-        </div>
-        <div class="input-group">
-          <label>Price ($)</label>
-          <input type="number" name="reward_amount" placeholder="75" class="reward-amount">
-        </div>
-        <div class="input-group">
-          <label>Description</label>
-          <input type="text" name="reward_description" placeholder="Exclusive invite to launch..." class="reward-description">
-        </div>
-      </div>
+       <!-- Add more reward tiers here -->
+    </div>
+    
+    <h3 style="margin-top: 2rem;">Social Links</h3>
+    <div id="socials-container">
+      <div class="input-group"><label for="social_twitter">Twitter</label><input type="url" id="social_twitter" placeholder="https://twitter.com/..."></div>
+      <div class="input-group"><label for="social_instagram">Instagram</label><input type="url" id="social_instagram" placeholder="https://instagram.com/..."></div>
+      <div class="input-group"><label for="social_website">Website</label><input type="url" id="social_website" placeholder="https://yoursite.com/..."></div>
+      <div class="input-group"><label for="social_github">GitHub</label><input type="url" id="social_github" placeholder="https://github.com/..."></div>
     </div>
   </aside>
 
@@ -212,35 +145,34 @@
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
-  // Initialize Quill editors
+  // Initialize ALL Quill editors
+  const quillCreator = new Quill('#editor-creator', { theme: 'snow', modules: { toolbar: '#toolbar-creator' }});
   const quillBasics = new Quill('#editor-basics', { theme: 'snow', modules: { toolbar: '#toolbar-basics' }});
   const quillStory = new Quill('#editor-story', { theme: 'snow', modules: { toolbar: '#toolbar-story' }});
+  const quillRisks = new Quill('#editor-risks', { theme: 'snow', modules: { toolbar: '#toolbar-risks' }});
 
-  // Handle Team Image Previews
-  document.querySelectorAll('.team-member-photo-input').forEach(input => {
-    input.addEventListener('change', event => {
-      const file = event.target.files[0];
-      if (file) {
-        const preview = event.target.closest('.team-ticket').querySelector('.team-member-photo-preview');
-        preview.src = URL.createObjectURL(file);
-      }
-    });
+  // --- DYNAMIC FAQ FUNCTIONALITY ---
+  const addFaqBtn = document.getElementById('add-faq-btn');
+  const faqContainer = document.getElementById('faq-container');
+  addFaqBtn.addEventListener('click', function() {
+    const faqPair = document.createElement('div');
+    faqPair.classList.add('faq-pair', 'input-group');
+    faqPair.innerHTML = `
+      <label>Question</label>
+      <input type="text" class="faq-question" placeholder="e.g., What are the dimensions?">
+      <label style="margin-top: 0.5rem;">Answer</label>
+      <textarea class="faq-answer" placeholder="Provide a detailed answer."></textarea>
+      <hr style="margin-top: 1rem; border: 1px solid #eee;">
+    `;
+    faqContainer.appendChild(faqPair);
   });
 
-  // Handle Form Submission
+  // --- FORM SUBMISSION ---
+  const projectForm = document.getElementById('project-form');
   projectForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // --- Gather Team Data ---
-    const teamMembers = [];
-    document.querySelectorAll('#team-container .team-ticket').forEach(ticket => {
-      const name = ticket.querySelector('.team-member-name').value;
-      const role = ticket.querySelector('.team-member-role').value;
-      const imageInput = ticket.querySelector('.team-member-photo-input').files[0];
-      if (name && role) { teamMembers.push({ name, role, image_filename: imageInput ? imageInput.name : null }); }
-    });
-
-    // --- UPDATED: Gather Socials Data ---
+    // Gather Socials
     const socials = {
       twitter: document.getElementById('social_twitter').value,
       instagram: document.getElementById('social_instagram').value,
@@ -248,35 +180,64 @@
       github: document.getElementById('social_github').value,
     };
 
-    // --- Gather Rewards Data ---
+    // Gather Rewards with all details
     const rewards = [];
-    document.querySelectorAll('#rewards-container .reward-tier').forEach(rewardTier => {
-      const badge = rewardTier.querySelector('.reward-badge').value;
-      const amount = rewardTier.querySelector('.reward-amount').value;
-      const description = rewardTier.querySelector('.reward-description').value;
-      if (badge && amount && description) { rewards.push({ badge, amount: parseInt(amount), description }); }
+    document.querySelectorAll('#rewards-container .reward-tier').forEach(tier => {
+      const badge = tier.querySelector('.reward-badge').value;
+      const amount = tier.querySelector('.reward-amount').value;
+      const description = tier.querySelector('.reward-description').value;
+      if (badge && amount && description) {
+        rewards.push({
+          badge,
+          amount: parseInt(amount),
+          description,
+          delivery: tier.querySelector('.reward-delivery').value,
+          quantity: parseInt(tier.querySelector('.reward-quantity').value) || null,
+        });
+      }
     });
 
-    // --- UPDATED: Assemble Final Data Object ---
+    // Gather FAQs
+    const faqs = [];
+    document.querySelectorAll('#faq-container .faq-pair').forEach(pair => {
+      const question = pair.querySelector('.faq-question').value;
+      const answer = pair.querySelector('.faq-answer').value;
+      if (question && answer) {
+        faqs.push({ question, answer });
+      }
+    });
+
+    // --- Assemble THE FINAL, COMPLETE Data Object ---
     const projectData = {
+      // Creator Info
+      creator_name: document.getElementById('creator_name').value,
+      creator_bio: quillCreator.root.innerHTML,
+      creator_photo_filename: document.getElementById('creator_photo').files[0]?.name || null,
+      project_location: document.getElementById('project_location').value,
+      
+      // Project Info
       project_title: document.getElementById('project_title').value,
-      project_tagline: document.getElementById('project_tagline').value, // ADDED
+      project_tagline: document.getElementById('project_tagline').value,
       short_about: quillBasics.root.innerHTML,
-      story: quillStory.root.innerHTML,
+      full_story: quillStory.root.innerHTML,
+      risks_challenges: quillRisks.root.innerHTML,
+      
+      // Media
+      video_url: document.getElementById('video_url').value,
+      cover_image_filename: document.getElementById('cover_image_upload').files[0]?.name || null,
+
+      // Logistics
       funding_goal: parseInt(document.getElementById('funding_goal').value) || 0,
-      run_length: document.getElementById('run_length').value, // ADDED
-      team: JSON.stringify(teamMembers),
-      socials: JSON.stringify(socials),
+      run_length: document.getElementById('run_length').value,
+      
+      // JSON Data
       rewards: JSON.stringify(rewards),
-      video_url: document.getElementById('video_url').value, // ADDED
-      // Note: You'll still need a separate process to handle the actual file upload for 'cover_image_upload'
-      cover_image: document.getElementById('cover_image_upload').files[0]?.name || null,
+      socials: JSON.stringify(socials),
+      faqs: JSON.stringify(faqs),
     };
     
-    console.log("Data ready to be sent to Supabase:", projectData);
-    alert("Check the browser console (F12) to see the final data object!");
-
-    // --- Supabase submission logic would go here ---
+    console.log("FINAL DATA OBJECT:", projectData);
+    alert("Check the browser console (F12) to see the final, complete data object!");
   });
 </script>
 
