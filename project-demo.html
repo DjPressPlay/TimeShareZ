@@ -24,14 +24,18 @@
 <body>
 <header>TimeShareZ — Project Setup</header>
 <div class="layout">
+
+  
   <!-- LEFT SIDEBAR: Creator & Socials -->
-  <aside class="sidebar">
+<aside class="sidebar">
+
+  <!-- Creator Details Ticket -->
+  <div class="sidebar-ticket">
     <h3>Creator Details</h3>
     <div class="input-group">
       <label for="creator_name">Creator Name</label>
       <input type="text" id="creator_name" name="creator_name" placeholder="Jane Doe">
-    
-   </div>
+    </div>
     <div class="input-group">
       <label for="creator_photo">Profile Picture</label>
       <input type="file" id="creator_photo" name="creator_photo" accept="image/*">
@@ -43,15 +47,23 @@
     <label>Creator Bio</label>
     <div id="toolbar-creator"><button class="ql-bold"></button><button class="ql-italic"></button></div>
     <div id="editor-creator" style="height: 120px;"><p>A little about you or your team...</p></div>
+  </div>
 
-<h3 style="margin-top: 2rem;">Social Links</h3>
-<div id="socials-container">
-  <div class="input-group"><label for="social_twitter">Twitter</label><input type="url" id="social_twitter" placeholder="https://twitter.com/..."></div>
-  <div class="input-group"><label for="social_instagram">Instagram</label><input type="url" id="social_instagram" placeholder="https://instagram.com/..."></div>
-  <div class="input-group"><label for="social_website">Website</label><input type="url" id="social_website" placeholder="https://yoursite.com/..."></div>
-  <div class="input-group"><label for="social_github">GitHub</label><input type="url" id="social_github" placeholder="https://github.com/..."></div>
-</div>
-  </aside>
+  <!-- Social Links Ticket -->
+  <div class="sidebar-ticket" style="margin-top:2rem;">
+    <h3>Social Links</h3>
+    <div id="socials-container">
+      <div class="input-group"><label for="social_twitter">Twitter</label><input type="url" id="social_twitter" placeholder="https://twitter.com/..."></div>
+      <div class="input-group"><label for="social_instagram">Instagram</label><input type="url" id="social_instagram" placeholder="https://instagram.com/..."></div>
+      <div class="input-group"><label for="social_website">Website</label><input type="url" id="social_website" placeholder="https://yoursite.com/..."></div>
+      <div class="input-group"><label for="social_github">GitHub</label><input type="url" id="social_github" placeholder="https://github.com/..."></div>
+    </div>
+  </div>
+
+</aside>
+
+
+
   <!-- MAIN CONTENT -->
   <div class="container">
     <form id="project-form">
