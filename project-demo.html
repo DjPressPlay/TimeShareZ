@@ -6,7 +6,7 @@
   <title>TimeShareZ Project Setup</title>
   <!-- Include Quill's stylesheet -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-  <!-- Link to your new stylesheet -->
+  <!-- Link to your stylesheet -->
   <link href="pjd_style.css" rel="stylesheet" />
 </head>
 <body>
@@ -146,23 +146,59 @@
     </form>
   </div>
 
+  <!-- UPDATED REWARDS SIDEBAR -->
   <aside class="sidebar">
     <h3>Rewards</h3>
+
+    <!-- Informational text explaining the reward system -->
+    <div class="rewards-info">
+      <p>Rewards are based on participation windows. Early backers get the best deals!</p>
+    </div>
+
     <div id="rewards-container">
-      <div class="input-group">
-        <label>Reward 1</label>
-        <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
-        <input type="text" name="reward_description" placeholder="Sticker Pack" class="reward-description">
+      <!-- Reward 1: Early Bird -->
+      <div class="reward-tier">
+        <div class="reward-badge-container">
+          <input type="text" value="Early Bird" class="reward-badge" placeholder="e.g., Early Bird">
+        </div>
+        <div class="input-group">
+          <label>Price ($)</label>
+          <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
+        </div>
+        <div class="input-group">
+          <label>Description</label>
+          <input type="text" name="reward_description" placeholder="Reward for the first backers" class="reward-description">
+        </div>
       </div>
-      <div class="input-group" style="margin-top:1rem; border-top:1px solid #eee; padding-top:1rem;">
-        <label>Reward 2</label>
-        <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
-        <input type="text" name="reward_description" placeholder="T-Shirt" class="reward-description">
+
+      <!-- Reward 2: Mid Catch -->
+      <div class="reward-tier">
+        <div class="reward-badge-container">
+          <input type="text" value="Mid Catch" class="reward-badge" placeholder="e.g., Mid Catch">
+        </div>
+        <div class="input-group">
+          <label>Price ($)</label>
+          <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
+        </div>
+        <div class="input-group">
+          <label>Description</label>
+          <input type="text" name="reward_description" placeholder="Reward for mid-range backers" class="reward-description">
+        </div>
       </div>
-      <div class="input-group" style="margin-top:1rem; border-top:1px solid #eee; padding-top:1rem;">
-        <label>Reward 3</label>
-        <input type="number" name="reward_amount" placeholder="100" class="reward-amount">
-        <input type="text" name="reward_description" placeholder="Limited Edition Purifier" class="reward-description">
+
+      <!-- Reward 3: After Hours -->
+      <div class="reward-tier">
+        <div class="reward-badge-container">
+          <input type="text" value="After Hours" class="reward-badge" placeholder="e.g., After Hours">
+        </div>
+        <div class="input-group">
+          <label>Price ($)</label>
+          <input type="number" name="reward_amount" placeholder="75" class="reward-amount">
+        </div>
+        <div class="input-group">
+          <label>Description</label>
+          <input type="text" name="reward_description" placeholder="Reward for later backers" class="reward-description">
+        </div>
       </div>
     </div>
   </aside>
@@ -198,15 +234,10 @@
       const role = ticket.querySelector('.team-member-role').value;
       const imageInput = ticket.querySelector('.team-member-photo-input').files[0];
       
-      // In a real app, you would upload the 'imageInput' file to Supabase Storage.
-      // For this example, we'll just note its presence and name.
-      // If you save the preview src, it will be a temporary 'blob:' URL which is not permanent.
-      
-      if (name && role) { // Only add team members that have a name and role
+      if (name && role) {
         teamMembers.push({ 
           name, 
           role, 
-          // Storing the filename for now. The file itself needs to be uploaded separately.
           image_filename: imageInput ? imageInput.name : null 
         });
       }
@@ -219,12 +250,18 @@
       reddit: document.getElementById('social_reddit').value,
     };
 
+    // --- UPDATED: Gather Rewards Data from New Tiered Structure ---
     const rewards = [];
-    document.querySelectorAll('#rewards-container .input-group').forEach(rewardGroup => {
-        const amount = rewardGroup.querySelector('.reward-amount').value;
-        const description = rewardGroup.querySelector('.reward-description').value;
-        if (amount && description) {
-            rewards.push({ amount: parseInt(amount), description });
+    document.querySelectorAll('#rewards-container .reward-tier').forEach(rewardTier => {
+        const badge = rewardTier.querySelector('.reward-badge').value;
+        const amount = rewardTier.querySelector('.reward-amount').value;
+        const description = rewardTier.querySelector('.reward-description').value;
+        if (badge && amount && description) {
+            rewards.push({ 
+              badge: badge,
+              amount: parseInt(amount), 
+              description: description 
+            });
         }
     });
 
@@ -237,7 +274,7 @@
       status: document.getElementById('status').value,
       team: JSON.stringify(teamMembers),
       socials: JSON.stringify(socials),
-      rewards: JSON.stringify(rewards),
+      rewards: JSON.stringify(rewards), // Now contains structured reward data
       video: null,
       images: null
     };
