@@ -8,6 +8,18 @@
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
   <!-- Your stylesheet -->
   <link href="pjd_style.css" rel="stylesheet" />
+  <style>
+    /* Helper style for the new explanation text */
+    .explanation {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #666;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      border-left: 3px solid #eee;
+      padding-left: 10px;
+    }
+  </style>
 </head>
 <body>
 
@@ -79,8 +91,10 @@
         <button type="button" id="add-team-member-btn" class="submit-btn" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">+ Add Team Member</button>
       </section>
 
+      <!-- NEW COMBINED AND GUIDED SECTION -->
       <section class="section">
-        <h2>Basics</h2>
+        <h2>Basics & Story</h2>
+        
         <div class="input-group">
           <label for="run_length">Run Length</label>
           <select id="run_length" name="run_length">
@@ -94,15 +108,26 @@
           <label for="funding_goal">Funding Goal ($)</label>
           <input type="number" id="funding_goal" name="funding_goal" placeholder="1500">
         </div>
-        <label>Short About</label>
-        <div id="toolbar-basics"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-        <div id="editor-basics" style="height: 150px;"><p>A brief summary of your project...</p></div>
-      </section>
 
-      <section class="section">
-        <h2>Full Story</h2>
-        <div id="toolbar-story"><span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button></span></div>
-        <div id="editor-story" style="height: 400px;"><p>Tell your full story here...</p></div>
+        <h4 style="margin-top: 2rem;">Project Summary (Short About)</h4>
+        <p class="explanation">A brief, compelling summary. This is the first thing people will read after your title.</p>
+        <div id="toolbar-summary"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+        <div id="editor-summary" style="height: 150px;"><p>We’re building smart solar streetlights...</p></div>
+
+        <h4 style="margin-top: 2rem;">Our Story & Vision</h4>
+        <p class="explanation">Introduce your project. What is your vision? Why are you passionate about it?</p>
+        <div id="toolbar-vision"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+        <div id="editor-vision" style="height: 200px;"></div>
+        
+        <h4 style="margin-top: 2rem;">Our Plan & Use of Funds</h4>
+        <p class="explanation">Be specific. What are the next steps in your plan? How will the funds be used to achieve your goals?</p>
+        <div id="toolbar-plan"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-list" value="bullet"></button></div>
+        <div id="editor-plan" style="height: 200px;"></div>
+        
+        <h4 style="margin-top: 2rem;">Risks & Challenges</h4>
+        <p class="explanation">Be transparent. What hurdles do you anticipate? How will you overcome them? This builds trust.</p>
+        <div id="toolbar-risks"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+        <div id="editor-risks" style="height: 200px;"></div>
       </section>
       
       <section class="section">
@@ -143,14 +168,16 @@
 <script>
   // Initialize Quill editors
   const quillCreator = new Quill('#editor-creator', { theme: 'snow', modules: { toolbar: '#toolbar-creator' }});
-  const quillBasics = new Quill('#editor-basics', { theme: 'snow', modules: { toolbar: '#toolbar-basics' }});
-  const quillStory = new Quill('#editor-story', { theme: 'snow', modules: { toolbar: '#toolbar-story' }});
+  // NEW guided story editors
+  const quillSummary = new Quill('#editor-summary', { theme: 'snow', modules: { toolbar: '#toolbar-summary' }});
+  const quillVision = new Quill('#editor-vision', { theme: 'snow', modules: { toolbar: '#toolbar-vision' }});
+  const quillPlan = new Quill('#editor-plan', { theme: 'snow', modules: { toolbar: '#toolbar-plan' }});
+  const quillRisks = new Quill('#editor-risks', { theme: 'snow', modules: { toolbar: '#toolbar-risks' }});
 
   // --- DYNAMIC TEAM MEMBER FUNCTIONALITY ---
   const addTeamMemberBtn = document.getElementById('add-team-member-btn');
   const teamContainer = document.getElementById('team-container');
   
-  // Use event delegation for image previews on dynamically added team members
   teamContainer.addEventListener('change', event => {
     if (event.target.classList.contains('team-member-photo-input')) {
       const file = event.target.files[0];
@@ -197,46 +224,32 @@
   projectForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Gather Socials
+    // Gather Socials, Rewards, FAQs, and Team Data...
     const socials = {
       twitter: document.getElementById('social_twitter').value,
       instagram: document.getElementById('social_instagram').value,
       website: document.getElementById('social_website').value,
       github: document.getElementById('social_github').value,
     };
-
-    // Gather Rewards
     const rewards = [];
     document.querySelectorAll('#rewards-container .reward-tier').forEach(tier => {
       const badge = tier.querySelector('.reward-badge').value;
       const amount = tier.querySelector('.reward-amount').value;
       const description = tier.querySelector('.reward-description').value;
-      if (badge && amount && description) {
-        rewards.push({ badge, amount: parseInt(amount), description });
-      }
+      if (badge && amount && description) { rewards.push({ badge, amount: parseInt(amount), description }); }
     });
-
-    // Gather FAQs
     const faqs = [];
     document.querySelectorAll('#faq-container .faq-pair').forEach(pair => {
       const question = pair.querySelector('.faq-question').value;
       const answer = pair.querySelector('.faq-answer').value;
       if (question && answer) { faqs.push({ question, answer }); }
     });
-    
-    // Gather Team Data
     const teamMembers = [];
     document.querySelectorAll('#team-container .team-ticket').forEach(ticket => {
         const name = ticket.querySelector('.team-member-name').value;
         const role = ticket.querySelector('.team-member-role').value;
         const imageFile = ticket.querySelector('.team-member-photo-input').files[0];
-        if (name) { // Only add if there's a name
-            teamMembers.push({
-                name,
-                role,
-                image_filename: imageFile ? imageFile.name : null
-            });
-        }
+        if (name) { teamMembers.push({ name, role, image_filename: imageFile ? imageFile.name : null }); }
     });
 
     // --- Assemble THE FINAL Data Object ---
@@ -246,16 +259,21 @@
       project_location: document.getElementById('project_location').value,
       project_title: document.getElementById('project_title').value,
       project_tagline: document.getElementById('project_tagline').value,
-      short_about: quillBasics.root.innerHTML,
-      full_story: quillStory.root.innerHTML,
       video_url: document.getElementById('video_url').value,
       funding_goal: parseInt(document.getElementById('funding_goal').value) || 0,
       run_length: document.getElementById('run_length').value,
+      
+      // NEW Story Properties
+      project_summary: quillSummary.root.innerHTML,
+      story_vision: quillVision.root.innerHTML,
+      story_plan: quillPlan.root.innerHTML,
+      risks_challenges: quillRisks.root.innerHTML,
+      
       rewards: JSON.stringify(rewards),
       socials: JSON.stringify(socials),
       faqs: JSON.stringify(faqs),
       team: JSON.stringify(teamMembers),
-      // File names for separate upload handling
+
       creator_photo_filename: document.getElementById('creator_photo').files[0]?.name || null,
       cover_image_filename: document.getElementById('cover_image_upload').files[0]?.name || null,
     };
