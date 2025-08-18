@@ -1,4 +1,4 @@
-/* Base Reset & Body */
+/* === Base Reset & Body === */
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@ body {
   line-height: 1.5;
 }
 
-/* Navigation Bar */
+/* === Navigation Bar === */
 nav {
   background: #111;
   color: #fff;
@@ -19,12 +19,12 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1.25rem;
-  border-bottom: 3px solid #6a5acd; /* iridescent purple base */
+  border-bottom: 3px solid #6a5acd;
 }
 nav h1 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #00ffc8; /* teal accent */
+  color: #00ffc8;
 }
 nav ul {
   list-style: none;
@@ -41,14 +41,14 @@ nav a:hover {
   color: #00ffc8;
 }
 
-/* Layout */
+/* === Layout === */
 .layout {
   max-width: 900px;
   margin: 1.5rem auto;
   padding: 0 1rem;
 }
 
-/* Sections */
+/* === Sections === */
 .section {
   background: #fff;
   padding: 1.5rem;
@@ -58,8 +58,8 @@ nav a:hover {
 }
 .section h2 {
   margin-bottom: 1rem;
-  color: #31343C;
   font-size: 1.2rem;
+  color: #31343C;
   border-left: 4px solid #00ffc8;
   padding-left: 0.5rem;
 }
@@ -69,7 +69,7 @@ nav a:hover {
   color: #444;
 }
 
-/* Input Groups */
+/* === Input Groups === */
 .input-group {
   margin-bottom: 1rem;
   display: flex;
@@ -94,24 +94,46 @@ nav a:hover {
   box-shadow: 0 0 0 2px rgba(106, 90, 205, 0.25);
 }
 
-/* Buttons */
+/* === Action Bar (Preview + Submit) === */
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.preview-btn,
 .submit-btn {
   display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s, background 0.2s, color 0.2s;
+}
+
+/* Primary: Submit */
+.submit-btn {
   background: linear-gradient(90deg, #00ffc8, #6a5acd);
   border: none;
   color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: opacity 0.2s;
 }
 .submit-btn:hover {
   opacity: 0.85;
 }
 
-/* Team Ticket */
+/* Secondary: Preview */
+.preview-btn {
+  background: #eee;
+  border: 1px solid #ccc;
+  color: #333;
+}
+.preview-btn:hover {
+  background: #ddd;
+  color: #000;
+}
+
+/* === Team Ticket === */
 .team-container {
   display: flex;
   flex-wrap: wrap;
@@ -134,7 +156,7 @@ nav a:hover {
   color: #666;
 }
 
-/* Reward Tiers */
+/* === Reward Tiers === */
 .reward-tier {
   background: #f9f9f9;
   border: 1px solid #ddd;
@@ -152,7 +174,7 @@ nav a:hover {
   color: #6a5acd;
 }
 
-/* Explanations */
+/* === Explanations === */
 .explanation {
   font-size: 0.85rem;
   font-style: italic;
@@ -162,19 +184,20 @@ nav a:hover {
   padding-left: 0.5rem;
 }
 
-/* FAQ */
+/* === FAQ === */
 #add-faq-btn {
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 0.9rem;
   cursor: pointer;
+  padding: 0.5rem;
 }
 #add-faq-btn:hover {
   background: #ddd;
 }
 
-/* Responsive Fix */
+/* === Responsive === */
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -190,5 +213,9 @@ nav a:hover {
   }
   .team-container {
     justify-content: center;
+  }
+  .action-bar {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }
