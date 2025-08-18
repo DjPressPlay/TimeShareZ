@@ -1,229 +1,194 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
-body {
-  font-family: Arial, sans-serif;
+/* Base Reset & Body */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background: #f6f6f6;
   color: #222;
+  line-height: 1.5;
 }
-header {
+
+/* Navigation Bar */
+nav {
   background: #111;
   color: #fff;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.5rem;
-  border-bottom: 3px solid #00ffc8;
-}
-.layout {
   display: flex;
-  max-width: 1400px;
-  margin: auto;
-  padding: 1rem;
-  gap: 1rem;
-  align-items: flex-start; /* Align items to the top */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 3px solid #6a5acd; /* iridescent purple base */
 }
-.sidebar-ticket {
-  background: #fff; 
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  padding: 1rem; 
-  margin-bottom: 1rem;
-}
-
-
-.sidebar h3 {
-  margin-top: 0;
+nav h1 {
   font-size: 1.1rem;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 0.4rem;
+  font-weight: 600;
+  color: #00ffc8; /* teal accent */
 }
-.sidebar .input-group { margin-bottom: 0.75rem; }
-.sidebar label { font-weight: bold; font-size: 0.85rem; display: block; margin-bottom: 0.25rem; }
-.sidebar input, .sidebar select { width: 100%; padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
-.container {
-  flex: 1;
+nav ul {
+  list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
+nav a {
+  text-decoration: none;
+  color: #eee;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+nav a:hover {
+  color: #00ffc8;
+}
+
+/* Layout */
+.layout {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+/* Sections */
 .section {
   background: #fff;
-  padding: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
   border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 .section h2 {
-  margin-top: 0;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: #31343C;
+  font-size: 1.2rem;
+  border-left: 4px solid #00ffc8;
+  padding-left: 0.5rem;
 }
 .section h4 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1rem;
+  color: #444;
 }
-.title-input {
-  font-size: 1.75rem;
-  font-family: inherit;
-  font-weight: bold;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  padding: 0.5rem;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 0.5rem;
-}
-.title-input:focus {
-  outline: none;
-  border-color: #00ffc8;
-}
+
+/* Input Groups */
 .input-group {
   margin-bottom: 1rem;
-}
-label {
-  font-weight: bold;
-  font-size: 0.9rem;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-/* --- CSS FOR EDITABLE TEAM SECTION --- */
-.team-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.75rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #eee;
-}
-.team-ticket {
-  background: #f9f9f9;
-  border: 1px solid #e0e0e0; /* Added a slightly more visible border */
-  border-radius: 8px;
-  padding: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04); /* Initial soft shadow */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  /* Added transition for smooth hover effects */
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.input-group label {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: #444;
+}
+.input-group input,
+.input-group select {
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #6a5acd;
+  box-shadow: 0 0 0 2px rgba(106, 90, 205, 0.25);
 }
 
-/* Hover state for the team ticket */
-.team-ticket:hover {
-  /* Expands and lifts the card */
-  transform: scale(1.05) translateY(-5px);
-  /* Adds a glow effect using the accent color */
-  box-shadow: 0 8px 25px rgba(0, 255, 200, 0.4);
-}
-
-.team-image-upload {
-  position: relative;
+/* Buttons */
+.submit-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #00ffc8, #6a5acd);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 50%;
+  transition: opacity 0.2s;
 }
-.team-image-upload:hover .photo-upload-overlay {
-  opacity: 1;
+.submit-btn:hover {
+  opacity: 0.85;
 }
-.team-member-photo-preview {
-  width: 70px;
-  height: 70px;
+
+/* Team Ticket */
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.team-ticket {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 6px;
+  width: 200px;
+  text-align: center;
+}
+.team-ticket img {
   border-radius: 50%;
-  border: 3px solid #00ffc8;
-  object-fit: cover;
-  display: block;
+  margin-bottom: 0.5rem;
 }
 .photo-upload-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.2s;
-  font-size: 0.8rem;
-  text-align: center;
-  padding: 4px;
-}
-.team-ticket input[type="text"] {
-  width: 100%;
-  border: 1px solid transparent;
-  background: transparent;
-  text-align: center;
-  padding: 0.25rem;
-  border-radius: 4px;
-  transition: border 0.2s, background 0.2s;
-}
-.team-ticket input[type="text"]:focus {
-  border: 1px solid #ccc;
-  background: #fff;
-  outline: none;
-}
-.team-member-name {
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-.team-member-role {
   font-size: 0.8rem;
   color: #666;
 }
 
-.submit-btn {
-  display: block;
-  width: 100%;
+/* Reward Tiers */
+.reward-tier {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
   padding: 1rem;
-  background: #7a00ff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.submit-btn:hover {
-  background: #6a00e6;
-}
-/* --- NAV BAR --- */
-nav {
-  background: #111;
-  color: #fff;
-  border-bottom: 3px solid #00ffc8;
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;   /* logo left, links right */
-  align-items: center;
-}
-
-nav h1 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;                   /* make list horizontal */
-  gap: 1rem;                       /* space between items */
-}
-
-nav ul li a {
-  background: #7a00ff;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
   border-radius: 6px;
-  font-weight: bold;
-  transition: background 0.2s;
+}
+.reward-badge {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  display: block;
+  border: none;
+  background: transparent;
+  color: #6a5acd;
 }
 
-nav ul li a:hover {
-  background: #6a00e6;
+/* Explanations */
+.explanation {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #666;
+  margin: 0.25rem 0 1rem;
+  border-left: 3px solid #eee;
+  padding-left: 0.5rem;
+}
+
+/* FAQ */
+#add-faq-btn {
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+#add-faq-btn:hover {
+  background: #ddd;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav ul {
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .layout {
+    padding: 0 0.75rem;
+  }
+  .team-container {
+    justify-content: center;
+  }
 }
