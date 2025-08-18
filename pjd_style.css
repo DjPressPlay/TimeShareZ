@@ -1,4 +1,4 @@
-/* === Base Reset & Body === */
+/* === Base Reset === */
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +35,7 @@ nav a {
   text-decoration: none;
   color: #eee;
   font-size: 0.95rem;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 nav a:hover {
   color: #00ffc8;
@@ -86,6 +86,7 @@ nav a:hover {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .input-group input:focus,
 .input-group select:focus {
@@ -94,43 +95,39 @@ nav a:hover {
   box-shadow: 0 0 0 2px rgba(106, 90, 205, 0.25);
 }
 
+/* === Buttons (Unified Style) === */
+button,
+.submit-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #00ffc8, #6a5acd);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease-in-out;
+}
+button:hover,
+.submit-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+button:active,
+.submit-btn:active {
+  transform: translateY(0);
+}
+
 /* === Action Bar (Preview + Submit) === */
 .action-bar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 1rem;
 }
-.preview-btn,
-.submit-btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: opacity 0.2s, background 0.2s, color 0.2s;
-}
-
-/* Primary: Submit */
-.submit-btn {
-  background: linear-gradient(90deg, #00ffc8, #6a5acd);
-  border: none;
-  color: #fff;
-}
-.submit-btn:hover {
-  opacity: 0.85;
-}
-
-/* Secondary: Preview */
-.preview-btn {
-  background: #eee;
-  border: 1px solid #ccc;
-  color: #333;
-}
-.preview-btn:hover {
-  background: #ddd;
-  color: #000;
+.action-bar button {
+  flex: 1;
+  text-align: center;
 }
 
 /* === Team Ticket === */
@@ -186,15 +183,18 @@ nav a:hover {
 
 /* === FAQ === */
 #add-faq-btn {
-  background: #eee;
-  border: 1px solid #ccc;
-  border-radius: 6px;
   font-size: 0.9rem;
-  cursor: pointer;
   padding: 0.5rem;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #00ffc8, #6a5acd);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease-in-out;
 }
 #add-faq-btn:hover {
-  background: #ddd;
+  opacity: 0.85;
+  transform: translateY(-1px);
 }
 
 /* === Responsive === */
@@ -216,6 +216,8 @@ nav a:hover {
   }
   .action-bar {
     flex-direction: column;
-    gap: 0.75rem;
+  }
+  .action-bar button {
+    width: 100%;
   }
 }
