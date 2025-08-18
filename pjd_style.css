@@ -194,28 +194,28 @@ label {
 .submit-btn:hover {
   background: #6a00e6;
 }
-/* --- NAV BAR --- */
+/* --- NAV BAR FIX --- */
 nav {
-  background: #111;
+  background: #111;               /* dark bar */
   border-bottom: 3px solid #00ffc8;
   padding: 0.75rem 1rem;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: center;        /* center horizontally */
+  gap: 1rem;                      /* space between buttons */
 }
 
 nav button {
-  background: transparent;
-  border: 2px solid #00ffc8;
-  color: #00ffc8;
+  background: #7a00ff;            /* purple button */
+  border: none;
+  color: #fff;                    /* white text for contrast */
   font-weight: bold;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s;
 }
 
 nav button:hover {
-  background: #00ffc8;
-  color: #111;
+  background: #6a00e6;            /* darker purple on hover */
 }
+
