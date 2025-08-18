@@ -194,28 +194,40 @@ label {
 .submit-btn:hover {
   background: #6a00e6;
 }
-/* --- NAV BAR FIX --- */
+/* --- NAV BAR --- */
 nav {
-  background: #111;               /* dark bar */
+  background: #111;
+  color: #fff;
   border-bottom: 3px solid #00ffc8;
   padding: 0.75rem 1rem;
   display: flex;
-  justify-content: center;        /* center horizontally */
-  gap: 1rem;                      /* space between buttons */
+  justify-content: space-between;   /* logo left, links right */
+  align-items: center;
 }
 
-nav button {
-  background: #7a00ff;            /* purple button */
-  border: none;
-  color: #fff;                    /* white text for contrast */
-  font-weight: bold;
-  padding: 0.6rem 1.2rem;
+nav h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;                   /* make list horizontal */
+  gap: 1rem;                       /* space between items */
+}
+
+nav ul li a {
+  background: #7a00ff;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
-  cursor: pointer;
+  font-weight: bold;
   transition: background 0.2s;
 }
 
-nav button:hover {
-  background: #6a00e6;            /* darker purple on hover */
+nav ul li a:hover {
+  background: #6a00e6;
 }
-
