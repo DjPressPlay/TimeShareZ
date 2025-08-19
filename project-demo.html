@@ -146,14 +146,7 @@ postProjectBtn.addEventListener('click', (e) => {
   <!-- Creator Bio -->
   <div class="input-group">
     <label for="editor-creator">Creator Bio</label>
-    <textarea 
-      id="creator_bio" 
-      name="creator_bio" 
-      maxlength="280" 
-      rows="7" 
-      placeholder="A little about you or your team..."
-      style="resize: none; width: 100%; box-sizing: border-box;"
-    ></textarea>
+    <textarea id="creator_bio" name="creator_bio" maxlength="280" rows="5" placeholder="A little about you or your team..."></textarea>
     <small id="bio-counter">0 / 280</small>
   </div>
 </section>
@@ -180,6 +173,7 @@ postProjectBtn.addEventListener('click', (e) => {
     counter.textContent = `${bio.value.length} / 280`;
   });
 </script>
+
 
 
 
