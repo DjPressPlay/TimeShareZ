@@ -117,7 +117,59 @@ postProjectBtn.addEventListener('click', (e) => {
 
     
 
-    <!-- Creator Bio -->
+<!-- Creator Details -->
+<section class="section creator-details">
+  <h2>👤 Creator Details</h2>
+
+  <!-- Name -->
+  <div class="input-group">
+    <label for="creator_name">Full Name</label>
+    <input 
+      type="text" 
+      id="creator_name" 
+      name="creator_name" 
+      placeholder="Jane Doe"
+      required
+    >
+  </div>
+
+  <!-- Profile Picture -->
+  <div class="input-group profile-upload">
+    <label>Profile Picture</label>
+    <div class="photo-container">
+      <img id="photo_preview_img" src="https://placehold.co/100x100/EEE/31343C" alt="Profile Preview" class="profile-avatar"/>
+      <div class="photo-buttons">
+        <input 
+          type="file" 
+          id="creator_photo" 
+          name="creator_photo" 
+          accept="image/*"
+          onchange="previewPhoto(event)"
+        >
+        <button type="button" id="remove_photo" onclick="removePhoto()">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location -->
+  <div class="input-group">
+    <label>Project Location</label>
+    <input 
+      type="text" 
+      id="creator_country" 
+      name="creator_country" 
+      placeholder="Country"
+      style="margin-bottom:0.5rem;"
+    >
+    <input 
+      type="text" 
+      id="creator_state" 
+      name="creator_state" 
+      placeholder="State / Province"
+    >
+  </div>
+
+  <!-- Creator Bio -->
   <div class="input-group">
     <label for="editor-creator">Creator Bio</label>
     <div id="toolbar-creator">
@@ -145,6 +197,7 @@ function removePhoto() {
   input.value = "";
 }
 </script>
+
 
 
     <!-- Social Links ------------------------------------------------->
