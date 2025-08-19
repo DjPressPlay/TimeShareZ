@@ -32,11 +32,12 @@
     
 <!-- Action Bar -->
 <section class="section action-bar">
-   <button type="button">View Rules</button>
-  <button type="button">Get Paid</button>
-   <button type="button">Preview Ticket</button>
-  <button type="submit">Post Project Ticket</button>
+  <button type="button" id="view-rules-btn">View Rules</button>
+  <button type="button" id="get-paid-btn">Get Paid</button>
+  <button type="button" id="preview-ticket-btn">Preview Ticket</button>
+  <button type="submit" id="post-project-btn">Post Project Ticket</button>
 </section>
+
 
 
 <!-- Overlay (hidden by default) -->
@@ -90,11 +91,11 @@ const ticketContent = document.getElementById('ticket-content');
 const closeOverlay = document.getElementById('close-overlay');
 
 // Button references
-const viewRulesBtn = document.querySelector('button:contains("View Rules")');
-const getPaidBtn = document.querySelector('button:contains("Get Paid")');
-const previewTicketBtn = document.querySelector('button:contains("Preview Ticket")');
-const postProjectBtn = document.querySelector('button[type="submit"]');
-
+const viewRulesBtn = document.getElementById('view-rules-btn');
+const getPaidBtn = document.getElementById('get-paid-btn');
+const previewTicketBtn = document.getElementById('preview-ticket-btn');
+const postProjectBtn = document.getElementById('post-project-btn');
+  
 // Show overlay with custom content
 function showOverlay(content) {
   ticketContent.innerHTML = content;
