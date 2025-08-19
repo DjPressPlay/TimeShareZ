@@ -236,15 +236,47 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section">
-      <h2>Frequently Asked Questions</h2>
-      <div id="faq-container"></div>
-      <button type="button" id="add-faq-btn" style="width:100%; margin-top:1rem; padding: 0.5rem;">+ Add Question</button>
-    </section>
+<!-- FAQ -->
+<section class="section">
+  <h2>Frequently Asked Questions</h2>
+  <div id="faq-container"></div>
+  <button type="button" id="add-faq-btn" style="width:100%; margin-top:1rem; padding: 0.5rem;">+ Add Question</button>
+</section>
 
-  </form>
-</div>
+<script>
+  document.getElementById("add-faq-btn").addEventListener("click", function() {
+    const container = document.getElementById("faq-container");
+
+    // Create wrapper div
+    const faqItem = document.createElement("div");
+    faqItem.style.marginBottom = "1rem";
+    faqItem.style.padding = "0.75rem";
+    faqItem.style.border = "1px solid #ccc";
+    faqItem.style.borderRadius = "6px";
+    faqItem.style.background = "#fafafa";
+
+    // Question input
+    const qInput = document.createElement("input");
+    qInput.type = "text";
+    qInput.placeholder = "Enter your question...";
+    qInput.style.width = "100%";
+    qInput.style.marginBottom = "0.5rem";
+    qInput.style.padding = "0.5rem";
+
+    // Answer input
+    const aInput = document.createElement("textarea");
+    aInput.placeholder = "Enter the answer...";
+    aInput.style.width = "100%";
+    aInput.style.height = "80px";
+    aInput.style.padding = "0.5rem";
+
+    // Append both
+    faqItem.appendChild(qInput);
+    faqItem.appendChild(aInput);
+    container.appendChild(faqItem);
+  });
+</script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
