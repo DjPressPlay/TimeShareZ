@@ -263,7 +263,15 @@
     qInput.style.marginBottom = "0.5rem";
     qInput.style.padding = "0.5rem";
 
-   // Remove button
+    // Answer input
+    const aInput = document.createElement("textarea");
+    aInput.placeholder = "Enter the answer...";
+    aInput.style.width = "100%";
+    aInput.style.height = "80px";
+    aInput.style.marginBottom = "0.5rem";
+    aInput.style.padding = "0.5rem";
+
+    // Remove button
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.textContent = "Remove";
@@ -284,6 +292,7 @@
     container.appendChild(faqItem);
   });
 </script>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
