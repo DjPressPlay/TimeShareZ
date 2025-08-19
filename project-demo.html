@@ -116,7 +116,6 @@ postProjectBtn.addEventListener('click', (e) => {
 </script>
 
     
-
 <!-- Creator Details -->
 <section class="section creator-details">
   <h2>👤 Creator Details</h2>
@@ -135,19 +134,17 @@ postProjectBtn.addEventListener('click', (e) => {
 
   <!-- Profile Picture -->
   <div class="input-group profile-upload">
-    <label>Profile Picture</label>
-    <div class="photo-container">
+    <label for="creator_photo">Profile Picture</label>
+    <input 
+      type="file" 
+      id="creator_photo" 
+      name="creator_photo" 
+      accept="image/*"
+      onchange="previewPhoto(event)"
+    >
+    <button type="button" onclick="removePhoto()">Remove File</button>
+    <div>
       <img id="photo_preview_img" src="https://placehold.co/100x100/EEE/31343C" alt="Profile Preview"/>
-      <div class="photo-buttons">
-        <input 
-          type="file" 
-          id="creator_photo" 
-          name="creator_photo" 
-          accept="image/*"
-          onchange="previewPhoto(event)"
-        >
-        <button type="button" id="remove_photo" onclick="removePhoto()">Remove</button>
-      </div>
     </div>
   </div>
 
@@ -171,13 +168,7 @@ postProjectBtn.addEventListener('click', (e) => {
   <!-- Creator Bio -->
   <div class="input-group">
     <label for="editor-creator">Creator Bio</label>
-    <div id="toolbar-creator">
-      <button class="ql-bold"></button>
-      <button class="ql-italic"></button>
-    </div>
-    <div id="editor-creator" style="height: 150px;">
-      <p>A little about you or your team...</p>
-    </div>
+    <textarea id="creator_bio" name="creator_bio" maxlength="280" rows="5" placeholder="A little about you or your team..."></textarea>
     <small id="bio-counter">0 / 280</small>
   </div>
 </section>
@@ -197,24 +188,11 @@ function removePhoto() {
   input.value = ""; // clears the chosen file
 }
 
-// Quill bio editor with 280 char limit
-const quillCreator = new Quill('#editor-creator', { 
-  theme: 'snow', 
-  modules: { toolbar: '#toolbar-creator' }
-});
-
-const bioCounter = document.getElementById("bio-counter");
-const BIO_LIMIT = 280;
-
-quillCreator.on("text-change", () => {
-  const text = quillCreator.getText().trim();
-  const length = text.length;
-
-  if (length > BIO_LIMIT) {
-    quillCreator.deleteText(BIO_LIMIT, length);
-  }
-
-  bioCounter.textContent = `${Math.min(length, BIO_LIMIT)} / ${BIO_LIMIT}`;
+// Character counter for bio
+const bio = document.getElementById("creator_bio");
+const counter = document.getElementById("bio-counter");
+bio.addEventListener("input", () => {
+  counter.textContent = `${bio.value.length} / 280`;
 });
 </script>
 
