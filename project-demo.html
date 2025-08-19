@@ -189,12 +189,12 @@ function previewPhoto(event) {
   img.src = URL.createObjectURL(event.target.files[0]);
 }
 
-// Remove profile picture
+// Remove profile picture (reset preview + clear file input)
 function removePhoto() {
   const img = document.getElementById("photo_preview_img");
   const input = document.getElementById("creator_photo");
   img.src = "https://placehold.co/100x100/EEE/31343C";
-  input.value = "";
+  input.value = ""; // clears the chosen file
 }
 
 // Quill bio editor with 280 char limit
@@ -217,6 +217,7 @@ quillCreator.on("text-change", () => {
   bioCounter.textContent = `${Math.min(length, BIO_LIMIT)} / ${BIO_LIMIT}`;
 });
 </script>
+
 
 
 
