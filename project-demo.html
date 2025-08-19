@@ -172,6 +172,22 @@
     All funds are held in <strong>USDC stablecoin</strong> until the run ends.  
     If the goal is not reached by the deadline, buyers are refunded.
   </p>
+
+  <h4 style="margin-top: 2rem;">Project Summary</h4>
+  <div id="toolbar-summary"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+  <div id="editor-summary" style="height: 150px;"><p>We’re building smart solar streetlights...</p></div>
+
+  <h4 style="margin-top: 2rem;">Our Story & Vision</h4>
+  <div id="toolbar-vision"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+  <div id="editor-vision" style="height: 200px;"></div>
+
+  <h4 style="margin-top: 2rem;">Our Plan & Use of Funds</h4>
+  <div id="toolbar-plan"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-list" value="bullet"></button></div>
+  <div id="editor-plan" style="height: 200px;"></div>
+
+  <h4 style="margin-top: 2rem;">Risks & Challenges</h4>
+  <div id="toolbar-risks"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+  <div id="editor-risks" style="height: 200px;"></div>
 </section>
 
 <script>
@@ -187,13 +203,52 @@
 <section class="section">
   <h2>Rewards</h2>
   <p class="explanation">
-    Rewards are what backers receive when they buy tickets.  
-    Be clear and realistic: delivery time, product details, and limitations.  
-    Unsold tickets = refunds. Rewards must still be delivered if your project succeeds.
+    Choose how backers are rewarded at different stages of your campaign.
+    <br><strong>Early Backers</strong> → Better gifts, standard returns.  
+    <br><strong>Mid Tiers</strong> → Balanced gifts and returns.  
+    <br><strong>Late Backers</strong> → Better returns, standard gift.  
   </p>
+  <div id="rewards-container">
+    <!-- Early Reward Tier -->
+    <div class="reward-tier">
+      <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name">
+      <div class="input-group">
+        <label>Price ($)</label>
+        <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
+      </div>
+      <div class="input-group">
+        <label>Description</label>
+        <input type="text" name="reward_description" placeholder="Exclusive gift for early supporters..." class="reward-description">
+      </div>
+    </div>
+    <!-- Mid Reward Tier -->
+    <div class="reward-tier">
+      <input type="text" value="Standard Supporter" class="reward-badge" placeholder="Tier Name">
+      <div class="input-group">
+        <label>Price ($)</label>
+        <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
+      </div>
+      <div class="input-group">
+        <label>Description</label>
+        <input type="text" name="reward_description" placeholder="Balanced gift and return..." class="reward-description">
+      </div>
+    </div>
+    <!-- Late Reward Tier -->
+    <div class="reward-tier">
+      <input type="text" value="Late Supporter" class="reward-badge" placeholder="Tier Name">
+      <div class="input-group">
+        <label>Price ($)</label>
+        <input type="number" name="reward_amount" placeholder="100" class="reward-amount">
+      </div>
+      <div class="input-group">
+        <label>Description</label>
+        <input type="text" name="reward_description" placeholder="Higher return perks for late supporters..." class="reward-description">
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Agreement Checkboxes -->
+<!-- Agreements -->
 <section class="section">
   <h2>Agreements</h2>
   <p class="explanation">You must agree to all terms before posting.</p>
@@ -208,7 +263,7 @@
 <section class="section">
   <h2>Frequently Asked Questions</h2>
   <div id="faq-container"></div>
-  <button type="button" id="add-faq-btn" style="width:100%; margin-top:1rem;">+ Add Question</button>
+  <button type="button" id="add-faq-btn" style="width:100%; margin-top:1rem; padding: 0.5rem;">+ Add Question</button>
 </section>
 
 <script>
@@ -216,10 +271,14 @@
     const container = document.getElementById("faq-container");
     const faqItem = document.createElement("div");
     faqItem.style.marginBottom = "1rem";
+    faqItem.style.padding = "0.75rem";
+    faqItem.style.border = "1px solid #ccc";
+    faqItem.style.borderRadius = "6px";
+    faqItem.style.background = "#fafafa";
     faqItem.innerHTML = `
-      <input type="text" placeholder="Enter your question..." style="width:100%; margin-bottom:0.5rem;">
-      <textarea placeholder="Enter the answer..." style="width:100%; height:80px; margin-bottom:0.5rem;"></textarea>
-      <button type="button" onclick="this.parentNode.remove()" style="background:#e74c3c; color:#fff; border:none; padding:0.4rem 0.8rem; cursor:pointer;">Remove</button>
+      <input type="text" placeholder="Enter your question..." style="width:100%; margin-bottom:0.5rem; padding:0.5rem;">
+      <textarea placeholder="Enter the answer..." style="width:100%; height:80px; margin-bottom:0.5rem; padding:0.5rem;"></textarea>
+      <button type="button" onclick="this.parentNode.remove()" style="background:#e74c3c; color:#fff; border:none; padding:0.4rem 0.8rem; cursor:pointer; border-radius:4px;">Remove</button>
     `;
     container.appendChild(faqItem);
   });
@@ -227,7 +286,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
+  // Quill editors
   const quillCreator = new Quill('#editor-creator', { theme: 'snow', modules: { toolbar: '#toolbar-creator' }});
+  const quillSummary = new Quill('#editor-summary', { theme: 'snow', modules: { toolbar: '#toolbar-summary' }});
+  const quillVision = new Quill('#editor-vision', { theme: 'snow', modules: { toolbar: '#toolbar-vision' }});
+  const quillPlan = new Quill('#editor-plan', { theme: 'snow', modules: { toolbar: '#toolbar-plan' }});
+  const quillRisks = new Quill('#editor-risks', { theme: 'snow', modules: { toolbar: '#toolbar-risks' }});
 </script>
 
 </body>
