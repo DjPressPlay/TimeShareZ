@@ -117,7 +117,7 @@ postProjectBtn.addEventListener('click', (e) => {
 
     
 
-   <!-- Creator Details ---------------------------------------------->
+  <!-- Creator Details -->
 <section class="section creator-details">
   <h2>👤 Creator Details</h2>
 
@@ -152,18 +152,21 @@ postProjectBtn.addEventListener('click', (e) => {
   </div>
 
   <!-- Location -->
-  <div class="input-group location-select">
-    <label for="country">Project Location</label>
-    <select id="country" name="country" onchange="updateStates()">
-      <option value="">Select Country</option>
-      <option value="USA">United States</option>
-      <option value="CAN">Canada</option>
-      <option value="MEX">Mexico</option>
-    </select>
-
-    <select id="state" name="state" disabled>
-      <option value="">Select State/Province</option>
-    </select>
+  <div class="input-group">
+    <label>Project Location</label>
+    <input 
+      type="text" 
+      id="creator_country" 
+      name="creator_country" 
+      placeholder="Country"
+      style="margin-bottom:0.5rem;"
+    >
+    <input 
+      type="text" 
+      id="creator_state" 
+      name="creator_state" 
+      placeholder="State / Province"
+    >
   </div>
 
   <!-- Creator Bio -->
@@ -193,81 +196,7 @@ function removePhoto() {
   img.src = "https://placehold.co/100x100/EEE/31343C";
   input.value = "";
 }
-
-// Simple country/state map (expand as needed)
-const states = {
-  "USA": ["Alabama","California","Michigan","New York","Texas"],
-  "CAN": ["Alberta","British Columbia","Ontario","Quebec"],
-  "MEX": ["Chihuahua","Jalisco","Nuevo León","Yucatán"]
-};
-
-function updateStates() {
-  const country = document.getElementById("country").value;
-  const stateDropdown = document.getElementById("state");
-  stateDropdown.innerHTML = '<option value="">Select State/Province</option>';
-
-  if (states[country]) {
-    stateDropdown.disabled = false;
-    states[country].forEach(st => {
-      const opt = document.createElement("option");
-      opt.value = st;
-      opt.textContent = st;
-      stateDropdown.appendChild(opt);
-    });
-  } else {
-    stateDropdown.disabled = true;
-  }
-}
 </script>
-
-<style>
-/* Profile avatar */
-.profile-avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ccc;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-/* Container */
-.photo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.photo-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.photo-buttons input[type="file"] {
-  font-size: 0.85rem;
-}
-
-.photo-buttons button {
-  padding: 0.3rem 0.6rem;
-  font-size: 0.85rem;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.photo-buttons button:hover {
-  background: #c0392b;
-}
-
-/* Location dropdowns */
-.location-select select {
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-  padding: 0.4rem;
-}
-</style>
 
 
     <!-- Social Links -->
