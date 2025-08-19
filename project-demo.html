@@ -157,8 +157,8 @@
   </div>
 
   <div class="input-group">
-    <label for="funding_goal">Funding Goal ($)</label>
-    <input type="number" id="funding_goal" name="funding_goal" placeholder="2500" oninput="updateTicketPrice()">
+    <label for="funding_goal">Funding Goal ($) <small>(max $5000)</small></label>
+    <input type="number" id="funding_goal" name="funding_goal" placeholder="2500" max="5000" oninput="updateTicketPrice()">
   </div>
 
   <div class="input-group">
@@ -172,10 +172,15 @@
   </div>
 
   <p class="explanation">
-    Your campaign automatically creates <strong>100 ticket spots</strong>.  
-    The ticket price is your <strong>Funding Goal ÷ 100</strong>.  
-    Example: $2,500 goal → $25 per ticket.  
-    All funds are stored in <strong>USDC (stablecoin)</strong> until the campaign ends.  
+    Every project on <strong>TimeShareZ</strong> is divided into exactly 
+    <strong>100 ticket spots</strong>.  
+    The price of each ticket is automatically calculated as 
+    <strong>Funding Goal ÷ 100</strong>.  
+    Example: If your goal is <strong>$2,500</strong>, each ticket will cost 
+    <strong>$25</strong>.  
+    Backers purchase these tickets to fund your project, and all contributions 
+    are securely stored in <strong>USDC (stablecoin)</strong> until the campaign ends.  
+    The maximum funding goal is capped at <strong>$5,000</strong>.
   </p>
 
   <h4 style="margin-top: 2rem;">Project Summary (Short About)</h4>
@@ -202,10 +207,12 @@
 <script>
   function updateTicketPrice() {
     const goal = document.getElementById('funding_goal').value;
-    const price = goal ? (goal / 100).toFixed(2) : 0;
+    const cappedGoal = Math.min(goal, 5000); // enforce cap
+    const price = cappedGoal ? (cappedGoal / 100).toFixed(2) : 0;
     document.getElementById('ticket_price').value = `$${price}`;
   }
 </script>
+
 
 
     <!-- Rewards -->
