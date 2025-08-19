@@ -263,16 +263,24 @@
     qInput.style.marginBottom = "0.5rem";
     qInput.style.padding = "0.5rem";
 
-    // Answer input
-    const aInput = document.createElement("textarea");
-    aInput.placeholder = "Enter the answer...";
-    aInput.style.width = "100%";
-    aInput.style.height = "80px";
-    aInput.style.padding = "0.5rem";
+   // Remove button
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.textContent = "Remove";
+    removeBtn.style.background = "#e74c3c";
+    removeBtn.style.color = "#fff";
+    removeBtn.style.border = "none";
+    removeBtn.style.padding = "0.4rem 0.8rem";
+    removeBtn.style.cursor = "pointer";
+    removeBtn.style.borderRadius = "4px";
+    removeBtn.addEventListener("click", function() {
+      faqItem.remove();
+    });
 
-    // Append both
+    // Append elements
     faqItem.appendChild(qInput);
     faqItem.appendChild(aInput);
+    faqItem.appendChild(removeBtn);
     container.appendChild(faqItem);
   });
 </script>
