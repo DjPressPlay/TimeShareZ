@@ -142,47 +142,71 @@
       <button type="button" id="add-team-member-btn" class="submit-btn" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">+ Add Team Member</button>
     </section>
 
-    <!-- Basics & Story -->
-    <section class="section">
-      <h2>Basics & Story</h2>
-      <div class="input-group">
-        <label for="run_length">Run Length</label>
-        <select id="run_length" name="run_length">
-          <option value="1 Day" selected>1 Day</option>
-          <option value="3 Days">3 Days</option>
-          <option value="5 Days">5 Days</option>
-          <option value="7 Days">7 Days</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label for="funding_goal">Funding Goal ($)</label>
-        <input type="number" id="funding_goal" name="funding_goal" placeholder="1500">
-      </div>
-      <div class="input-group">
-        <label for="ticket_spots">Tickets Spots</label>
-        <input type="number" id="ticket_spots" name="ticket_spots" placeholder="0/100">
-      </div>
+  <!-- Basics & Story -------------------------------->
+<section class="section">
+  <h2>Basics & Story</h2>
+  
+  <div class="input-group">
+    <label for="run_length">Run Length</label>
+    <select id="run_length" name="run_length">
+      <option value="1 Day" selected>1 Day</option>
+      <option value="3 Days">3 Days</option>
+      <option value="5 Days">5 Days</option>
+      <option value="7 Days">7 Days</option>
+    </select>
+  </div>
 
-      <h4 style="margin-top: 2rem;">Project Summary (Short About)</h4>
-      <p class="explanation">A brief, compelling summary. This is the first thing people will read after your title.</p>
-      <div id="toolbar-summary"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-      <div id="editor-summary" style="height: 150px;"><p>We’re building smart solar streetlights...</p></div>
+  <div class="input-group">
+    <label for="funding_goal">Funding Goal ($)</label>
+    <input type="number" id="funding_goal" name="funding_goal" placeholder="2500" oninput="updateTicketPrice()">
+  </div>
 
-      <h4 style="margin-top: 2rem;">Our Story & Vision</h4>
-      <p class="explanation">Introduce your project. What is your vision? Why are you passionate about it?</p>
-      <div id="toolbar-vision"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-      <div id="editor-vision" style="height: 200px;"></div>
-      
-      <h4 style="margin-top: 2rem;">Our Plan & Use of Funds</h4>
-      <p class="explanation">Be specific. What are the next steps in your plan? How will the funds be used to achieve your goals?</p>
-      <div id="toolbar-plan"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-list" value="bullet"></button></div>
-      <div id="editor-plan" style="height: 200px;"></div>
-      
-      <h4 style="margin-top: 2rem;">Risks & Challenges</h4>
-      <p class="explanation">Be transparent. What hurdles do you anticipate? How will you overcome them? This builds trust.</p>
-      <div id="toolbar-risks"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-      <div id="editor-risks" style="height: 200px;"></div>
-    </section>
+  <div class="input-group">
+    <label>Ticket Spots</label>
+    <input type="text" value="100 (fixed)" readonly>
+  </div>
+
+  <div class="input-group">
+    <label>Price Per Ticket</label>
+    <input type="text" id="ticket_price" value="$0" readonly>
+  </div>
+
+  <p class="explanation">
+    Your campaign automatically creates <strong>100 ticket spots</strong>.  
+    The ticket price is your <strong>Funding Goal ÷ 100</strong>.  
+    Example: $2,500 goal → $25 per ticket.  
+    All funds are stored in <strong>USDC (stablecoin)</strong> until the campaign ends.  
+  </p>
+
+  <h4 style="margin-top: 2rem;">Project Summary (Short About)</h4>
+  <p class="explanation">A brief, compelling summary. This is the first thing people will read after your title.</p>
+  <div id="toolbar-summary"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+  <div id="editor-summary" style="height: 150px;"><p>We’re building smart solar streetlights...</p></div>
+
+  <h4 style="margin-top: 2rem;">Our Story & Vision</h4>
+  <p class="explanation">Introduce your project. What is your vision? Why are you passionate about it?</p>
+  <div id="toolbar-vision"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+  <div id="editor-vision" style="height: 200px;"></div>
+  
+  <h4 style="margin-top: 2rem;">Our Plan & Use of Funds</h4>
+  <p class="explanation">Be specific. What are the next steps in your plan? How will the funds be used to achieve your goals?</p>
+  <div id="toolbar-plan"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-list" value="bullet"></button></div>
+  <div id="editor-plan" style="height: 200px;"></div>
+  
+  <h4 style="margin-top: 2rem;">Risks & Challenges</h4>
+  <p class="explanation">Be transparent. What hurdles do you anticipate? How will you overcome them? This builds trust.</p>
+  <div id="toolbar-risks"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+  <div id="editor-risks" style="height: 200px;"></div>
+</section>
+
+<script>
+  function updateTicketPrice() {
+    const goal = document.getElementById('funding_goal').value;
+    const price = goal ? (goal / 100).toFixed(2) : 0;
+    document.getElementById('ticket_price').value = `$${price}`;
+  }
+</script>
+
 
     <!-- Rewards -->
     <section class="section">
@@ -236,7 +260,7 @@
       </div>
     </section>
 
-<!-- FAQ -->
+<!-- FAQ --------------------------------------------------------->
 <section class="section">
   <h2>Frequently Asked Questions</h2>
   <div id="faq-container"></div>
