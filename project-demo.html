@@ -117,40 +117,58 @@ postProjectBtn.addEventListener('click', (e) => {
 
     
 
-<!-- Creator Bio --------------------------------------------->
-<div class="input-group">
-  <label for="editor-creator">Creator Bio</label>
-  <div id="toolbar-creator">
-    <button class="ql-bold"></button>
-    <button class="ql-italic"></button>
+  <!-- Creator Bio -->
+  <div class="input-group">
+    <label for="editor-creator">Creator Bio</label>
+    <div id="toolbar-creator">
+      <button class="ql-bold"></button>
+      <button class="ql-italic"></button>
+    </div>
+    <div id="editor-creator" style="height: 150px;">
+      <p>A little about you or your team...</p>
+    </div>
   </div>
-  <div id="editor-creator" style="height: 150px;">
-    <p>A little about you or your team...</p>
-  </div>
-  <small id="bio-counter">0 / 280</small>
-</div>
+</section>
 
 <script>
-// Quill setup with 280 char limit
-const quillCreator = new Quill('#editor-creator', { 
-  theme: 'snow', 
-  modules: { toolbar: '#toolbar-creator' }
-});
+// Preview uploaded profile picture
+function previewPhoto(event) {
+  const img = document.getElementById("photo_preview_img");
+  img.src = URL.createObjectURL(event.target.files[0]);
+}
 
-const bioCounter = document.getElementById("bio-counter");
-const BIO_LIMIT = 280;
+// Remove profile picture
+function removePhoto() {
+  const img = document.getElementById("photo_preview_img");
+  const input = document.getElementById("creator_photo");
+  img.src = "https://placehold.co/100x100/EEE/31343C";
+  input.value = "";
+}
 
-// Listen for text changes in Quill
-quillCreator.on("text-change", () => {
-  const text = quillCreator.getText().trim(); // raw text (no HTML tags)
-  const length = text.length;
+// Simple country/state map (expand as needed)
+const states = {
+  "USA": ["Alabama","California","Michigan","New York","Texas"],
+  "CAN": ["Alberta","British Columbia","Ontario","Quebec"],
+  "MEX": ["Chihuahua","Jalisco","Nuevo León","Yucatán"]
+};
 
-  if (length > BIO_LIMIT) {
-    quillCreator.deleteText(BIO_LIMIT, length); // enforce limit
+function updateStates() {
+  const country = document.getElementById("country").value;
+  const stateDropdown = document.getElementById("state");
+  stateDropdown.innerHTML = '<option value="">Select State/Province</option>';
+
+  if (states[country]) {
+    stateDropdown.disabled = false;
+    states[country].forEach(st => {
+      const opt = document.createElement("option");
+      opt.value = st;
+      opt.textContent = st;
+      stateDropdown.appendChild(opt);
+    });
+  } else {
+    stateDropdown.disabled = true;
   }
-
-  bioCounter.textContent = `${Math.min(length, BIO_LIMIT)} / ${BIO_LIMIT}`;
-});
+}
 </script>
 
 
