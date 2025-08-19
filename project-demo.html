@@ -27,7 +27,7 @@
 <div class="layout">
   <form id="project-form">
     
-  <!-- Action Bar ------------------------------->
+<!-- Action Bar ------------------------------->
 <section class="section action-bar">
   <button type="button" onclick="openOverlay('rules')">View Rules</button>
   <button type="button" onclick="openOverlay('paid')">Get Paid</button>
@@ -35,7 +35,7 @@
   <button type="button" onclick="openOverlay('post')">Post Project Ticket</button>
 </section>
 
-<!-- Overlays -->
+<!-- Overlay Modal -->
 <div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
   background:rgba(0,0,0,0.8); color:#fff; z-index:9999; text-align:center; padding-top:100px;">
   <div id="overlay-content" style="background:#222; margin:auto; padding:20px; border-radius:8px; width:80%; max-width:500px;">
@@ -53,16 +53,16 @@
 
     if (type === "rules") {
       title.innerText = "Project Rules";
-      text.innerText = "Here are the guidelines and rules you must follow before posting your project ticket.";
+      text.innerText = "Every project is capped at $5,000. All projects must have clear rewards. Unsold = refunds.";
     } else if (type === "paid") {
       title.innerText = "Get Paid";
-      text.innerText = "Add or connect your payment method to claim your ticket sales earnings.";
+      text.innerText = "Connect your payout wallet or payment method to claim your earnings (USDC).";
     } else if (type === "preview") {
       title.innerText = "Preview Ticket";
       text.innerText = "Here’s how your project ticket will look before it goes live.";
     } else if (type === "post") {
       title.innerText = "Post Project Ticket";
-      text.innerText = "Finalize and publish your project ticket to make it visible to backers.";
+      text.innerText = "Confirm all details and publish your ticket.";
     }
 
     overlay.style.display = "block";
@@ -73,79 +73,73 @@
   }
 </script>
 
+<!-- Creator Details -->
+<section class="section">
+  <h2>Creator Details</h2>
+  <div class="input-group">
+    <label for="creator_name">Creator Name</label>
+    <input type="text" id="creator_name" name="creator_name" placeholder="Jane Doe">
+  </div>
+  <div class="input-group">
+    <label for="creator_photo">Profile Picture</label>
+    <input type="file" id="creator_photo" name="creator_photo" accept="image/*">
+  </div>
+  <div class="input-group">
+    <label for="project_location">Project Location</label>
+    <input type="text" id="project_location" name="project_location" placeholder="Detroit, MI">
+  </div>
+  <label>Creator Bio</label>
+  <div id="toolbar-creator"><button class="ql-bold"></button><button class="ql-italic"></button></div>
+  <div id="editor-creator" style="height: 120px;"><p>A little about you or your team...</p></div>
+</section>
 
-    <!-- Creator Details ------------------------------>
-    <section class="section">
-      <h2>Creator Details</h2>
-      <div class="input-group">
-        <label for="creator_name">Creator Name</label>
-        <input type="text" id="creator_name" name="creator_name" placeholder="Jane Doe">
-      </div>
-      <div class="input-group">
-        <label for="creator_photo">Profile Picture</label>
-        <input type="file" id="creator_photo" name="creator_photo" accept="image/*">
-      </div>
-      <div class="input-group">
-        <label for="project_location">Project Location</label>
-        <input type="text" id="project_location" name="project_location" placeholder="Detroit, MI">
-      </div>
-      <label>Creator Bio</label>
-      <div id="toolbar-creator">
-        <button class="ql-bold"></button>
-        <button class="ql-italic"></button>
-      </div>
-      <div id="editor-creator" style="height: 120px;">
-        <p>A little about you or your team...</p>
-      </div>
-    </section>
+<!-- Social Links -->
+<section class="section">
+  <h2>Social Links</h2>
+  <div id="socials-container">
+    <div class="input-group"><label for="social_twitter">🐦 Twitter</label><input type="url" id="social_twitter" placeholder="https://twitter.com/..."></div>
+    <div class="input-group"><label for="social_instagram">📸 Instagram</label><input type="url" id="social_instagram" placeholder="https://instagram.com/..."></div>
+    <div class="input-group"><label for="social_website">🌐 Website</label><input type="url" id="social_website" placeholder="https://yoursite.com/..."></div>
+    <div class="input-group"><label for="social_github">💻 GitHub</label><input type="url" id="social_github" placeholder="https://github.com/..."></div>
+  </div>
+</section>
 
-    <!-- Social Links -------------------------------------->
-    <section class="section">
-      <h2>Social Links</h2>
-      <div id="socials-container">
-        <div class="input-group"><label for="social_twitter">Twitter</label><input type="url" id="social_twitter" placeholder="https://twitter.com/..."></div>
-        <div class="input-group"><label for="social_instagram">Instagram</label><input type="url" id="social_instagram" placeholder="https://instagram.com/..."></div>
-        <div class="input-group"><label for="social_website">Website</label><input type="url" id="social_website" placeholder="https://yoursite.com/..."></div>
-        <div class="input-group"><label for="social_github">GitHub</label><input type="url" id="social_github" placeholder="https://github.com/..."></div>
-      </div>
-    </section>
+<!-- Project Overview -->
+<section class="section">
+  <h2>Project Overview</h2>
+  <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Project Title">
+  <div class="input-group">
+    <input type="text" id="project_tagline" name="project_tagline" class="title-input" style="font-size: 1.25rem;" placeholder="Tagline (one-liner)">
+  </div>
+  
+  <h4>Category</h4>
+  <div class="input-group">
+    <select id="project_category" name="project_category">
+      <option selected disabled>Choose a category...</option>
+      <option>Art</option>
+      <option>Music</option>
+      <option>Tech</option>
+      <option>Games</option>
+      <option>Fashion</option>
+      <option>Film</option>
+    </select>
+  </div>
 
-    <!-- Project Overview ----------------------------------->
-    <section class="section">
-      <h2>Project Overview</h2>
-      <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Project Title">
-      <div class="input-group">
-        <input type="text" id="project_tagline" name="project_tagline" class="title-input" style="font-size: 1.25rem; font-weight: normal;" placeholder="Tagline (one-liner)">
-      </div>
-      <h4>Cover Media</h4>
-      <div class="input-group">
-        <label for="video_url">YouTube/Vimeo Link</label>
-        <input type="url" id="video_url" name="video_url" placeholder="https://youtube.com/...">
-      </div>
-      <div class="input-group">
-        <label for="cover_image_upload">Cover Image</label>
-        <input type="file" id="cover_image_upload" name="cover_image_upload" accept="image/*">
-      </div>
+  <h4>Cover Media</h4>
+  <div class="input-group">
+    <label for="video_url">YouTube/Vimeo Link</label>
+    <input type="url" id="video_url" name="video_url" placeholder="https://youtube.com/...">
+  </div>
+  <div class="input-group">
+    <label for="cover_image_upload">Cover Image</label>
+    <input type="file" id="cover_image_upload" name="cover_image_upload" accept="image/*">
+  </div>
+</section>
 
-      <h4>The Team</h4>
-      <div class="team-container" id="team-container">
-        <div class="team-ticket">
-          <label class="team-image-upload">
-            <img src="https://placehold.co/100x100/EEE/31343C" class="team-member-photo-preview" alt="Upload Photo">
-            <div class="photo-upload-overlay">Click to add image</div>
-            <input type="file" class="team-member-photo-input" accept="image/*" style="display: none;">
-          </label>
-          <input type="text" class="team-member-name" placeholder="Team Member Name">
-          <input type="text" class="team-member-role" placeholder="Role / Title">
-        </div>
-      </div>
-      <button type="button" id="add-team-member-btn" class="submit-btn" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">+ Add Team Member</button>
-    </section>
-
-  <!-- Basics & Story -------------------------------->
+<!-- Basics & Story -->
 <section class="section">
   <h2>Basics & Story</h2>
-  
+
   <div class="input-group">
     <label for="run_length">Run Length</label>
     <select id="run_length" name="run_length">
@@ -172,168 +166,69 @@
   </div>
 
   <p class="explanation">
-    Every project on <strong>TimeShareZ</strong> is divided into exactly 
-    <strong>100 ticket spots</strong>.  
-    The price of each ticket is automatically calculated as 
-    <strong>Funding Goal ÷ 100</strong>.  
-    Example: If your goal is <strong>$2,500</strong>, each ticket will cost 
-    <strong>$25</strong>.  
-    Backers purchase these tickets to fund your project, and all contributions 
-    are securely stored in <strong>USDC (stablecoin)</strong> until the campaign ends.  
-    The maximum funding goal is capped at <strong>$5,000</strong>.
+    Each project is split into <strong>100 ticket spots</strong>.  
+    Ticket price = <strong>Funding Goal ÷ 100</strong>.  
+    Example: $2,500 goal → $25 per ticket.  
+    All funds are held in <strong>USDC stablecoin</strong> until the run ends.  
+    If the goal is not reached by the deadline, buyers are refunded.
   </p>
-
-  <h4 style="margin-top: 2rem;">Project Summary (Short About)</h4>
-  <p class="explanation">A brief, compelling summary. This is the first thing people will read after your title.</p>
-  <div id="toolbar-summary"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-  <div id="editor-summary" style="height: 150px;"><p>We’re building smart solar streetlights...</p></div>
-
-  <h4 style="margin-top: 2rem;">Our Story & Vision</h4>
-  <p class="explanation">Introduce your project. What is your vision? Why are you passionate about it?</p>
-  <div id="toolbar-vision"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-  <div id="editor-vision" style="height: 200px;"></div>
-  
-  <h4 style="margin-top: 2rem;">Our Plan & Use of Funds</h4>
-  <p class="explanation">Be specific. What are the next steps in your plan? How will the funds be used to achieve your goals?</p>
-  <div id="toolbar-plan"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-list" value="bullet"></button></div>
-  <div id="editor-plan" style="height: 200px;"></div>
-  
-  <h4 style="margin-top: 2rem;">Risks & Challenges</h4>
-  <p class="explanation">Be transparent. What hurdles do you anticipate? How will you overcome them? This builds trust.</p>
-  <div id="toolbar-risks"><button class="ql-bold"></button><button class="ql-italic"></button></div>
-  <div id="editor-risks" style="height: 200px;"></div>
 </section>
 
 <script>
   function updateTicketPrice() {
     const goal = document.getElementById('funding_goal').value;
-    const cappedGoal = Math.min(goal, 5000); // enforce cap
+    const cappedGoal = Math.min(goal, 5000);
     const price = cappedGoal ? (cappedGoal / 100).toFixed(2) : 0;
     document.getElementById('ticket_price').value = `$${price}`;
   }
 </script>
 
+<!-- Rewards -->
+<section class="section">
+  <h2>Rewards</h2>
+  <p class="explanation">
+    Rewards are what backers receive when they buy tickets.  
+    Be clear and realistic: delivery time, product details, and limitations.  
+    Unsold tickets = refunds. Rewards must still be delivered if your project succeeds.
+  </p>
+</section>
 
+<!-- Agreement Checkboxes -->
+<section class="section">
+  <h2>Agreements</h2>
+  <p class="explanation">You must agree to all terms before posting.</p>
+  <label><input type="checkbox" required> I understand this is not crowdfunding, it’s a timed ticket auction.</label><br>
+  <label><input type="checkbox" required> I understand and agree funds are held in USDC until the run ends.</label><br>
+  <label><input type="checkbox" required> I understand unsold tickets = refunds to backers.</label><br>
+  <label><input type="checkbox" required> I agree to deliver rewards within the selected timeline.</label><br>
+  <label><input type="checkbox" required> I agree to TimeShareZ terms and rules.</label>
+</section>
 
-    <!-- Rewards ------------------------------>
-    <section class="section">
-      <h2>Rewards</h2>
-      <p class="explanation">
-        Choose how backers are rewarded at different stages of your campaign.
-        <br><strong>Early Backers</strong> → Get better gifts, but standard returns.  
-        <br><strong>Late Backers</strong> → Get better returns, but a standard gift.  
-        <br><strong>Mid Tiers</strong> → Balanced gifts and returns.  
-      </p>
-
-      <div id="rewards-container">
-        <!--------------------------------- Early Reward Tier -->
-        <div class="reward-tier">
-          <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name (e.g., Early Bird)">
-          <div class="input-group">
-            <label>Price ($)</label>
-            <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
-          </div>
-          <div class="input-group">
-            <label>Description</label>
-            <input type="text" name="reward_description" placeholder="Exclusive gift for early supporters (limited edition)..." class="reward-description">
-          </div>
-        </div>
-
-        <!------------------------------------- Mid Reward Tier -->
-        <div class="reward-tier">
-          <input type="text" value="Standard Supporter" class="reward-badge" placeholder="Tier Name (e.g., Standard)">
-          <div class="input-group">
-            <label>Price ($)</label>
-            <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
-          </div>
-          <div class="input-group">
-            <label>Description</label>
-            <input type="text" name="reward_description" placeholder="Balanced gift and fair return for mid supporters..." class="reward-description">
-          </div>
-        </div>
-
-        <!------------------------------------ Late Reward Tier -->
-        <div class="reward-tier">
-          <input type="text" value="Late Supporter" class="reward-badge" placeholder="Tier Name (e.g., Late Backer)">
-          <div class="input-group">
-            <label>Price ($)</label>
-            <input type="number" name="reward_amount" placeholder="100" class="reward-amount">
-          </div>
-          <div class="input-group">
-            <label>Description</label>
-            <input type="text" name="reward_description" placeholder="Higher return perks for late supporters + standard gift..." class="reward-description">
-          </div>
-        </div>
-      </div>
-    </section>
-
-<!-- FAQ --------------------------------------------------------->
+<!-- FAQ -->
 <section class="section">
   <h2>Frequently Asked Questions</h2>
   <div id="faq-container"></div>
-  <button type="button" id="add-faq-btn" style="width:100%; margin-top:1rem; padding: 0.5rem;">+ Add Question</button>
+  <button type="button" id="add-faq-btn" style="width:100%; margin-top:1rem;">+ Add Question</button>
 </section>
 
 <script>
   document.getElementById("add-faq-btn").addEventListener("click", function() {
     const container = document.getElementById("faq-container");
-
-    // Create wrapper div
     const faqItem = document.createElement("div");
     faqItem.style.marginBottom = "1rem";
-    faqItem.style.padding = "0.75rem";
-    faqItem.style.border = "1px solid #ccc";
-    faqItem.style.borderRadius = "6px";
-    faqItem.style.background = "#fafafa";
-
-    // Question input
-    const qInput = document.createElement("input");
-    qInput.type = "text";
-    qInput.placeholder = "Enter your question...";
-    qInput.style.width = "100%";
-    qInput.style.marginBottom = "0.5rem";
-    qInput.style.padding = "0.5rem";
-
-    // Answer input
-    const aInput = document.createElement("textarea");
-    aInput.placeholder = "Enter the answer...";
-    aInput.style.width = "100%";
-    aInput.style.height = "80px";
-    aInput.style.marginBottom = "0.5rem";
-    aInput.style.padding = "0.5rem";
-
-    // Remove button
-    const removeBtn = document.createElement("button");
-    removeBtn.type = "button";
-    removeBtn.textContent = "Remove";
-    removeBtn.style.background = "#e74c3c";
-    removeBtn.style.color = "#fff";
-    removeBtn.style.border = "none";
-    removeBtn.style.padding = "0.4rem 0.8rem";
-    removeBtn.style.cursor = "pointer";
-    removeBtn.style.borderRadius = "4px";
-    removeBtn.addEventListener("click", function() {
-      faqItem.remove();
-    });
-
-    // Append elements
-    faqItem.appendChild(qInput);
-    faqItem.appendChild(aInput);
-    faqItem.appendChild(removeBtn);
+    faqItem.innerHTML = `
+      <input type="text" placeholder="Enter your question..." style="width:100%; margin-bottom:0.5rem;">
+      <textarea placeholder="Enter the answer..." style="width:100%; height:80px; margin-bottom:0.5rem;"></textarea>
+      <button type="button" onclick="this.parentNode.remove()" style="background:#e74c3c; color:#fff; border:none; padding:0.4rem 0.8rem; cursor:pointer;">Remove</button>
+    `;
     container.appendChild(faqItem);
   });
 </script>
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
-  // Quill editors...
   const quillCreator = new Quill('#editor-creator', { theme: 'snow', modules: { toolbar: '#toolbar-creator' }});
-  const quillSummary = new Quill('#editor-summary', { theme: 'snow', modules: { toolbar: '#toolbar-summary' }});
-  const quillVision = new Quill('#editor-vision', { theme: 'snow', modules: { toolbar: '#toolbar-vision' }});
-  const quillPlan = new Quill('#editor-plan', { theme: 'snow', modules: { toolbar: '#toolbar-plan' }});
-  const quillRisks = new Quill('#editor-risks', { theme: 'snow', modules: { toolbar: '#toolbar-risks' }});
 </script>
+
 </body>
 </html>
