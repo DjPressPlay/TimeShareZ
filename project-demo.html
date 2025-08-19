@@ -27,13 +27,52 @@
 <div class="layout">
   <form id="project-form">
     
-    <!-- Action Bar -->
-    <section class="section action-bar">
-      <button type="button">View Rules</button>
-      <button type="button">Get Paid</button>
-      <button type="button">Preview Ticket</button>
-      <button type="submit">Post Project Ticket</button>
-    </section>
+  <!-- Action Bar -->
+<section class="section action-bar">
+  <button type="button" onclick="openOverlay('rules')">View Rules</button>
+  <button type="button" onclick="openOverlay('paid')">Get Paid</button>
+  <button type="button" onclick="openOverlay('preview')">Preview Ticket</button>
+  <button type="button" onclick="openOverlay('post')">Post Project Ticket</button>
+</section>
+
+<!-- Overlays -->
+<div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+  background:rgba(0,0,0,0.8); color:#fff; z-index:9999; text-align:center; padding-top:100px;">
+  <div id="overlay-content" style="background:#222; margin:auto; padding:20px; border-radius:8px; width:80%; max-width:500px;">
+    <h2 id="overlay-title"></h2>
+    <p id="overlay-text"></p>
+    <button onclick="closeOverlay()" style="margin-top:20px; padding:10px 20px; font-weight:bold;">Close</button>
+  </div>
+</div>
+
+<script>
+  function openOverlay(type) {
+    const overlay = document.getElementById("overlay");
+    const title = document.getElementById("overlay-title");
+    const text = document.getElementById("overlay-text");
+
+    if (type === "rules") {
+      title.innerText = "Project Rules";
+      text.innerText = "Here are the guidelines and rules you must follow before posting your project ticket.";
+    } else if (type === "paid") {
+      title.innerText = "Get Paid";
+      text.innerText = "Add or connect your payment method to claim your ticket sales earnings.";
+    } else if (type === "preview") {
+      title.innerText = "Preview Ticket";
+      text.innerText = "Here’s how your project ticket will look before it goes live.";
+    } else if (type === "post") {
+      title.innerText = "Post Project Ticket";
+      text.innerText = "Finalize and publish your project ticket to make it visible to backers.";
+    }
+
+    overlay.style.display = "block";
+  }
+
+  function closeOverlay() {
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>
+
 
     <!-- Creator Details -->
     <section class="section">
