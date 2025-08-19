@@ -121,25 +121,28 @@ postProjectBtn.addEventListener('click', (e) => {
   <h2>👤 Creator Details</h2>
 
   <!-- Profile Picture -->
-  <div class="input-group profile-upload">
-    <label for="creator_photo">Profile Picture</label>
-    <input 
-      type="file" 
-      id="creator_photo" 
-      name="creator_photo" 
-      accept="image/*"
-      onchange="previewPhoto(event)"
-    >
-    <button type="button" onclick="removePhoto()">Remove File</button>
-    <div>
-      <img 
-        id="photo_preview_img" 
-        src="https://placehold.co/100x100/EEE/31343C" 
-        alt="Profile Preview"
+  <div class="ticket-container">
+    <div class="input-group profile-upload">
+      <label for="creator_photo">Profile Picture</label>
+      <input 
+        type="file" 
+        id="creator_photo" 
+        name="creator_photo" 
+        accept="image/*"
+        onchange="previewPhoto(event)"
       >
+      <button type="button" onclick="removePhoto()">Remove File</button>
+      <div>
+        <img 
+          id="photo_preview_img" 
+          src="https://placehold.co/100x100/EEE/31343C" 
+          alt="Profile Preview"
+        >
+      </div>
     </div>
   </div>
 </section>
+
 
 
   
