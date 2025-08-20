@@ -165,11 +165,15 @@
   <h2>Project Overview</h2>
 
   <!-- Title -->
-  <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Project Title">
+  <div class="input-group">
+    <label for="project_title">Project Title</label>
+    <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Project Title">
+  </div>
 
   <!-- Tagline -->
   <div class="input-group">
-    <input type="text" id="project_tagline" name="project_tagline" class="title-input" style="font-size: 1.25rem;" placeholder="Tagline (one-liner)">
+    <label for="project_tagline">Tagline (one-liner)</label>
+    <input type="text" id="project_tagline" name="project_tagline" class="title-input" placeholder="Tagline (one-liner)">
   </div>
 
   <!-- Category -->
@@ -203,6 +207,7 @@
     <button type="button" onclick="removeCoverImage()" style="margin-top:8px;">Remove Image</button>
   </div>
 </section>
+
 
 <script>
   function previewCoverImage(event) {
