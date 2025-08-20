@@ -97,55 +97,63 @@
     </div>
   </div>
 
-<!-- Bio -->
-<label style="margin-top:1rem;">Creator Bio</label>
-<div id="toolbar-creator">
-  <!-- Fonts & Size -->
-  <select class="ql-font"></select>
-  <select class="ql-size"></select>
+  
+<!-- Creator Bio -->
+<section class="section creator-bio">
+  <label for="editor-creator" style="margin-top:1rem;">Creator Bio</label>
 
-  <!-- Styles -->
-  <button class="ql-bold"></button>
-  <button class="ql-italic"></button>
-  <button class="ql-underline"></button>
-  <button class="ql-strike"></button>
+  <!-- Rich Text Toolbar -->
+  <div id="toolbar-creator" class="quill-toolbar">
+    <!-- Fonts & Size -->
+    <select class="ql-font"></select>
+    <select class="ql-size"></select>
 
-  <!-- Lists -->
-  <button class="ql-list" value="ordered"></button>
-  <button class="ql-list" value="bullet"></button>
+    <!-- Text Styles -->
+    <button class="ql-bold"></button>
+    <button class="ql-italic"></button>
+    <button class="ql-underline"></button>
+    <button class="ql-strike"></button>
 
-  <!-- Alignment -->
-  <select class="ql-align"></select>
+    <!-- Lists -->
+    <button class="ql-list" value="ordered"></button>
+    <button class="ql-list" value="bullet"></button>
 
-  <!-- Colors -->
-  <select class="ql-color"></select>
-  <select class="ql-background"></select>
+    <!-- Alignment -->
+    <select class="ql-align"></select>
 
-  <!-- Links / Clear -->
-  <button class="ql-link"></button>
-  <button class="ql-clean"></button>
-</div>
+    <!-- Text Colors -->
+    <select class="ql-color"></select>
+    <select class="ql-background"></select>
 
-<div id="editor-creator" style="height:200px;">
-  <p>A little about you or your team...</p>
-</div>
+    <!-- Links & Clear -->
+    <button class="ql-link"></button>
+    <button class="ql-clean"></button>
+  </div>
+
+  <!-- Rich Text Editor -->
+  <div id="editor-creator" style="height:200px;">
+    <p>A little about you or your team...</p>
+  </div>
 </section>
 
-
+<!-- Profile Photo Script -->
 <script>
   function previewPhoto(e) {
     const file = e.target.files[0];
     if (file) {
-      document.getElementById("photo_preview").src = URL.createObjectURL(file);
+      const preview = document.getElementById("photo_preview");
+      preview.src = URL.createObjectURL(file);
     }
   }
 
   function removePhoto() {
     const input = document.getElementById("creator_photo");
-    input.value = ""; // clear file input
-    document.getElementById("photo_preview").src = "https://placehold.co/120x120/EEE/31343C"; // reset preview
+    const preview = document.getElementById("photo_preview");
+    input.value = ""; // Clear file input
+    preview.src = "https://placehold.co/120x120/EEE/31343C"; // Reset preview image
   }
 </script>
+
 
 
 
