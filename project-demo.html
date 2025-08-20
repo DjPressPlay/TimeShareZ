@@ -74,24 +74,46 @@
 </script>
 
 <!-- Creator Details -->
-<section class="section">
-  <h2>Creator Details</h2>
-  <div class="input-group">
-    <label for="creator_name">Creator Name</label>
-    <input type="text" id="creator_name" name="creator_name" placeholder="Jane Doe">
+<section class="section creator-details">
+  <h2>👤 Creator Details</h2>
+
+  <!-- Profile Upload -->
+  <div class="profile-card">
+    <div class="profile-photo">
+      <img id="photo_preview" src="https://placehold.co/120x120/EEE/31343C" alt="Profile Preview"/>
+      <input type="file" id="creator_photo" name="creator_photo" accept="image/*" onchange="previewPhoto(event)">
+    </div>
+
+    <div class="profile-info">
+      <div class="input-group">
+        <label for="creator_name">Creator Name</label>
+        <input type="text" id="creator_name" name="creator_name" placeholder="Jane Doe">
+      </div>
+      <div class="input-group">
+        <label for="project_location">Project Location</label>
+        <input type="text" id="project_location" name="project_location" placeholder="Detroit, MI">
+      </div>
+    </div>
   </div>
-  <div class="input-group">
-    <label for="creator_photo">Profile Picture</label>
-    <input type="file" id="creator_photo" name="creator_photo" accept="image/*">
+
+  <!-- Bio -->
+  <label style="margin-top:1rem;">Creator Bio</label>
+  <div id="toolbar-creator">
+    <button class="ql-bold"></button>
+    <button class="ql-italic"></button>
   </div>
-  <div class="input-group">
-    <label for="project_location">Project Location</label>
-    <input type="text" id="project_location" name="project_location" placeholder="Detroit, MI">
-  </div>
-  <label>Creator Bio</label>
-  <div id="toolbar-creator"><button class="ql-bold"></button><button class="ql-italic"></button></div>
   <div id="editor-creator" style="height: 120px;"><p>A little about you or your team...</p></div>
 </section>
+
+<script>
+  function previewPhoto(e) {
+    const file = e.target.files[0];
+    if (file) {
+      document.getElementById("photo_preview").src = URL.createObjectURL(file);
+    }
+  }
+</script>
+
 
 <!-- Social Links -->
 <section class="section">
