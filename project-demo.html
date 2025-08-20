@@ -98,13 +98,54 @@
   </div>
 
   <!-- Bio -->
-  <label style="margin-top:1rem;">Creator Bio</label>
-  <div id="toolbar-creator">
-    <button class="ql-bold"></button>
-    <button class="ql-italic"></button>
-  </div>
-  <div id="editor-creator" style="height: 120px;"><p>A little about you or your team...</p></div>
-</section>
+<label style="margin-top:1rem;">Creator Bio</label>
+
+<!-- Rich Toolbar -->
+<div id="toolbar-creator">
+  <!-- Font & Size -->
+  <select class="ql-font"></select>
+  <select class="ql-size"></select>
+
+  <!-- Text Style -->
+  <button class="ql-bold"></button>
+  <button class="ql-italic"></button>
+  <button class="ql-underline"></button>
+  <button class="ql-strike"></button>
+
+  <!-- Color -->
+  <select class="ql-color"></select>
+  <select class="ql-background"></select>
+
+  <!-- Alignment -->
+  <button class="ql-align" value=""></button>
+  <button class="ql-align" value="center"></button>
+  <button class="ql-align" value="right"></button>
+  <button class="ql-align" value="justify"></button>
+
+  <!-- Lists -->
+  <button class="ql-list" value="ordered"></button>
+  <button class="ql-list" value="bullet"></button>
+
+  <!-- Links -->
+  <button class="ql-link"></button>
+
+  <!-- Clean -->
+  <button class="ql-clean"></button>
+</div>
+
+<!-- Editor Box -->
+<div id="editor-creator" style="height:180px;">
+  <p>A little about you or your team...</p>
+</div>
+
+<script>
+  const quillCreator = new Quill('#editor-creator', {
+    theme: 'snow',
+    modules: {
+      toolbar: '#toolbar-creator'
+    }
+  });
+</script>
 
 <script>
   function previewPhoto(e) {
