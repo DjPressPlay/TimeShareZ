@@ -100,11 +100,11 @@
 <!-- Bio -->
 <label style="margin-top:1rem;">Creator Bio</label>
 <div id="toolbar-creator">
-  <!-- Font & Size -->
+  <!-- Fonts & Size -->
   <select class="ql-font"></select>
   <select class="ql-size"></select>
 
-  <!-- Basic Styles -->
+  <!-- Styles -->
   <button class="ql-bold"></button>
   <button class="ql-italic"></button>
   <button class="ql-underline"></button>
@@ -117,28 +117,20 @@
   <!-- Alignment -->
   <select class="ql-align"></select>
 
-  <!-- Color -->
+  <!-- Colors -->
   <select class="ql-color"></select>
   <select class="ql-background"></select>
 
-  <!-- Links & Clear -->
+  <!-- Links / Clear -->
   <button class="ql-link"></button>
   <button class="ql-clean"></button>
 </div>
-<div id="editor-creator" style="height:180px;">
+
+<div id="editor-creator" style="height:200px;">
   <p>A little about you or your team...</p>
 </div>
 </section>
 
-
-<script>
-  const quillCreator = new Quill('#editor-creator', {
-    theme: 'snow',
-    modules: {
-      toolbar: '#toolbar-creator'
-    }
-  });
-</script>
 
 <script>
   function previewPhoto(e) {
@@ -351,6 +343,7 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
   // Quill editors
+  
   const quillCreator = new Quill('#editor-creator', { theme: 'snow', modules: { toolbar: '#toolbar-creator' }});
   const quillSummary = new Quill('#editor-summary', { theme: 'snow', modules: { toolbar: '#toolbar-summary' }});
   const quillVision = new Quill('#editor-vision', { theme: 'snow', modules: { toolbar: '#toolbar-vision' }});
