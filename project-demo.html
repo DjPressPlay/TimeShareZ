@@ -163,34 +163,62 @@
 <!-- Project Overview -->
 <section class="section">
   <h2>Project Overview</h2>
+
+  <!-- Title -->
   <input type="text" id="project_title" name="project_title" class="title-input" placeholder="Project Title">
+
+  <!-- Tagline -->
   <div class="input-group">
     <input type="text" id="project_tagline" name="project_tagline" class="title-input" style="font-size: 1.25rem;" placeholder="Tagline (one-liner)">
   </div>
-  
+
+  <!-- Category -->
   <h4>Category</h4>
   <div class="input-group">
     <select id="project_category" name="project_category">
       <option selected disabled>Choose a category...</option>
-      <option>Art</option>
-      <option>Music</option>
-      <option>Tech</option>
-      <option>Games</option>
-      <option>Fashion</option>
-      <option>Film</option>
+      <option>🎨 Art</option>
+      <option>🎵 Music</option>
+      <option>💻 Tech</option>
+      <option>🎮 Games</option>
+      <option>👗 Fashion</option>
+      <option>🎬 Film</option>
     </select>
   </div>
 
+  <!-- Cover Media -->
   <h4>Cover Media</h4>
   <div class="input-group">
     <label for="video_url">YouTube/Vimeo Link</label>
     <input type="url" id="video_url" name="video_url" placeholder="https://youtube.com/...">
   </div>
+
+  <!-- Image Upload + Preview -->
   <div class="input-group">
     <label for="cover_image_upload">Cover Image</label>
-    <input type="file" id="cover_image_upload" name="cover_image_upload" accept="image/*">
+    <input type="file" id="cover_image_upload" name="cover_image_upload" accept="image/*" onchange="previewCoverImage(event)">
+    <div style="margin-top:10px;">
+      <img id="cover_preview" src="https://placehold.co/300x180/EEE/31343C" alt="Cover Preview" style="max-width:100%; border:1px solid #ccc; border-radius:6px;">
+    </div>
+    <button type="button" onclick="removeCoverImage()" style="margin-top:8px;">Remove Image</button>
   </div>
 </section>
+
+<script>
+  function previewCoverImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+      document.getElementById("cover_preview").src = URL.createObjectURL(file);
+    }
+  }
+
+  function removeCoverImage() {
+    const input = document.getElementById("cover_image_upload");
+    input.value = "";
+    document.getElementById("cover_preview").src = "https://placehold.co/300x180/EEE/31343C";
+  }
+</script>
+
 
 <!-- Basics & Story -->
 <section class="section">
