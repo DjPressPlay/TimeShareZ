@@ -82,6 +82,7 @@
     <div class="profile-photo">
       <img id="photo_preview" src="https://placehold.co/120x120/EEE/31343C" alt="Profile Preview"/>
       <input type="file" id="creator_photo" name="creator_photo" accept="image/*" onchange="previewPhoto(event)">
+      <button type="button" onclick="removePhoto()">Remove File</button>
     </div>
 
     <div class="profile-info">
@@ -112,7 +113,14 @@
       document.getElementById("photo_preview").src = URL.createObjectURL(file);
     }
   }
+
+  function removePhoto() {
+    const input = document.getElementById("creator_photo");
+    input.value = ""; // clear file input
+    document.getElementById("photo_preview").src = "https://placehold.co/120x120/EEE/31343C"; // reset preview
+  }
 </script>
+
 
 
 <!-- Social Links -->
