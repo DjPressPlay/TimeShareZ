@@ -153,14 +153,49 @@
 <section class="section">
   <h2>Social Links</h2>
   <div id="socials-container">
-    <div class="input-group"><label for="social_twitter">🐦 Twitter</label><input type="url" id="social_twitter" placeholder="https://twitter.com/..."></div>
-    <div class="input-group"><label for="social_instagram">📸 Instagram</label><input type="url" id="social_instagram" placeholder="https://instagram.com/..."></div>
-    <div class="input-group"><label for="social_website">🌐 Website</label><input type="url" id="social_website" placeholder="https://yoursite.com/..."></div>
-    <div class="input-group"><label for="social_github">💻 GitHub</label><input type="url" id="social_github" placeholder="https://github.com/..."></div>
+    
+    <div class="input-group">
+      <label for="social_twitter">🐦 Twitter</label>
+      <input type="url" id="social_twitter" placeholder="https://twitter.com/...">
+      <input type="checkbox" id="twitter_check" onchange="toggleLock('social_twitter', this)">
+    </div>
+
+    <div class="input-group">
+      <label for="social_instagram">📸 Instagram</label>
+      <input type="url" id="social_instagram" placeholder="https://instagram.com/...">
+      <input type="checkbox" id="instagram_check" onchange="toggleLock('social_instagram', this)">
+    </div>
+
+    <div class="input-group">
+      <label for="social_website">🌐 Website</label>
+      <input type="url" id="social_website" placeholder="https://yoursite.com/...">
+      <input type="checkbox" id="website_check" onchange="toggleLock('social_website', this)">
+    </div>
+
+    <div class="input-group">
+      <label for="social_github">💻 GitHub</label>
+      <input type="url" id="social_github" placeholder="https://github.com/...">
+      <input type="checkbox" id="github_check" onchange="toggleLock('social_github', this)">
+    </div>
+
   </div>
 </section>
 
-<!-- Project Overview -->
+<script>
+  function toggleLock(inputId, checkbox) {
+    const input = document.getElementById(inputId);
+    if (checkbox.checked) {
+      input.setAttribute("readonly", true);
+      input.style.background = "#eee"; // grey out
+    } else {
+      input.removeAttribute("readonly");
+      input.style.background = ""; // reset
+    }
+  }
+</script>
+
+
+<!-- Project Overview ------------------------------------------>
 <section class="section">
   <h2>Project Overview</h2>
 
