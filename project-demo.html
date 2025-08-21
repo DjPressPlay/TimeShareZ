@@ -64,6 +64,16 @@
       title.innerText = "Post Project Ticket";
       text.innerText = "Confirm all details and publish your ticket.";
     }
+    else if (type === "rewardsInfo") {
+  title.innerText = "How Rewards & Cash Back Work";
+  text.innerHTML = `
+    <strong>Early Backers</strong> get better gifts, like exclusive items or limited perks.<br><br>
+    <strong>Mid Tiers</strong> get a balanced mix — decent gifts and some cash back.<br><br>
+    <strong>Late Backers</strong> get standard gifts, but receive <strong>more cash back</strong> at the end of the run.<br><br>
+    All prices are auto-calculated based on the funding goal. Every ticket purchased enters a reward pool, and your join time affects the reward type you get.
+  `;
+}
+
 
     overlay.style.display = "block";
   }
@@ -499,6 +509,10 @@
   <label><input type="checkbox" required> I agree to TimeShareZ terms and rules.</label>
 </section>
 
+
+<button type="button" onclick="openOverlay('rewardsInfo')">How Rewards & Cash Back Work</button>
+
+  
 <!-- FAQ -->
 <section class="section">
   <h2>Frequently Asked Questions</h2>
