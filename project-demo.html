@@ -432,7 +432,7 @@
   <div class="input-group">
     <label>Price ($)</label>
     <input type="number" id="reward_price_early" class="reward-amount" readonly>
-    <small id="notice_early" class="reward-notice" style="color:#888; display:none;">Price is synced with funding goal.</small>
+    <small class="reward-note">This price is automatically synced with the funding goal.</small>
   </div>
   <div class="input-group">
     <label>Description</label>
@@ -440,32 +440,33 @@
   </div>
 </div>
 
+<!-- Mid Reward Tier -->
+<div class="reward-tier">
+  <input type="text" value="Standard Supporter" class="reward-badge" placeholder="Tier Name">
+  <div class="input-group">
+    <label>Price ($)</label>
+    <input type="number" id="reward_price_mid" class="reward-amount" readonly>
+    <small class="reward-note">This price is automatically synced with the funding goal.</small>
+  </div>
+  <div class="input-group">
+    <label>Description</label>
+    <input type="text" name="reward_description" placeholder="Balanced gift and return..." class="reward-description">
+  </div>
+</div>
 
-    <!-- Mid Reward Tier -->
-    <div class="reward-tier">
-      <input type="text" value="Standard Supporter" class="reward-badge" placeholder="Tier Name">
-      <div class="input-group">
-        <label>Price ($)</label>
-        <input type="number" id="reward_price_mid" class="reward-amount" readonly>
-      </div>
-      <div class="input-group">
-        <label>Description</label>
-        <input type="text" name="reward_description" placeholder="Balanced gift and return..." class="reward-description">
-      </div>
-    </div>
-
-    <!-- Late Reward Tier -->
-    <div class="reward-tier">
-      <input type="text" value="Late Supporter" class="reward-badge" placeholder="Tier Name">
-      <div class="input-group">
-        <label>Price ($)</label>
-        <input type="number" id="reward_price_late" class="reward-amount" readonly>
-      </div>
-      <div class="input-group">
-        <label>Description</label>
-        <input type="text" name="reward_description" placeholder="Higher cash back for late supporters..." class="reward-description">
-      </div>
-    </div>
+<!-- Late Reward Tier -->
+<div class="reward-tier">
+  <input type="text" value="Late Supporter" class="reward-badge" placeholder="Tier Name">
+  <div class="input-group">
+    <label>Price ($)</label>
+    <input type="number" id="reward_price_late" class="reward-amount" readonly>
+    <small class="reward-note">This price is automatically synced with the funding goal.</small>
+  </div>
+  <div class="input-group">
+    <label>Description</label>
+    <input type="text" name="reward_description" placeholder="Higher cash back for late supporters..." class="reward-description">
+  </div>
+</div>
 
   </div>
 </section>
