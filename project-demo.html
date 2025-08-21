@@ -414,54 +414,60 @@
   }
 </script>
 
-<!-- Rewards -->
+<!-- Rewards --------------------------->
 <section class="section">
   <h2>Rewards</h2>
   <p class="explanation">
     Choose how backers are rewarded at different stages of your campaign.
-    <br><strong>Early Backers</strong> → Better gifts, standard returns.  
-    <br><strong>Mid Tiers</strong> → Balanced gifts and returns.  
-    <br><strong>Late Backers</strong> → Better returns, standard gift.  
+    <br><strong>Early Backers</strong> → Better gifts, standard cash back.
+    <br><strong>Mid Tiers</strong> → Balanced gifts and cash back.
+    <br><strong>Late Backers</strong> → More cash back, standard gift.
   </p>
+
   <div id="rewards-container">
+
     <!-- Early Reward Tier -->
     <div class="reward-tier">
       <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name">
       <div class="input-group">
         <label>Price ($)</label>
-        <input type="number" name="reward_amount" placeholder="25" class="reward-amount">
+        <input type="number" id="reward_price_early" class="reward-amount" readonly>
       </div>
       <div class="input-group">
         <label>Description</label>
         <input type="text" name="reward_description" placeholder="Exclusive gift for early supporters..." class="reward-description">
       </div>
     </div>
+
     <!-- Mid Reward Tier -->
     <div class="reward-tier">
       <input type="text" value="Standard Supporter" class="reward-badge" placeholder="Tier Name">
       <div class="input-group">
         <label>Price ($)</label>
-        <input type="number" name="reward_amount" placeholder="50" class="reward-amount">
+        <input type="number" id="reward_price_mid" class="reward-amount" readonly>
       </div>
       <div class="input-group">
         <label>Description</label>
         <input type="text" name="reward_description" placeholder="Balanced gift and return..." class="reward-description">
       </div>
     </div>
+
     <!-- Late Reward Tier -->
     <div class="reward-tier">
       <input type="text" value="Late Supporter" class="reward-badge" placeholder="Tier Name">
       <div class="input-group">
         <label>Price ($)</label>
-        <input type="number" name="reward_amount" placeholder="100" class="reward-amount">
+        <input type="number" id="reward_price_late" class="reward-amount" readonly>
       </div>
       <div class="input-group">
         <label>Description</label>
-        <input type="text" name="reward_description" placeholder="Higher return perks for late supporters..." class="reward-description">
+        <input type="text" name="reward_description" placeholder="Higher cash back for late supporters..." class="reward-description">
       </div>
     </div>
+
   </div>
 </section>
+
 
 <!-- Agreements -->
 <section class="section">
