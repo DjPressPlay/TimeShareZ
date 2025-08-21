@@ -426,18 +426,20 @@
 
   <div id="rewards-container">
 
-    <!-- Early Reward Tier -->
-    <div class="reward-tier">
-      <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name">
-      <div class="input-group">
-        <label>Price ($)</label>
-        <input type="number" id="reward_price_early" class="reward-amount" readonly>
-      </div>
-      <div class="input-group">
-        <label>Description</label>
-        <input type="text" name="reward_description" placeholder="Exclusive gift for early supporters..." class="reward-description">
-      </div>
-    </div>
+<!-- Early Reward Tier -->
+<div class="reward-tier">
+  <input type="text" value="Early Bird" class="reward-badge" placeholder="Tier Name">
+  <div class="input-group">
+    <label>Price ($)</label>
+    <input type="number" id="reward_price_early" class="reward-amount" readonly>
+    <small id="notice_early" class="reward-notice" style="color:#888; display:none;">Price is synced with funding goal.</small>
+  </div>
+  <div class="input-group">
+    <label>Description</label>
+    <input type="text" name="reward_description" placeholder="Exclusive gift for early supporters..." class="reward-description">
+  </div>
+</div>
+
 
     <!-- Mid Reward Tier -->
     <div class="reward-tier">
