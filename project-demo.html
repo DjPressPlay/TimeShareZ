@@ -467,6 +467,22 @@
 
   </div>
 </section>
+<script>
+  function updateTicketPrice() {
+    const goal = document.getElementById('funding_goal').value;
+    const cappedGoal = Math.min(goal, 5000);
+    const price = cappedGoal ? (cappedGoal / 100).toFixed(2) : 0;
+
+    document.getElementById('ticket_price').value = `$${price}`;
+
+    // Sync reward tier prices
+    document.getElementById('reward_price_early').value = price;
+    document.getElementById('reward_price_mid').value = price;
+    document.getElementById('reward_price_late').value = price;
+  }
+</script>
+
+  
 
 
 <!-- Agreements -->
